@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User.
  *
- * @ORM\Entity(repositoryClass="UserBundle\Repository\TeacherRepository")
+ * @ORM\Entity(repositoryClass="App\Entities\Repositories\TeacherRepository")
  */
 class Teacher extends User
 {

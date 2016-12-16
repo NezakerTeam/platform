@@ -1,32 +1,28 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Entities\User;
-use App\Http\Controllers\Controller;
-use Doctrine\ORM\EntityManagerInterface;
-use LaravelDoctrine\ORM\Facades\EntityManager;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-
-    protected $em;
-
-    public function __construct(EntityManagerInterface $em)
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $this->em = $em;
+        $this->middleware('auth');
     }
 
     /**
-     * Show the profile for the given user.
+     * Show the application dashboard.
      *
-     * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function index(EntityManagerInterface $em)
+    public function index()
     {
-        $repository = EntityManager::getRepository(User::class);
-
-        //dd($repository->findAll());
-        return view('welcome');
+        return view('home');
     }
 }

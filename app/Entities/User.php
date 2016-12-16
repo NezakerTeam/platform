@@ -2,6 +2,12 @@
 namespace App\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 /**
  * User.
@@ -17,13 +23,23 @@ use Doctrine\ORM\Mapping as ORM;
  *                              User::TYPE_TEACHER = "Teacher"
  *                          }
  *                      )
+ * @ORM\HasLifecycleCallbacks
  */
-class User
+class User implements
+AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
+
+    use Authenticatable,
+        Authorizable,
+        CanResetPassword;
 
     const TYPE_NONE = 0;
     const TYPE_STUDENT_PARENT = 1;
     const TYPE_TEACHER = 2;
+    // Define the gender values
+    const GENDER_UNDEFINED = 0;
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 2;
 
     /**
      * @var int
@@ -50,23 +66,31 @@ class User
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=180)
      */
     protected $username;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=180)
      */
     protected $email;
 
     /**
-     * @var bool
+     * @var boolean
+     *
+     * @ORM\Column(name="enabled", type="boolean")
      */
     protected $enabled;
 
     /**
      * The salt to use for hashing.
-     *
+     * 
      * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=255)
      */
     protected $salt;
 
@@ -74,18 +98,15 @@ class User
      * Encrypted password. Must be persisted.
      *
      * @var string
+     * 
+     * @ORM\Column(name="password", type="string", length=255)
      */
     protected $password;
 
     /**
-     * Plain password. Used for model validation. Must not be persisted.
-     *
-     * @var string
-     */
-    protected $plainPassword;
-
-    /**
      * @var \DateTime
+     * 
+     * @ORM\Column(name="last_login", type="datetime")
      */
     protected $lastLogin;
 
@@ -134,7 +155,7 @@ class User
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birth_date", type="date")
+     * @ORM\Column(name="birth_date", type="date", nullable=true)
      */
     private $birthDate;
 
@@ -150,7 +171,7 @@ class User
      *
      * @ORM\Column(name="gender", type="smallint")
      */
-    private $gender;
+    private $gender = self::GENDER_UNDEFINED;
 
     /**
      * @var string
@@ -167,11 +188,11 @@ class User
     private $address;
 
     /**
-     * @var int
+     * @var City
      *
-     * @ORM\Column(name="city_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="City")
      */
-    private $cityId;
+    private $city;
 
     /**
      * @var array
@@ -204,11 +225,31 @@ class User
     }
 
     /**
+     * Get the key name.
+     *
+     * @return string
+     */
+    public function getKeyName()
+    {
+        return 'id';
+    }
+
+    /**
+     * Get the key value.
+     *
+     * @return int
+     */
+    public function getKey()
+    {
+        return $this->getId();
+    }
+
+    /**
      * Set firstName.
      *
      * @param string $firstName
      *
-     * @return User
+     * @return self
      */
     public function setFirstName($firstName)
     {
@@ -232,7 +273,7 @@ class User
      *
      * @param string $lastName
      *
-     * @return User
+     * @return self
      */
     public function setLastName($lastName)
     {
@@ -252,11 +293,21 @@ class User
     }
 
     /**
+     * Get the full name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
+    /**
      * Set birthDate.
      *
      * @param \DateTime $birthDate
      *
-     * @return User
+     * @return self
      */
     public function setBirthDate($birthDate)
     {
@@ -280,7 +331,7 @@ class User
      *
      * @param int $type
      *
-     * @return User
+     * @return self
      */
     public function setType($type)
     {
@@ -304,7 +355,7 @@ class User
      *
      * @param int $gender
      *
-     * @return User
+     * @return self
      */
     public function setGender($gender)
     {
@@ -328,7 +379,7 @@ class User
      *
      * @param string $photoName
      *
-     * @return User
+     * @return self
      */
     public function setPhotoName($photoName)
     {
@@ -352,7 +403,7 @@ class User
      *
      * @param string $address
      *
-     * @return User
+     * @return self
      */
     public function setAddress($address)
     {
@@ -372,27 +423,27 @@ class User
     }
 
     /**
-     * Set cityId.
+     * Set city.
      *
-     * @param int $cityId
+     * @param int $city
      *
-     * @return User
+     * @return self
      */
-    public function setCityId($cityId)
+    public function setCity(City $city)
     {
-        $this->cityId = $cityId;
+        $this->city = $city;
 
         return $this;
     }
 
     /**
-     * Get cityId.
+     * Get city.
      *
-     * @return int
+     * @return City
      */
-    public function getCityId()
+    public function getCity()
     {
-        return $this->cityId;
+        return $this->city;
     }
 
     /**
@@ -400,7 +451,7 @@ class User
      *
      * @param array $phoneNumbers
      *
-     * @return User
+     * @return self
      */
     public function setPhoneNumbers($phoneNumbers)
     {
@@ -482,14 +533,6 @@ class User
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function eraseCredentials()
-    {
-        $this->plainPassword = null;
-    }
-
-    /**
      * Gets the  username in search and sort queries.
      *
      * @return string
@@ -523,16 +566,6 @@ class User
     public function getPassword()
     {
         return $this->password;
-    }
-
-    /**
-     * Gets the plain password.
-     *
-     * @return string
-     */
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
     }
 
     /**
@@ -703,7 +736,7 @@ class User
     /**
      * @param \DateTime $date
      *
-     * @return User
+     * @return self
      */
     public function setCredentialsExpireAt(\DateTime $date = null)
     {
@@ -715,7 +748,7 @@ class User
     /**
      * @param bool $boolean
      *
-     * @return User
+     * @return self
      */
     public function setCredentialsExpired($boolean)
     {
@@ -755,7 +788,7 @@ class User
      *
      * @param bool $boolean
      *
-     * @return User
+     * @return self
      */
     public function setExpired($boolean)
     {
@@ -767,7 +800,7 @@ class User
     /**
      * @param \DateTime $date
      *
-     * @return User
+     * @return self
      */
     public function setExpiresAt(\DateTime $date = null)
     {
@@ -804,20 +837,6 @@ class User
         } else {
             $this->removeRole(static::ROLE_SUPER_ADMIN);
         }
-
-        return $this;
-    }
-
-    /**
-     * Sets the plain password.
-     *
-     * @param string $password
-     *
-     * @return self
-     */
-    public function setPlainPassword($password)
-    {
-        $this->plainPassword = $password;
 
         return $this;
     }
@@ -927,5 +946,16 @@ class User
     public function __toString()
     {
         return (string) $this->getUsername();
+    }
+
+    /**
+     * @ORM\PrePersist 
+     */
+    public function prePersist()
+    {
+        $now = new \DateTime();
+        $this->setLastLogin($now);
+
+        $this->setUsername($this->getEmail());
     }
 }
