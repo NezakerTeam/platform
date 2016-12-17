@@ -1,17 +1,26 @@
 <?php
-
 namespace App\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category.
+ * Grade.
  *
- * @ORM\Table(name="category", indexes={@ORM\Index(name="parent_id", columns={"parent_id"})})
+ * @ORM\Table(name="grade")
  * @ORM\Entity
  */
-class Category
+class Grade
 {
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -25,13 +34,6 @@ class Category
      * @ORM\Column(name="description", type="text", length=65535, nullable=false)
      */
     private $description;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="type", type="boolean", nullable=false)
-     */
-    private $type;
 
     /**
      * @var bool
@@ -55,30 +57,31 @@ class Category
     private $updatedAt;
 
     /**
-     * @var int
+     * @var Stage
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var \App\Entities\Category
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entities\Category")
+     * @ORM\ManyToOne(targetEntity="Stage")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="stage_id", referencedColumnName="id", nullable=false)
      * })
      */
-    private $parent;
+    private $stage;
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set name.
      *
      * @param string $name
      *
-     * @return Category
+     * @return self
      */
     public function setName($name)
     {
@@ -102,7 +105,7 @@ class Category
      *
      * @param string $description
      *
-     * @return Category
+     * @return self
      */
     public function setDescription($description)
     {
@@ -126,7 +129,7 @@ class Category
      *
      * @param bool $type
      *
-     * @return Category
+     * @return self
      */
     public function setType($type)
     {
@@ -150,7 +153,7 @@ class Category
      *
      * @param bool $status
      *
-     * @return Category
+     * @return self
      */
     public function setStatus($status)
     {
@@ -174,7 +177,7 @@ class Category
      *
      * @param \DateTime $createdAt
      *
-     * @return Category
+     * @return self
      */
     public function setCreatedAt($createdAt)
     {
@@ -198,7 +201,7 @@ class Category
      *
      * @param \DateTime $updatedAt
      *
-     * @return Category
+     * @return self
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -218,36 +221,26 @@ class Category
     }
 
     /**
-     * Get id.
+     * Set stage.
      *
-     * @return int
+     * @param Stage $stage
+     *
+     * @return self
      */
-    public function getId()
+    public function setStage(Stage $stage = null)
     {
-        return $this->id;
-    }
-
-    /**
-     * Set parent.
-     *
-     * @param \App\Entities\Category $parent
-     *
-     * @return Category
-     */
-    public function setParent(\App\Entities\Category $parent = null)
-    {
-        $this->parent = $parent;
+        $this->stage = $stage;
 
         return $this;
     }
 
     /**
-     * Get parent.
+     * Get stage.
      *
-     * @return \App\Entities\Category
+     * @return Stage
      */
-    public function getParent()
+    public function getStage()
     {
-        return $this->parent;
+        return $this->stage;
     }
 }

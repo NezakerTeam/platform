@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -12,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Comment
 {
+
     /**
      * @var string
      *
@@ -54,7 +54,7 @@ class Comment
      *
      * @ORM\ManyToOne(targetEntity="App\Entities\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $author;
@@ -64,7 +64,7 @@ class Comment
      *
      * @ORM\ManyToOne(targetEntity="App\Entities\Thread")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="thread_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="thread_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $thread;

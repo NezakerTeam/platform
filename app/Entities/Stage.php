@@ -4,12 +4,12 @@ namespace App\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Content.
+ * Stage.
  *
- * @ORM\Table(name="content", indexes={@ORM\Index(name="subject_id", columns={"subject_id"}), @ORM\Index(name="author", columns={"author_id"})})
+ * @ORM\Table(name="stage")
  * @ORM\Entity
  */
-class Content
+class Stage
 {
 
     /**
@@ -43,20 +43,6 @@ class Content
     private $status;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="type", type="boolean", nullable=false)
-     */
-    private $type;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="ordering", type="boolean", nullable=false)
-     */
-    private $ordering;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -71,31 +57,21 @@ class Content
     private $updatedAt;
 
     /**
-     * @var Subject
+     * Get id.
      *
-     * @ORM\ManyToOne(targetEntity="Subject")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="subject_id", referencedColumnName="id", nullable=false)
-     * })
+     * @return int
      */
-    private $subject;
-
-    /**
-     * @var User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
-     * })
-     */
-    private $author;
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set name.
      *
      * @param string $name
      *
-     * @return Content
+     * @return self
      */
     public function setName($name)
     {
@@ -119,7 +95,7 @@ class Content
      *
      * @param string $description
      *
-     * @return Content
+     * @return self
      */
     public function setDescription($description)
     {
@@ -139,35 +115,11 @@ class Content
     }
 
     /**
-     * Set status.
-     *
-     * @param bool $status
-     *
-     * @return Content
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status.
-     *
-     * @return bool
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
      * Set type.
      *
      * @param bool $type
      *
-     * @return Content
+     * @return self
      */
     public function setType($type)
     {
@@ -187,27 +139,27 @@ class Content
     }
 
     /**
-     * Set ordering.
+     * Set status.
      *
-     * @param bool $ordering
+     * @param bool $status
      *
-     * @return Content
+     * @return self
      */
-    public function setOrdering($ordering)
+    public function setStatus($status)
     {
-        $this->ordering = $ordering;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get ordering.
+     * Get status.
      *
      * @return bool
      */
-    public function getOrdering()
+    public function getStatus()
     {
-        return $this->ordering;
+        return $this->status;
     }
 
     /**
@@ -215,7 +167,7 @@ class Content
      *
      * @param \DateTime $createdAt
      *
-     * @return Content
+     * @return self
      */
     public function setCreatedAt($createdAt)
     {
@@ -239,7 +191,7 @@ class Content
      *
      * @param \DateTime $updatedAt
      *
-     * @return Content
+     * @return self
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -256,63 +208,5 @@ class Content
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set subject.
-     *
-     * @param Subject $subject
-     *
-     * @return self
-     */
-    public function setSubject(Subject $subject = null)
-    {
-        $this->subject = $subject;
-
-        return $this;
-    }
-
-    /**
-     * Get subject.
-     *
-     * @return Subject
-     */
-    public function getSubject()
-    {
-        return $this->subject;
-    }
-
-    /**
-     * Set author.
-     *
-     * @param User $author
-     *
-     * @return Content
-     */
-    public function setAuthor(User $author = null)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author.
-     *
-     * @return User
-     */
-    public function getAuthor()
-    {
-        return $this->author;
     }
 }
