@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Subject.
  *
  * @ORM\Table(name="subject")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Entities\Repositories\SubjectRepository") 
  */
 class Subject
 {

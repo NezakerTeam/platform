@@ -22,10 +22,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!--main style-->
-        <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-        <link rel="stylesheet" type="text/css" href="css/inner-style.css" media="screen">
-        <link rel="stylesheet" type="text/css" media="screen" href="css/skins/default.css" data-name="skins" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="/css/inner-style.css" media="screen">
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/skins/default.css" data-name="skins" />
 
         <!--google font style-->
         <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
@@ -34,7 +34,7 @@
         <!--font-family: 'Open Sans', sans-serif; -->
 
         <!-- font icon css style-->
-        <link rel="stylesheet" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" href="/css/font-awesome.min.css" />
         <style>
             .menu {
                 position: static;
@@ -62,7 +62,7 @@
                     <div class="navbar-wrapper">
                         <div class="container"> 
                             <!--Logo -->
-                            <div class="logo"><a href="#"><img src="images/nezaker-logo.png" alt=""></a> </div>
+                            <div class="logo"><a href="#"><img src="/images/nezaker-logo.png" alt=""></a> </div>
                             <!--Logo -->
                             <div class="navwrapper">
                                 <div class="navbar navbar-inverse navbar-static-top">
@@ -117,17 +117,17 @@
         <!--jquary min js--> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-        <script src="js/bootstrap.min.js"></script> 
-        <script src="js/jquery.easing.1.3.js"></script> 
-        <script src="js/retina-1.1.0.min.js"></script> 
-        <script src="js/inner-js/js/jquery.theme.revolution.min.js"></script> 
-        <script type="text/javascript" src="js/jquery.jcarousel.js"></script> 
-        <script type="text/javascript" src="js/jquery.isotope.min.js"></script> 
-        <script type="text/javascript" src="js/swipe.js"></script> 
-        <script src="js/main.js"></script> 
+        <script src="/js/bootstrap.min.js"></script> 
+        <script src="/js/jquery.easing.1.3.js"></script> 
+        <script src="/js/retina-1.1.0.min.js"></script> 
+        <script src="/js/inner-js/js/jquery.theme.revolution.min.js"></script> 
+        <script type="text/javascript" src="/js/jquery.jcarousel.js"></script> 
+        <script type="text/javascript" src="/js/jquery.isotope.min.js"></script> 
+        <script type="text/javascript" src="/js/swipe.js"></script> 
+        <script src="/js/main.js"></script> 
 
         <!--for theme custom jquery--> 
-        <script src="js/custom.js"></script>
+        <script src="/js/custom.js"></script>
 
     </body>
 </html>

@@ -4,13 +4,19 @@ namespace App\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Content.
+ * Lesson.
  *
- * @ORM\Table(name="content", indexes={@ORM\Index(name="subject_id", columns={"subject_id"}), @ORM\Index(name="author", columns={"author_id"})})
- * @ORM\Entity
+ * @ORM\Table(name="lesson", indexes={@ORM\Index(name="subject_id", columns={"subject_id"}), @ORM\Index(name="author", columns={"author_id"})})
+ * @ORM\Entity(repositoryClass="App\Entities\Repositories\LessonRepository") 
+ * @ORM\HasLifecycleCallbacks
  */
-class Content
+class Lesson
 {
+
+    const STATUS_PENDIND_APPROVAL = 1;
+    const TYPE_VIDEO = 1;
+    const SEMESTER_FIRST = 1;
+    const SEMESTER_SECOND = 2;
 
     /**
      * @var int
@@ -36,25 +42,39 @@ class Content
     private $description;
 
     /**
-     * @var bool
+     * @var string
      *
-     * @ORM\Column(name="status", type="boolean", nullable=false)
+     * @ORM\Column(name="youtube_url", type="text", length=1000, nullable=true)
      */
-    private $status;
+    private $youtubeUrl;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="material_url", type="text", length=1000, nullable=false)
+     */
+    private $materialUrl;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="type", type="boolean", nullable=false)
+     * @ORM\Column(name="status", type="smallint", nullable=false)
      */
-    private $type;
+    private $status = self::STATUS_PENDIND_APPROVAL;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="ordering", type="boolean", nullable=false)
+     * @ORM\Column(name="type", type="smallint", nullable=false)
      */
-    private $ordering;
+    private $type = self::TYPE_VIDEO;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ordering", type="smallint", nullable=false)
+     */
+    private $ordering = 1;
 
     /**
      * @var \DateTime
@@ -81,6 +101,13 @@ class Content
     private $subject;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="semester", type="smallint", nullable=false)
+     */
+    private $semester = self::SEMESTER_FIRST;
+
+    /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -95,7 +122,7 @@ class Content
      *
      * @param string $name
      *
-     * @return Content
+     * @return Lesson
      */
     public function setName($name)
     {
@@ -119,7 +146,7 @@ class Content
      *
      * @param string $description
      *
-     * @return Content
+     * @return Lesson
      */
     public function setDescription($description)
     {
@@ -139,11 +166,59 @@ class Content
     }
 
     /**
+     * Set Youtube URL.
+     *
+     * @param string $youtubeUrl
+     *
+     * @return Lesson
+     */
+    public function setYoutubeUrl($youtubeUrl)
+    {
+        $this->youtubeUrl = $youtubeUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get Youtube URL.
+     *
+     * @return string
+     */
+    public function getYoutubeUrl()
+    {
+        return $this->youtubeUrl;
+    }
+
+    /**
+     * Set material URL.
+     *
+     * @param string $materialUrl
+     *
+     * @return Lesson
+     */
+    public function setMaterialUrl($materialUrl)
+    {
+        $this->materialUrl = $materialUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get material Url.
+     *
+     * @return string
+     */
+    public function getMaterialUrl()
+    {
+        return $this->materialUrl;
+    }
+
+    /**
      * Set status.
      *
      * @param bool $status
      *
-     * @return Content
+     * @return Lesson
      */
     public function setStatus($status)
     {
@@ -167,7 +242,7 @@ class Content
      *
      * @param bool $type
      *
-     * @return Content
+     * @return Lesson
      */
     public function setType($type)
     {
@@ -191,7 +266,7 @@ class Content
      *
      * @param bool $ordering
      *
-     * @return Content
+     * @return Lesson
      */
     public function setOrdering($ordering)
     {
@@ -215,7 +290,7 @@ class Content
      *
      * @param \DateTime $createdAt
      *
-     * @return Content
+     * @return Lesson
      */
     public function setCreatedAt($createdAt)
     {
@@ -239,7 +314,7 @@ class Content
      *
      * @param \DateTime $updatedAt
      *
-     * @return Content
+     * @return Lesson
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -297,7 +372,7 @@ class Content
      *
      * @param User $author
      *
-     * @return Content
+     * @return Lesson
      */
     public function setAuthor(User $author = null)
     {
@@ -314,5 +389,61 @@ class Content
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * @ORM\PrePersist 
+     */
+    public function prePersist()
+    {
+        $now = new \DateTime();
+        $this->setCreatedAt($now);
+        $this->setUpdatedAt($now);
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $now = new \DateTime();
+        $this->setUpdatedAt($now);
+    }
+
+    /**
+     * Set semester.
+     *
+     * @param int $semester
+     *
+     * @return Lesson
+     */
+    public function setSemester($semester)
+    {
+        $this->semester = $semester;
+
+        return $this;
+    }
+
+    /**
+     * Get semester.
+     *
+     * @return int
+     */
+    public function getSemester()
+    {
+        return $this->semester;
+    }
+
+    /**
+     * Get semesters.
+     *
+     * @return array()
+     */
+    public static function getSemestersList()
+    {
+        return [
+            self::SEMESTER_FIRST => 'First Semester',
+            self::SEMESTER_SECOND => 'Second Semester'
+        ];
     }
 }

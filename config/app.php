@@ -146,6 +146,7 @@ return [
         LaravelDoctrine\Migrations\MigrationsServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Appzcoder\CrudGenerator\CrudGeneratorServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -154,6 +155,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\AnnotationsServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------

@@ -4,9 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "af9ecaa86235b9969d5d2e093985fd9e",
-    "content-hash": "85bd34c68912de9aa7f2defe161dcd0c",
+    "hash": "17e0ed55b88d0d7d1352b11aa6f50234",
+    "content-hash": "ed574a1af1330443cad4bf30ffbc3af6",
     "packages": [
+        {
+            "name": "appzcoder/crud-generator",
+            "version": "v1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/appzcoder/crud-generator.git",
+                "reference": "ab6805c276ab79d139dda24dcf58802b50fd00ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/ab6805c276ab79d139dda24dcf58802b50fd00ae",
+                "reference": "ab6805c276ab79d139dda24dcf58802b50fd00ae",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Appzcoder\\CrudGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sohel Amin",
+                    "email": "sohelamincse@gmail.com",
+                    "homepage": "http://www.appzcoder.com"
+                }
+            ],
+            "description": "Laravel 5 CRUD Generator",
+            "keywords": [
+                "crud",
+                "crud generator",
+                "laravel",
+                "laravel crud generator"
+            ],
+            "time": "2016-09-28 18:05:53"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "3.1.0",
@@ -1321,6 +1365,56 @@
                 "laravel"
             ],
             "time": "2016-11-30 14:58:38"
+        },
+        {
+            "name": "laravelcollective/annotations",
+            "version": "v5.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/annotations.git",
+                "reference": "feb7b11d14dfab9c696dd3292d6d2ab700acbf39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/annotations/zipball/feb7b11d14dfab9c696dd3292d6d2ab700acbf39",
+                "reference": "feb7b11d14dfab9c696dd3292d6d2ab700acbf39",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/annotations": "~1.0",
+                "illuminate/console": "5.3.*",
+                "illuminate/filesystem": "5.3.*",
+                "illuminate/support": "5.3.*",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "illuminate/database": "5.3.*",
+                "mockery/mockery": "~0.9.4",
+                "phpunit/phpunit": "~5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Annotations\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@enge.me"
+                },
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "Route Annotations for The Laravel Framework.",
+            "homepage": "http://laravelcollective.com",
+            "time": "2016-08-28 00:00:51"
         },
         {
             "name": "laravelcollective/html",
