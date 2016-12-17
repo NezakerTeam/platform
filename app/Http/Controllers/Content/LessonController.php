@@ -28,7 +28,7 @@ class LessonController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @Get("", as="profiles.show")
+     * @Get("", as="lesson.all")
      * 
      * @return View
      */
@@ -43,13 +43,15 @@ class LessonController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @Get("/create", as="lesson.create")
+     * 
      * @return View
      */
     public function create()
     {
         $form = FormBuilder::create('App\Forms\LessonForm', [
                 'method' => 'POST',
-                'url' => 'lesson/posts'
+                'url' => 'lesson/store'
         ]);
 
         return view('content.lesson.create', compact('form'));
@@ -60,6 +62,8 @@ class LessonController extends Controller
      *
      * @param Request $request
      *
+     * @Get("/create", as="lesson.store")
+     * 
      * @return RedirectResponse|Redirector
      */
     public function store(Request $request)

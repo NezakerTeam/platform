@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+//Route::get('/', 'HomeController@index');
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
 
 //Route::resource('lesson/posts', 'Content\\LessonController');

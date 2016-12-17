@@ -8,7 +8,7 @@
                     <div class="panel-heading">Posts</div>
                     <div class="panel-body">
 
-                        <a href="{{ url('/lesson/posts/create') }}" class="btn btn-primary btn-xs" title="Add New Post"><span class="glyphicon glyphicon-plus" aria-hidden="true"/></a>
+                        <a href="{{ url('/lesson/create') }}" class="btn btn-primary btn-xs" title="Add New Post"><span class="glyphicon glyphicon-plus" aria-hidden="true"/></a>
                         <br/>
                         <br/>
                         <div class="table-responsive">
@@ -24,8 +24,8 @@
                                         <td>{{ $item->getId() }}</td>
                                         <td>{{ $item->getName() }}</td><td>{{ $item->getDescription() }}</td><td>{{ $item->getSubject()->getName() }}</td>
                                         <td>
-                                            <a href="{{ url('/lesson/posts/' . $item->getId()) }}" class="btn btn-success btn-xs" title="View Post"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"/></a>
-                                            <a href="{{ url('/lesson/posts/' . $item->getId() . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Post"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
+                                            <a href="{{ url('/lesson/' . $item->getId()) }}" class="btn btn-success btn-xs" title="View Post"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"/></a>
+                                            <a href="{{ url('/lesson/' . $item->getId() . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Post"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
                                             {!! Form::open([
                                                 'method'=>'DELETE',
                                                 'url' => ['/lesson/posts', $item->getId()],

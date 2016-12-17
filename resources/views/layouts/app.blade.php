@@ -56,62 +56,14 @@
             </div>
 
             <!--Start Header-->
-            <header> 
-                <!--menu start-->
-                <div class="menu">
-                    <div class="navbar-wrapper">
-                        <div class="container"> 
-                            <!--Logo -->
-                            <div class="logo"><a href="#"><img src="/images/nezaker-logo.png" alt=""></a> </div>
-                            <!--Logo -->
-                            <div class="navwrapper">
-                                <div class="navbar navbar-inverse navbar-static-top">
-                                    <div class="container">
-                                        <nav class="navArea">
-                                            <div class="navbar-header">
-                                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                                            </div>
-                                            <div class="navbar-collapse collapse">
-                                                <ul class="nav navbar-nav" id="navigation">
-                                                    <li class="menuItem" id="home"><a href="#wrapper">الصفحة الرئيسية</a></li>
-                                                    <li class="menuItem"><a href="#features">كيف يعمل</a></li>
-                                                    <li class="menuItem"><a href="#aboutus">عن نذاكر</a></li>
-                                                    <li class="menuItem"><a href="#courses">أحدث الدروس</a></li>
-                                                    <!--
-                                                    <li class="menuItem"><a href="#teachers">المعلمون</a></li>
-                                                    <li class="menuItem"><a href="#testimonial">الأباء</a></li>
-                                                    <li><a href="blog-medium-image.html">مُدونات</a></li>
-                                                    -->
-                                                    <li class="menuItem"><a href="#contact">جهة اتصال</a></li>
-                                                </ul>
-                                            </div>
-                                        </nav>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Navbar --> 
-                        </div>
-                    </div>
-                </div>
-                <!--menu end--> 
-
-            </header>
+            @include('layouts.header')
             <!--End Header--> 
 
             @yield('content')
 
             <!--Footer start-->
-            <footer class="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="pull-left">
-                            <p>&copy; 2015  eLearn Theme. All Rights Reserved</p>
-                        </div>
-                        <div class="pull-right"><a class="gototop smooth" href="#wrapper">Go To Top<i class="fa fa-chevron-up"></i></a></div>
-                    </div>
-                </div>
-            </footer>
+            @include('layouts.footer')
+
             <!--Footer end --> 
         </div>
         <!--jquary min js--> 
