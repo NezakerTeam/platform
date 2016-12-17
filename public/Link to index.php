@@ -1,1 +1,0 @@
-/var/www/nezaker/public/index.php
