@@ -29,7 +29,7 @@ h3 {
 	page_head Title
 ---------------------------------------------*/
 .page_head {
-	padding: 50px 0;
+	padding: 10px 0;
 }
 .page_head h2 {
 	font-weight: 600;
@@ -1597,7 +1597,7 @@ ul.hover-social-icons li a:hover {
 	font-weight: 400;
 }
 .blog_large .post_content, .blog_single .post_content {
-	margin: 0 63px 0 0;
+	margin: 0 0 0 0;
 }
 .blog_large .post_meta .metaInfo, .blog_single .post_meta .metaInfo {
 	font-size: 0.9em;

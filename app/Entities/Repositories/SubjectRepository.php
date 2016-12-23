@@ -1,10 +1,16 @@
 <?php
 namespace App\Entities\Repositories;
 
-use Doctrine\ORM\EntityRepository;
-
 class SubjectRepository extends EntityRepository
 {
+
+    /**
+     * @inheritdoc 
+     */
+    public function __construct()
+    {
+        parent::__construct(\App\Entities\Subject::class);
+    }
 
     /**
      * Get a list of subjects 
@@ -32,14 +38,27 @@ class SubjectRepository extends EntityRepository
      * 
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAll($gradeId = 0)
+    public function getAll($gradeId = null, $activeOnly = null, $offset = 0, $limit = 6)
     {
-        $criteria = [];
+        $qb = $this->createQueryBuilder('s');
 
-        if (!empty($gradeId)) {
-            $criteria['gradeId'] = $gradeId;
+        if ($gradeId !== null) {
+            $qb->andwhere(
+                $qb->expr()->eq('s.grade_id', $gradeId)
+            );
         }
 
-        return $this->findBy($criteria);
+        if ($activeOnly !== null) {
+            $qb->andwhere(
+                $qb->expr()->eq('s.status', \App\Entities\Subject::STATUS_ACTIVE)
+            );
+        }
+        $stages = $qb
+                ->orderBy('s.ordering', 'DESC')
+                ->setMaxResults($limit)
+                ->setFirstResult($offset)
+                ->getQuery()->execute();
+
+        return $stages;
     }
 }

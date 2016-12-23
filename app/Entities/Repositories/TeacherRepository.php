@@ -1,10 +1,16 @@
 <?php
 namespace App\Entities\Repositories;
 
-use Doctrine\ORM\EntityRepository;
-
 class TeacherRepository extends EntityRepository
 {
+
+    /**
+     * @inheritdoc 
+     */
+    public function __construct()
+    {
+        parent::__construct(\App\Entities\Teacher::class);
+    }
 
     public function create(\App\Entities\Teacher $teacher)
     {

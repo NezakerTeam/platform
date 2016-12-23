@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Subject
 {
 
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 2;
+
     /**
      * @var int
      *
@@ -41,6 +44,13 @@ class Subject
      * @ORM\Column(name="status", type="boolean", nullable=false)
      */
     private $status;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ordering", type="smallint", nullable=false)
+     */
+    private $ordering = 1;
 
     /**
      * @var \DateTime
@@ -173,6 +183,30 @@ class Subject
     }
 
     /**
+     * Set ordering.
+     *
+     * @param bool $ordering
+     *
+     * @return Lesson
+     */
+    public function setOrdering($ordering)
+    {
+        $this->ordering = $ordering;
+
+        return $this;
+    }
+
+    /**
+     * Get ordering.
+     *
+     * @return bool
+     */
+    public function getOrdering()
+    {
+        return $this->ordering;
+    }
+
+    /**
      * Set createdAt.
      *
      * @param \DateTime $createdAt
@@ -243,9 +277,9 @@ class Subject
     {
         return $this->grade;
     }
-    
+
     public function __toString()
     {
-        return (string)$this->getId();
+        return (string) $this->getId();
     }
 }

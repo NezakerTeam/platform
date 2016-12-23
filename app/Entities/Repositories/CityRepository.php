@@ -1,10 +1,16 @@
 <?php
 namespace App\Entities\Repositories;
 
-use Doctrine\ORM\EntityRepository;
-
 class CityRepository extends EntityRepository
 {
+
+    /**
+     * @inheritdoc 
+     */
+    public function __construct()
+    {
+        parent::__construct(\App\Entities\City::class);
+    }
 
     public function getList()
     {

@@ -2,8 +2,13 @@
 namespace App\Http\Controllers\Content;
 
 use App\Entities\Lesson;
+use App\Entities\Repositories\GradeRepository;
+use App\Entities\Repositories\LessonRepository;
+use App\Entities\Repositories\StageRepository;
+use App\Entities\Repositories\SubjectRepository;
 use App\Forms\LessonForm;
 use App\Http\Controllers\Controller;
+use App\Post;
 use App\Services\ContentService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -33,12 +38,22 @@ class LessonController extends Controller
      * 
      * @return View
      */
-    public function index()
+    public function index(LessonRepository $lessonRepo, StageRepository $stageRepo
+    , GradeRepository $gradeRepo, SubjectRepository $subjectRepo)
     {
-        $posts = EntityManager::getRepository(Lesson::class)->findAll();
+        $stages = $stageRepo->getAll(true);
+        $grades = $gradeRepo->getAll(true);
+        $subjects = $subjectRepo->getAll(null, true);
+        $lessons = $lessonRepo->findAll();
 
+        $data = [
+            'stages' => $stages,
+            'grades' => $grades,
+            'subjects' => $subjects,
+            'lessons' => $lessons,
+        ];
 
-        return view('content.lesson.index', compact('posts'));
+        return view('content.lesson.index', $data);
     }
 
     /**
@@ -82,21 +97,23 @@ class LessonController extends Controller
 
         Session::flash('flash_message', 'Post added!');
 
-        return redirect('lesson/posts');
+        return redirect('lesson/lessons');
     }
 
     /**
      * Display the specified resource.
      *
+     * @Get("/{id}", as="lesson.show", where={"id": "[0-9]+"})
+     * 
      * @param  int  $id
      *
      * @return View
      */
-    public function show($id)
+    public function show($lessonId)
     {
-        $post = Post::findOrFail($id);
+        $lesson = EntityManager::getRepository(Lesson::class)->findById($lessonId);
 
-        return view('content.posts.show', compact('post'));
+        return view('content.lesson.show', compact('lesson'));
     }
 
     /**
@@ -108,9 +125,9 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Lesson::findOrFail($id);
 
-        return view('content.posts.edit', compact('post'));
+        return view('content.lessons.edit', compact('post'));
     }
 
     /**
@@ -131,7 +148,7 @@ class LessonController extends Controller
 
         Session::flash('flash_message', 'Post updated!');
 
-        return redirect('lesson/posts');
+        return redirect('lesson/lessons');
     }
 
     /**
@@ -147,6 +164,6 @@ class LessonController extends Controller
 
         Session::flash('flash_message', 'Post deleted!');
 
-        return redirect('lesson/posts');
+        return redirect('lesson/lessons');
     }
 }

@@ -20,9 +20,9 @@ class ContentService
         $lesson->setDescription($data['description']);
         $lesson->setMaterialUrl($data['materialUrl']);
 
-        if (isset($data['youtubeUrl']) && Auth::User()->hasType(\App\Entities\User::TYPE_ADMIN_USER)) {
-            $youtubeUrl = $data['youtubeUrl'];
-            $lesson->setYoutubeUrl($youtubeUrl);
+        if (isset($data['youtubeVideoId']) && Auth::User()->hasType(\App\Entities\User::TYPE_ADMIN_USER)) {
+            $youtubeVideoId = $data['youtubeVideoId'];
+            $lesson->setYoutubeVideoId($youtubeVideoId);
         }
 
         $subject = EntityManager::getReference(Subject::class, $data['subject']);
@@ -32,11 +32,11 @@ class ContentService
 
         $lesson->setAuthor(Auth::user());
 
-        if ((isset($data['satus']) && $data['status'] == Lesson::STATUS_PENDIND_APPROVAL) ||
+        if ((isset($data['stauts']) && $data['status'] == Lesson::STATUS_PENDIND_APPROVAL) ||
             Auth::User()->hasType(\App\Entities\User::TYPE_ADMIN_USER)) {
-            $lesson->setStatus($data['satus']);
+            $lesson->setStatus($data['status']);
         }
-        
+
 
         return $lesson;
     }

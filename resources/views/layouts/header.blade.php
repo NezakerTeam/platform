@@ -20,7 +20,7 @@
                                         <li class="menuItem" id="home"><a href="#wrapper">الصفحة الرئيسية</a></li>
                                         <li class="menuItem"><a href="#features">كيف يعمل</a></li>
                                         <li class="menuItem"><a href="#aboutus">عن نذاكر</a></li>
-                                        <li class="menuItem"><a href="#courses">أحدث الدروس</a></li>
+                                        <li class="menuItem"><a href="{{route('lesson.all')}}">كل الدروس</a></li>
                                         <!--
                                         <li class="menuItem"><a href="#teachers">المعلمون</a></li>
                                         <li class="menuItem"><a href="#testimonial">الأباء</a></li>

@@ -46,9 +46,9 @@ class Lesson
     /**
      * @var string
      *
-     * @ORM\Column(name="youtube_url", type="text", length=1000, nullable=true)
+     * @ORM\Column(name="youtube_video_id", type="text", length=1000, nullable=true)
      */
-    private $youtubeUrl;
+    private $youtubeVideoId;
 
     /**
      * @var string
@@ -168,27 +168,27 @@ class Lesson
     }
 
     /**
-     * Set Youtube URL.
+     * Set Youtube video id.
      *
-     * @param string $youtubeUrl
+     * @param string $youtubeVideoId
      *
      * @return Lesson
      */
-    public function setYoutubeUrl($youtubeUrl)
+    public function setYoutubeVideoId($youtubeVideoId)
     {
-        $this->youtubeUrl = $youtubeUrl;
+        $this->youtubeVideoId = $youtubeVideoId;
 
         return $this;
     }
 
     /**
-     * Get Youtube URL.
+     * Get Youtube video id.
      *
      * @return string
      */
-    public function getYoutubeUrl()
+    public function getYoutubeVideoId()
     {
-        return $this->youtubeUrl;
+        return $this->youtubeVideoId;
     }
 
     /**

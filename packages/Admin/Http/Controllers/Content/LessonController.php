@@ -114,7 +114,10 @@ class LessonController extends Controller
                 'method' => 'PATCH',
                 'url' => route('admin.lesson.update', [$lesson->getId()]),
                 'model' => $lesson
-        ]);
+                ], [
+                'isEdit' => true
+                ]
+        );
 
         return view('admin::content.lesson.edit', compact('lesson', 'form'));
     }
@@ -131,7 +134,7 @@ class LessonController extends Controller
      */
     public function update($lessonId, Request $request)
     {
-        $form = $this->form(LessonForm::class);
+        $form = $this->form(LessonForm::class, [], ['isEdit' => true]);
 
         // Or automatically redirect on error. This will throw an HttpResponseException with redirect
         $form->redirectIfNotValid();
@@ -149,6 +152,8 @@ class LessonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @Delete("/{id}", as="admin.lesson.delete", where={"id": "[0-9]+"})
+     * 
      * @param  int  $id
      *
      * @return RedirectResponse|Redirector

@@ -7,10 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
  * Grade.
  *
  * @ORM\Table(name="grade")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Entities\Repositories\GradeRepository") 
  */
 class Grade
 {
+
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 2;
 
     /**
      * @var int
@@ -43,6 +46,13 @@ class Grade
     private $status;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="ordering", type="smallint", nullable=false)
+     */
+    private $ordering = 1;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -59,7 +69,7 @@ class Grade
     /**
      * @var Stage
      *
-     * @ORM\ManyToOne(targetEntity="Stage")
+     * @ORM\ManyToOne(targetEntity="Stage", inversedBy="grades")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="stage_id", referencedColumnName="id", nullable=false)
      * })
@@ -170,6 +180,30 @@ class Grade
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set ordering.
+     *
+     * @param bool $ordering
+     *
+     * @return Lesson
+     */
+    public function setOrdering($ordering)
+    {
+        $this->ordering = $ordering;
+
+        return $this;
+    }
+
+    /**
+     * Get ordering.
+     *
+     * @return bool
+     */
+    public function getOrdering()
+    {
+        return $this->ordering;
     }
 
     /**

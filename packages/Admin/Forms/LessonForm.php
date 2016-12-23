@@ -23,8 +23,8 @@ class LessonForm extends Form
                 'label' => 'Material Url',
                 'rules' => 'required',
             ])
-            ->add('youtubeURL', 'url', [
-                'label' => 'Youtube Url',
+            ->add('youtubeVideoId', 'text', [
+                'label' => 'Youtube Video Id',
                 'rules' => 'required',
             ])
             ->add('subject', 'entity', [
@@ -54,7 +54,7 @@ class LessonForm extends Form
                 'expanded' => true,
                 'multiple' => false
             ])
-            ->add('submit', 'submit', ['label' => (empty($this->getModel()->getId())) ? 'Add Lesson' : 'Edit Lesson'])
+            ->add('submit', 'submit', ['label' => ($this->getData('isEdit')) ? 'Edit Lesson' : 'Add Lesson'])
         ;
     }
 }

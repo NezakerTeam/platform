@@ -1,16 +1,20 @@
 <?php
 namespace App\Entities;
 
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Stage.
  *
  * @ORM\Table(name="stage")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Entities\Repositories\StageRepository") 
  */
 class Stage
 {
+
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 2;
 
     /**
      * @var int
@@ -43,6 +47,13 @@ class Stage
     private $status;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="ordering", type="smallint", nullable=false)
+     */
+    private $ordering = 1;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -55,6 +66,14 @@ class Stage
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      */
     private $updatedAt;
+
+    /**
+     * The grades of this stage
+     * 
+     * @ORM\OneToMany(targetEntity="Grade", mappedBy="stage")
+     * @ORM\OrderBy({"ordering" = "ASC"})
+     */
+    private $grades;
 
     /**
      * Get id.
@@ -163,6 +182,30 @@ class Stage
     }
 
     /**
+     * Set ordering.
+     *
+     * @param bool $ordering
+     *
+     * @return Lesson
+     */
+    public function setOrdering($ordering)
+    {
+        $this->ordering = $ordering;
+
+        return $this;
+    }
+
+    /**
+     * Get ordering.
+     *
+     * @return bool
+     */
+    public function getOrdering()
+    {
+        return $this->ordering;
+    }
+
+    /**
      * Set createdAt.
      *
      * @param \DateTime $createdAt
@@ -208,5 +251,32 @@ class Stage
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Get the stage grades
+     * 
+     * @param bool      $isActive
+     * @param int       $offset
+     * @param int|null  $limit
+     * 
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGrades($isActive = null, $offset = 0, $limit = null)
+    {
+        $grades = $this->grades;
+
+        $criteria = Criteria::create();
+
+        if ($isActive !== null) {
+            $criteria->where(Criteria::expr()->eq('status', Grade::STATUS_ACTIVE));
+        }
+
+        $criteria
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+        ;
+
+        return $grades->matching($criteria);
     }
 }
