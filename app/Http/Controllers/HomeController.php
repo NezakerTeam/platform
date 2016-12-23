@@ -17,8 +17,8 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @Get("/")
-     * @Get("/home")
+     * @Get("/", as="app.home")
+     * @Middleware("guest")
      * 
      * @return Response
      */

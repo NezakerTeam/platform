@@ -6,18 +6,26 @@
         <div class="navbar-wrapper">
             <div class="container"> 
                 <!--Logo -->
-                <div class="logo"><a href="#"><img src="/images/nezaker-logo.png" alt=""></a> </div>
+                <div class="logo">
+                    <a href="{{route('app.home')}}">
+                        <img src="{{asset(elixir('images/nezaker-logo.png'))}}" alt="">
+                    </a> 
+                </div>
                 <!--Logo -->
                 <div class="navwrapper">
                     <div class="navbar navbar-inverse navbar-static-top">
                         <div class="container">
                             <nav class="navArea">
                                 <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
                                 </div>
                                 <div class="navbar-collapse collapse">
                                     <ul class="nav navbar-nav" id="navigation">
-                                        <li class="menuItem" id="home"><a href="#wrapper">الصفحة الرئيسية</a></li>
+                                        <li class="menuItem" id="home"><a href="{{route('app.home')}}">الصفحة الرئيسية</a></li>
                                         <li class="menuItem"><a href="#features">كيف يعمل</a></li>
                                         <li class="menuItem"><a href="#aboutus">عن نذاكر</a></li>
                                         <li class="menuItem"><a href="{{route('lesson.all')}}">كل الدروس</a></li>
@@ -57,7 +65,6 @@
                                 </div>
 
                             </nav>
-
                         </div>
                     </div>
                 </div>
