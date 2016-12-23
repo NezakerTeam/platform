@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin_user',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -73,6 +77,10 @@ return [
         'users' => [
             'driver' => 'doctrine',
             'model' => App\Entities\User::class,
+        ],
+        'admin_user' => [
+            'driver' => 'doctrine',
+            'model' => Admin\Entities\AdminUser::class,
         ],
     // 'users' => [
     //     'driver' => 'database',

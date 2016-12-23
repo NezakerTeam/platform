@@ -1,8 +1,8 @@
 <?php
-namespace App\Http\Controllers\Content;
+namespace Admin\Http\Controllers\Content;
 
 use App\Entities\Lesson;
-use App\Forms\LessonForm;
+use Admin\Forms\LessonForm;
 use App\Http\Controllers\Controller;
 use App\Services\ContentService;
 use Illuminate\Http\RedirectResponse;
@@ -18,8 +18,9 @@ use function redirect;
 use function view;
 
 /**
- * @Controller(prefix="lesson")
+ * @Controller(prefix="/admin/lesson")
  * @Middleware("web")
+ * @Middleware("auth")
  */
 class LessonController extends Controller
 {
@@ -29,34 +30,33 @@ class LessonController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @Get("", as="lesson.all")
+     * @Get("", as="admin.lesson.all")
      * 
      * @return View
      */
     public function index()
     {
-        $posts = EntityManager::getRepository(Lesson::class)->findAll();
+        $lessons = EntityManager::getRepository(Lesson::class)->findAll();
 
 
-        return view('content.lesson.index', compact('posts'));
+        return view('admin::content.lesson.index', compact('lessons'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @Get("/create", as="lesson.create")
-     * @Middleware("auth")
-     * 
+     * @Get("/create", as="admin.lesson.create")
+     *  
      * @return View
      */
     public function create()
     {
         $form = FormBuilder::create(LessonForm::class, [
                 'method' => 'POST',
-                'url' => 'lesson/store'
+                'url' => route('admin.lesson.store')
         ]);
 
-        return view('content.lesson.create', compact('form'));
+        return view('admin::content.lesson.create', compact('form'));
     }
 
     /**
@@ -64,14 +64,12 @@ class LessonController extends Controller
      *
      * @param Request $request
      *
-     * @POST("/store", as="lesson.store")
-     * @Middleware("auth")
+     * @POST("/store", as="admin.lesson.store")
      * 
      * @return RedirectResponse|Redirector
      */
     public function store(Request $request)
     {
-
         $form = $this->form(LessonForm::class);
 
         // Or automatically redirect on error. This will throw an HttpResponseException with redirect
@@ -80,7 +78,7 @@ class LessonController extends Controller
         $contentService = App::make(ContentService::class);
         $lesson = $contentService->addLesson($form->getFieldValues());
 
-        Session::flash('flash_message', 'Post added!');
+        Session::flash('flash_message', 'Lesson added!');
 
         return redirect('lesson/posts');
     }
@@ -96,42 +94,56 @@ class LessonController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        return view('content.posts.show', compact('post'));
+        return view('admin::content.posts.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @Get("/edit/{id}", as="admin.lesson.edit", where={"id": "[0-9]+"})
+     * 
+     * @param  int  $lessonId   The lesson id to be edited
      *
      * @return View
      */
-    public function edit($id)
+    public function edit($lessonId)
     {
-        $post = Post::findOrFail($id);
+        $lesson = EntityManager::getRepository(Lesson::class)->findById($lessonId);
 
-        return view('content.posts.edit', compact('post'));
+        $form = FormBuilder::create(LessonForm::class, [
+                'method' => 'PATCH',
+                'url' => route('admin.lesson.update', [$lesson->getId()]),
+                'model' => $lesson
+        ]);
+
+        return view('admin::content.lesson.edit', compact('lesson', 'form'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @Patch("/{id}", as="admin.lesson.update", where={"id": "[0-9]+"})
+     * 
+     * @param int     $lessonId
      * @param Request $request
      *
      * @return RedirectResponse|Redirector
      */
-    public function update($id, Request $request)
+    public function update($lessonId, Request $request)
     {
+        $form = $this->form(LessonForm::class);
 
-        $requestData = $request->all();
+        // Or automatically redirect on error. This will throw an HttpResponseException with redirect
+        $form->redirectIfNotValid();
 
-        $post = Post::findOrFail($id);
-        $post->update($requestData);
+        $lesson = EntityManager::getRepository(Lesson::class)->findById($lessonId);
 
-        Session::flash('flash_message', 'Post updated!');
+        $contentService = App::make(ContentService::class);
+        $lesson = $contentService->editLesson($lesson, $form->getFieldValues());
 
-        return redirect('lesson/posts');
+        Session::flash('flash_message', 'Lesson updated!');
+
+        return redirect(route('admin.lesson.all'));
     }
 
     /**

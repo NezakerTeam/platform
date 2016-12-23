@@ -243,4 +243,9 @@ class Subject
     {
         return $this->grade;
     }
+    
+    public function __toString()
+    {
+        return (string)$this->getId();
+    }
 }

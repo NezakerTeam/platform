@@ -48,6 +48,18 @@ class AnnotationsServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $scanEverything = false;
+    protected $scanEverything = true;
 
+    public function routeScans()
+    {
+        $classes = parent::routeScans();
+
+        if ($this->app->environment('local')) {
+            $classes = array_merge(
+                $classes, $this->getClassesFromNamespace(\Admin\Http\Controllers::class, '/var/www/nezaker/packages')
+            );
+        }
+
+        return $classes;
+    }
 }

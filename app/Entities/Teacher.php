@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -11,4 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Teacher extends User
 {
+
+    protected $type = self::TYPE_TEACHER;
+
 }

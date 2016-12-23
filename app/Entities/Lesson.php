@@ -14,6 +14,8 @@ class Lesson
 {
 
     const STATUS_PENDIND_APPROVAL = 1;
+    const STATUS_APPROVED = 2;
+    const STATUS_DISAPPROVED = 3;
     const TYPE_VIDEO = 1;
     const SEMESTER_FIRST = 1;
     const SEMESTER_SECOND = 2;
@@ -442,8 +444,39 @@ class Lesson
     public static function getSemestersList()
     {
         return [
-            self::SEMESTER_FIRST => 'First Semester',
-            self::SEMESTER_SECOND => 'Second Semester'
+            self::SEMESTER_FIRST => 'First',
+            self::SEMESTER_SECOND => 'Second'
         ];
+    }
+
+    /**
+     * Get statuses.
+     *
+     * @return array()
+     */
+    public static function getStatusesList()
+    {
+        return [
+            self::STATUS_PENDIND_APPROVAL => 'Pending Approval',
+            self::STATUS_APPROVED => 'Approved',
+            self::STATUS_DISAPPROVED => 'Disapproved',
+        ];
+    }
+
+    public function __get($name)
+    {
+        if (property_exists($this, $name)) {
+            return $this->$name;
+        }
+    }
+
+    public function __isset($name)
+    {
+        return isset($this->$name);
+    }
+    
+    public function __toString()
+    {
+        'asd';
     }
 }

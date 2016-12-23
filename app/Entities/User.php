@@ -20,7 +20,8 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  *                          {
  *                              User::TYPE_NONE = "User",
  *                              User::TYPE_STUDENT_PARENT = "StudentParent",
- *                              User::TYPE_TEACHER = "Teacher"
+ *                              User::TYPE_TEACHER = "Teacher",
+ *                              User::TYPE_ADMIN_USER = "Admin\Entities\AdminUser"
  *                          }
  *                      )
  * @ORM\HasLifecycleCallbacks
@@ -36,6 +37,7 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
     const TYPE_NONE = 0;
     const TYPE_STUDENT_PARENT = 1;
     const TYPE_TEACHER = 2;
+    const TYPE_ADMIN_USER = 3;
     // Define the gender values
     const GENDER_UNDEFINED = 0;
     const GENDER_MALE = 1;
@@ -55,14 +57,14 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
      *
      * @ORM\Column(name="first_name", type="string", length=255)
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=255)
      */
-    private $lastName;
+    protected $lastName;
 
     /**
      * @var string
@@ -157,49 +159,49 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
      *
      * @ORM\Column(name="birth_date", type="date", nullable=true)
      */
-    private $birthDate;
+    protected $birthDate;
 
     /**
      * @var int
      *
      * Column(name="type", type="integer")
      */
-    private $type;
+    protected $type;
 
     /**
      * @var int
      *
      * @ORM\Column(name="gender", type="smallint")
      */
-    private $gender = self::GENDER_UNDEFINED;
+    protected $gender = self::GENDER_UNDEFINED;
 
     /**
      * @var string
      *
      * @ORM\Column(name="photo_name", type="string", length=255, nullable=true)
      */
-    private $photoName;
+    protected $photoName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
-    private $address;
+    protected $address;
 
     /**
      * @var City
      *
      * @ORM\ManyToOne(targetEntity="City")
      */
-    private $city;
+    protected $city;
 
     /**
      * @var array
      *
      * @ORM\Column(name="phone_numbers", type="json_array")
      */
-    private $phoneNumbers;
+    protected $phoneNumbers;
 
     /**
      * User constructor.
@@ -957,5 +959,17 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
         $this->setLastLogin($now);
 
         $this->setUsername($this->getEmail());
+    }
+
+    /**
+     * Check whether this user has a specific type
+     * 
+     * @param int $userType The checked user type
+     * 
+     * @return bool
+     */
+    public function hasType(int $userType)
+    {
+        return (bool) ($this->getType() == $userType);
     }
 }

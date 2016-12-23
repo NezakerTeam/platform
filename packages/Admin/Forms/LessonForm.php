@@ -1,5 +1,5 @@
 <?php
-namespace App\Forms;
+namespace Admin\Forms;
 
 use App\Entities\Subject;
 use Kris\LaravelFormBuilder\Form;
@@ -23,6 +23,10 @@ class LessonForm extends Form
                 'label' => 'Material Url',
                 'rules' => 'required',
             ])
+            ->add('youtubeURL', 'url', [
+                'label' => 'Youtube Url',
+                'rules' => 'required',
+            ])
             ->add('subject', 'entity', [
                 'label' => 'Subject',
                 'class' => 'App\Entities\Subject',
@@ -42,7 +46,15 @@ class LessonForm extends Form
                 'expanded' => true,
                 'multiple' => false
             ])
-            ->add('submit', 'submit', ['label' => 'Add Lesson'])
+            ->add('status', 'choice', [
+                'label' => 'Status',
+                'choices' => \App\Entities\Lesson::getStatusesList(),
+                'empty_value' => 'Select',
+                'rules' => 'required',
+                'expanded' => true,
+                'multiple' => false
+            ])
+            ->add('submit', 'submit', ['label' => (empty($this->getModel()->getId())) ? 'Add Lesson' : 'Edit Lesson'])
         ;
     }
 }
