@@ -35,12 +35,6 @@
 
         <!-- font icon css style-->
         <link rel="stylesheet" href="{{asset(elixir('css/font-awesome.min.css'))}}" />
-        <style>
-            .menu {
-                position: static;
-                margin: 0;
-            }
-        </style>
 
         <!-- Scripts -->
         <script>
@@ -80,6 +74,15 @@
 
         <!--for theme custom jquery--> 
         <script type="text/javascript" src="{{asset(elixir('js/custom.js'))}}"></script>
+
+        <script type="text/javascript" src="{{asset(elixir('js/jquery.superslides.js'))}}" type="text/javascript"></script>
+        <script type="text/javascript">
+            "use strict";
+            $('.header_v1 #banner').superslides({
+                animation: 'fade',
+                play: 5000
+            });
+        </script> 
 
         @yield('jsBodyEnd')
 
