@@ -42,9 +42,18 @@ class LessonController extends Controller
     , GradeRepository $gradeRepo, SubjectRepository $subjectRepo)
     {
         $stages = $stageRepo->getAll(true);
-        $grades = $gradeRepo->getAll(true);
-        $subjects = $subjectRepo->getAll(null, true);
-        $lessons = $lessonRepo->findAll();
+        $grades = $gradesIds = $subjects = $lessons = [];
+
+        foreach ($stages as $stage) {
+            $stageId = $stage->getId();
+            $grades[$stageId] = $gradeRepo->getAll([$stageId], true);
+            $gradesIds = array_column($grades[$stageId], 'id');
+
+            $subjects[$stageId] = (empty($gradesIds)) ? [] : $subjectRepo->getAll($gradesIds, [], true);
+            $subjectsIds = array_column($subjects[$stageId], 'id');
+
+            $lessons[$stageId] = (empty($subjectsIds)) ? [] : $lessonRepo->getAll($subjectsIds, true);
+        }
 
         $data = [
             'stages' => $stages,
@@ -54,6 +63,59 @@ class LessonController extends Controller
         ];
 
         return view('content.lesson.index', $data);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @Get("/list-subjects", as="lesson.index.listSubjects"))
+     * 
+     * @return View
+     */
+    public function listSubjects(LessonRepository $lessonRepo, SubjectRepository $subjectRepo, Request $request)
+    {
+
+        $gradeId = (int) $request->get('gradeId', 0);
+        $stageId = (int) $request->get('stageId', 0);
+
+        $gradesIds = (empty($gradeId)) ? [] : [$gradeId];
+        $stagesIds = (empty($stageId)) ? [] : [$stageId];
+
+        $subjects = $subjectRepo->getAll($gradesIds, $stagesIds, true);
+        $subjectsIds = array_column($subjects, 'id');
+
+        $lessons = (empty($subjectsIds)) ? [] : $lessonRepo->getAll($subjectsIds, true);
+
+        $data = [
+            'stageId' => $stageId,
+            'subjects' => $subjects,
+            'lessons' => $lessons,
+        ];
+
+        return view('content.lesson._subjects_section', $data);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @Get("/list-lessons", as="lesson.index.listLessons"))
+     * 
+     * @return View
+     */
+    public function listLessons(LessonRepository $lessonRepo, Request $request)
+    {
+
+        $subjectId = (int) $request->get('subjectId');
+        $stageId = (int) $request->get('stageId');
+
+        $lessons = $lessonRepo->getAll([$subjectId], true);
+
+        $data = [
+            'stageId' => $stageId,
+            'lessons' => $lessons,
+        ];
+
+        return view('content.lesson._lessons_section', $data);
     }
 
     /**

@@ -23,7 +23,7 @@ class StageRepository extends EntityRepository
         }
 
         $stages = $qb
-                ->orderBy('s.ordering', 'DESC')
+                ->orderBy('s.ordering', 'ASC')
                 ->setMaxResults($limit)
                 ->setFirstResult($offset)
                 ->getQuery()->execute();

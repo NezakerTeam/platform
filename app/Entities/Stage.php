@@ -279,4 +279,16 @@ class Stage
 
         return $grades->matching($criteria);
     }
+
+    public function __get($name)
+    {
+        if (property_exists($this, $name)) {
+            return $this->$name;
+        }
+    }
+
+    public function __isset($name)
+    {
+        return isset($this->$name);
+    }
 }

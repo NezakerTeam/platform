@@ -23,6 +23,9 @@ class ContentService
         if (isset($data['youtubeVideoId']) && Auth::User()->hasType(\App\Entities\User::TYPE_ADMIN_USER)) {
             $youtubeVideoId = $data['youtubeVideoId'];
             $lesson->setYoutubeVideoId($youtubeVideoId);
+
+            $thumb = $this->fetchYoutubeVideoThumb($youtubeVideoId);
+            $lesson->setThumbnail($thumb);
         }
 
         $subject = EntityManager::getReference(Subject::class, $data['subject']);
@@ -66,7 +69,7 @@ class ContentService
         $videoThumb = '';
 
         $client = new \Google_Client();
-        $client->setDeveloperKey('AIzaSyC9mvkNGG80_yA-c-2_1Ttak1OtI1ryV2o');
+        $client->setDeveloperKey(config('app.google_api_key'));
 
         // Define an object that will be used to make all API requests.
         $youtube = new \Google_Service_YouTube($client);
@@ -79,7 +82,7 @@ class ContentService
             
         } else {
             $video = $videos->current();
-            $videoThumb = $video->getSnippet()->getThumbnails()->getDefault()->getUrl();
+            $videoThumb = $video->getSnippet()->getThumbnails()->getHigh()->getUrl();
         }
 
         return $videoThumb;

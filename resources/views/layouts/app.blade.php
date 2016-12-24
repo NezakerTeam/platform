@@ -81,6 +81,8 @@
         <!--for theme custom jquery--> 
         <script type="text/javascript" src="{{asset(elixir('js/custom.js'))}}"></script>
 
+        @yield('jsBodyEnd')
+
     </body>
 </html>
 

@@ -46,9 +46,16 @@ class Lesson
     /**
      * @var string
      *
-     * @ORM\Column(name="youtube_video_id", type="text", length=1000, nullable=true)
+     * @ORM\Column(name="youtube_video_id", type="text", length=100, nullable=true)
      */
     private $youtubeVideoId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="thumbnail", type="text", length=255, nullable=true)
+     */
+    private $thumbnail;
 
     /**
      * @var string
@@ -189,6 +196,30 @@ class Lesson
     public function getYoutubeVideoId()
     {
         return $this->youtubeVideoId;
+    }
+
+    /**
+     * Set lesson thumb.
+     *
+     * @param string $thumbnail
+     *
+     * @return Lesson
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    /**
+     * Get lesson thumb.
+     *
+     * @return string
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
     }
 
     /**
@@ -474,7 +505,7 @@ class Lesson
     {
         return isset($this->$name);
     }
-    
+
     public function __toString()
     {
         'asd';

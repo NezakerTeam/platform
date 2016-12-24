@@ -12,12 +12,18 @@ class GradeRepository extends EntityRepository
         parent::__construct(\App\Entities\Grade::class);
     }
 
-    public function getAll($activeOnly = null, $offset = 0, $limit = 6)
+    public function getAll($stagesIds = [], $activeOnly = null, $offset = 0, $limit = 6)
     {
         $qb = $this->createQueryBuilder('g');
 
+        if (!empty($stagesIds)) {
+            $qb->andWhere(
+                $qb->expr()->in('IDENTITY(g.stage)', $stagesIds)
+            );
+        }
+
         if ($activeOnly !== null) {
-            $qb->where(
+            $qb->andWhere(
                 $qb->expr()->eq('g.status', \App\Entities\Grade::STATUS_ACTIVE)
             );
         }

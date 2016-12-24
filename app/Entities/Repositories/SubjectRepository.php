@@ -38,13 +38,20 @@ class SubjectRepository extends EntityRepository
      * 
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAll($gradeId = null, $activeOnly = null, $offset = 0, $limit = 6)
+    public function getAll($gradeIds = [], $stageIds = [], $activeOnly = null, $offset = 0, $limit = 6)
     {
         $qb = $this->createQueryBuilder('s');
 
-        if ($gradeId !== null) {
+        if (!empty($gradeIds)) {
             $qb->andwhere(
-                $qb->expr()->eq('s.grade_id', $gradeId)
+                $qb->expr()->in('IDENTITY(s.grade)', $gradeIds)
+            );
+        }
+
+        if (!empty($stageIds)) {
+            $qb->innerJoin('s.grade', 'g')
+                ->andwhere(
+                    $qb->expr()->in('IDENTITY(g.stage)', $stageIds)
             );
         }
 
@@ -54,7 +61,7 @@ class SubjectRepository extends EntityRepository
             );
         }
         $stages = $qb
-                ->orderBy('s.ordering', 'DESC')
+                ->orderBy('s.ordering', 'ASC')
                 ->setMaxResults($limit)
                 ->setFirstResult($offset)
                 ->getQuery()->execute();

@@ -277,4 +277,16 @@ class Grade
     {
         return $this->stage;
     }
+
+    public function __get($name)
+    {
+        if (property_exists($this, $name)) {
+            return $this->$name;
+        }
+    }
+
+    public function __isset($name)
+    {
+        return isset($this->$name);
+    }
 }

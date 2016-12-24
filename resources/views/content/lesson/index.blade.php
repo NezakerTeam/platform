@@ -25,112 +25,73 @@
         @forelse ($stages as $stage)
         <section class="protfolio" id="ourwork">
             <div class="row">
+                <h2>{{$stage->getName()}}</h2>
                 <div class="portfolioFilter">
                     <ul>
-                        <li><a href="#" data-filter="*" class="current">All</a></li>
+                        <li>
+                            <a href="#" class="grade-filter current"
+                               data-grade-id="0" data-stage-id="{{$stage->getId()}}">
+                                All
+                            </a>
+                        </li>
                         @foreach ($stage->getGrades(true) as $grade)
-                        <li><a href="#" data-filter=".course1">{{$grade->getName()}}</a></li>
+                        <li>
+                            <a href="#" class="grade-filter" 
+                               data-grade-id="{{$grade->getId()}}" data-stage-id="{{$stage->getId()}}">
+                                {{$grade->getName()}}
+                            </a>
+                        </li>
                         @endforeach
                     </ul>
                 </div>
-                <ul class="portfolioContainer row">
-                    <li class="course1 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon">
-                            <a href="course-details.html">
-                                <span class="hoverBox">
-                                    <div>
-                                        <h4>WordPress Essential Training</h4>
-                                    </div>
-                                </span>
-                            </a>
-                            <img src="images/courses/course1.jpg" alt="" > 
-                        </div>
-                    </li>
-                    <li class="course1 course3 course4 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon"> <a href="course-details.html"> <span class="hoverBox">
-                                    <div>
-                                        <h4>Practicing Photographer</h4>
-                                    </div>
-                                </span></a> <img src="images/courses/course2.jpg" alt="" > </div>
-                    </li>
-                    <li class="course3 course4 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon"> <a href="course-details.html"> <span class="hoverBox">
-                                    <div>
-                                        <h4>Lightroom CC Essential</h4>
-                                    </div>
-                                </span></a> <img src="images/courses/course3.jpg" alt="" > </div>
-                    </li>
-                    <li class="course2 course3 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon"> <a href="course-details.html"> <span class="hoverBox">
-                                    <div>
-                                        <h4>Branding Thoughts</h4>
-                                    </div>
-                                </span></a> <img src="images/courses/course4.jpg" alt="" > </div>
-                    </li>
-                    <li class="course3 course1 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon"> <a href="course-details.html"> <span class="hoverBox">
-                                    <div>
-                                        <h4>HTML5 Bacis Traning</h4>
-                                    </div>
-                                </span></a> <img src="images/courses/course5.jpg" alt="" > </div>
-                    </li>
-                    <li class="course1 course2 course4 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon"> <a href="course-details.html"> <span class="hoverBox">
-                                    <div>
-                                        <h4>Marketing Tips</h4>
-                                    </div>
-                                </span></a> <img src="images/courses/course6.jpg" alt="" > </div>
-                    </li>
-                    <li class="course3 course1 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon"> <a href="course-details.html"> <span class="hoverBox">
-                                    <div>
-                                        <h4>Photoshop Training</h4>
-                                    </div>
-                                </span></a> <img src="images/courses/course7.jpg" alt="" > </div>
-                    </li>
-                    <li class="course1 course2 course4 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon"> <a href="course-details.html"> <span class="hoverBox">
-                                    <div>
-                                        <h4>Light & Shadow</h4>
-                                    </div>
-                                </span></a> <img src="images/courses/course8.jpg" alt="" > </div>
-                    </li>
-                    <li class="course1 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon"> <a href="course-details.html"> <span class="hoverBox">
-                                    <div>
-                                        <h4>Branding Thoughts</h4>
-                                    </div>
-                                </span></a> <img src="images/courses/course4.jpg" alt=""  > </div>
-                    </li>
-                    <li class="course1 course3 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon"> <a href="course-details.html"> <span class="hoverBox">
-                                    <div>
-                                        <h4>Practicing Photographer</h4>
-                                    </div>
-                                </span></a> <img src="images/courses/course2.jpg" alt="" > </div>
-                    </li>
-                    <li class="course3 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon"> <a href="course-details.html"> <span class="hoverBox">
-                                    <div>
-                                        <h4>Lightroom CC Essential</h4>
-                                    </div>
-                                </span></a> <img src="images/courses/course3.jpg" alt="" > </div>
-                    </li>
-                    <li class="course1 course3 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="lightCon"> <a href="course-details.html"> <span class="hoverBox">
-                                    <div>
-                                        <h4>WordPress Essential Training</h4>
-                                    </div>
-                                </span></a> <img src="images/courses/course1.jpg" alt="" > </div>
-                    </li>
-                </ul>
+                <div class="subjects-list" id="subjects_list_{{$stage->getId()}}">
+                    @include ('content.lesson._subjects_section', [
+                    'subjects' => $subjects[$stage->getId()],
+                    'lessons' => $lessons[$stage->getId()],
+                    'stageId' => $stage->getId()
+                    ])
+                </div>
             </div>
         </section>
-
         @empty
         <p>No Stages</p>
         @endforelse
     </div>
 </section>
+@endsection
 
+@section('jsBodyEnd')
+<script>
+    $(document).ready(function () {
+        $(".wrapper").on('click', '.grade-filter', function (e) {
+            gradeId = $(this).data('grade-id');
+            stageId = $(this).data('stage-id');
+            e.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: "{{route('lesson.index.listSubjects')}}",
+                data: {gradeId: gradeId, stageId: stageId},
+                success: function (data) {
+                    $("#subjects_list_" + stageId).html(data);
+                }
+            });
+            return false;
+        });
+
+        $(".wrapper").on('click', '.subject-filter', function (e) {
+            subjectId = $(this).data('subject-id');
+            stageId = $(this).data('stage-id');
+            e.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: "{{route('lesson.index.listLessons')}}",
+                data: {subjectId: subjectId, stageId: stageId},
+                success: function (data) {
+                    $("#lessons_list_" + stageId).html(data);
+                }
+            });
+            return false;
+        });
+    });
+</script>
 @endsection
