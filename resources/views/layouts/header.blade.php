@@ -26,8 +26,8 @@
                                 <div class="navbar-collapse collapse">
                                     <ul class="nav navbar-nav" id="navigation">
                                         <li class="menuItem" id="home"><a href="{{route('app.home')}}">الصفحة الرئيسية</a></li>
-                                        <li class="menuItem"><a href="#features">كيف يعمل</a></li>
-                                        <li class="menuItem"><a href="#aboutus">عن نذاكر</a></li>
+                                        <li class="menuItem"><a href="{{route('general.howItWorks')}}">كيف يعمل</a></li>
+                                        <li class="menuItem"><a href="{{route('general.aboutUs')}}">عن نذاكر</a></li>
                                         <li class="menuItem"><a href="{{route('lesson.all')}}">كل الدروس</a></li>
                                         <!--
                                         <li class="menuItem"><a href="#teachers">المعلمون</a></li>
