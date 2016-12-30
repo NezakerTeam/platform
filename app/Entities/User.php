@@ -942,6 +942,18 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
         return $this;
     }
 
+    public function __get($name)
+    {
+        if (property_exists($this, $name)) {
+            return $this->$name;
+        }
+    }
+
+    public function __isset($name)
+    {
+        return isset($this->$name);
+    }
+
     /**
      * @return string
      */
@@ -969,7 +981,7 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
      * @return bool
      */
     public function hasType(int $userType)
-    {   
+    {
         return true;
         return (bool) ($this->getType() == $userType);
     }

@@ -37,18 +37,4 @@ class GeneralController extends Controller
     {
         return view('general.how_it_works');
     }
-
-    /**
-     * Show the teacher dashboard.
-     *
-     * @return Response
-     */
-    private function teacherDashboard()
-    {
-        $data = [];
-
-        $data['lessons'] = EntityManager::getRepository(Lesson::class)->getByAuthor(Auth::id());
-
-        return view('user.teacher.dashboard', $data);
-    }
 }

@@ -13,15 +13,18 @@
         "laravelcollective/html": "^5.3.0",
         "kris/laravel-form-builder": "^1.9",
         "laravelcollective/annotations": "^5.3.0",
-        "appzcoder/crud-generator": "^1.2",
-        "google/apiclient": "^2.0"
+        "google/apiclient": "^2.0",
+        "backpack/base": "^0.7.11",
+        "backpack/crud": "^3.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.0",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/dom-crawler": "3.1.*",
+        "appzcoder/crud-generator": "^2.0",
+        "backpack/generators": "^1.1"
     },
     "autoload": {
         "classmap": [

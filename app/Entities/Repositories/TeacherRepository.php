@@ -1,7 +1,7 @@
 <?php
 namespace App\Entities\Repositories;
 
-class TeacherRepository extends EntityRepository
+class TeacherRepository extends UserRepository
 {
 
     /**

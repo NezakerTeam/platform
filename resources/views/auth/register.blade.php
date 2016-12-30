@@ -54,9 +54,9 @@
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('cityId', 'City', ['class' => 'col-md-4 control-label']) }}
+                        {{ Form::label('city', 'City', ['class' => 'col-md-4 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::select('cityId', $cities, null, ['placeholder' => 'Select your city', 'class' => 'form-control', 'required']) }}
+                            {{ Form::select('city', $cities, null, ['placeholder' => 'Select your city', 'class' => 'form-control', 'required']) }}
                         </div>
                     </div>
 

@@ -1,6 +1,8 @@
 <?php
 namespace App\Entities\Repositories;
 
+use App\Entities\Lesson;
+
 class LessonRepository extends EntityRepository
 {
 
@@ -9,21 +11,30 @@ class LessonRepository extends EntityRepository
      */
     public function __construct()
     {
-        parent::__construct(\App\Entities\Lesson::class);
+        parent::__construct(Lesson::class);
     }
 
-    public function store(\App\Entities\Lesson $lesson)
+    public function store(Lesson $lesson)
     {
         $this->getEntityManager()->persist($lesson);
         $this->getEntityManager()->flush();
+
+        return $lesson;
     }
 
-    public function getByAuthor(int $authorId, $offset = 0, $limit = 6)
+    public function getByAuthor(int $authorId, $status = Lesson::STATUS_APPROVED, $offset = 0, $limit = 8)
     {
-        $lessons = $this->createQueryBuilder('l')
-                ->where('IDENTITY(l.author) = :authorId')
+        $qb = $this->createQueryBuilder('l')
+            ->where('IDENTITY(l.author) = :authorId')
+            ->setParameter(':authorId', $authorId);
+
+        if ($status != null) {
+            $qb->andWhere('l.status = :status')
+                ->setParameter('status', $status);
+        }
+
+        $lessons = $qb
                 ->orderBy('l.createdAt', 'DESC')
-                ->setParameter('authorId', $authorId)
                 ->setMaxResults($limit)
                 ->setFirstResult($offset)
                 ->getQuery()->execute();
@@ -36,7 +47,7 @@ class LessonRepository extends EntityRepository
         return $this->find($id);
     }
 
-    public function getAll($subjectsIds = [], $activeOnly = null, $offset = 0, $limit = 6)
+    public function getAll($subjectsIds = [], $activeOnly = null, $offset = 0, $limit = 8)
     {
         $qb = $this->createQueryBuilder('s');
 
@@ -48,7 +59,7 @@ class LessonRepository extends EntityRepository
 
         if ($activeOnly !== null) {
             $qb->andWhere(
-                $qb->expr()->eq('s.status', \App\Entities\Lesson::STATUS_APPROVED)
+                $qb->expr()->eq('s.status', Lesson::STATUS_APPROVED)
             );
         }
 
@@ -56,6 +67,18 @@ class LessonRepository extends EntityRepository
                 ->orderBy('s.ordering', 'ASC')
                 ->setMaxResults($limit)
                 ->setFirstResult($offset)
+                ->getQuery()->execute();
+
+        return $lessons;
+    }
+
+    public function getRecentLessons($limit = 8)
+    {
+        $lessons = $this->createQueryBuilder('l')
+                ->andWhere('l.status = :status')
+                ->setParameter(':status', Lesson::STATUS_APPROVED)
+                ->orderBy('l.createdAt', 'DESC')
+                ->setMaxResults($limit)
                 ->getQuery()->execute();
 
         return $lessons;

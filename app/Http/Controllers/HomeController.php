@@ -2,9 +2,12 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Lesson;
+use App\Entities\Repositories\LessonRepository;
 use App\Entities\User;
+use App\Forms\RegisterTeacherForm;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Kris\LaravelFormBuilder\FormBuilder;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 
 /**
@@ -22,9 +25,21 @@ class HomeController extends Controller
      * 
      * @return Response
      */
-    public function index()
+    public function index(FormBuilder $formBuilder, LessonRepository $lessonRepo)
     {
-        return view('home');
+        $form = $formBuilder->create(RegisterTeacherForm::class, [
+            'method' => 'POST',
+            'url' => 'register'
+        ]);
+
+        $recentLesson = $lessonRepo->getRecentLessons();
+
+        $data = [
+            'form' => $form,
+            'recentLessons' => $recentLesson
+        ];
+
+        return view('home', $data);
     }
 
     /**
@@ -51,7 +66,8 @@ class HomeController extends Controller
     {
         $data = [];
 
-        $data['lessons'] = EntityManager::getRepository(Lesson::class)->getByAuthor(Auth::id());
+        $lessonRepo = new LessonRepository();
+        $data['lessons'] = $lessonRepo->getByAuthor(Auth::id());
 
         return view('user.teacher.dashboard', $data);
     }

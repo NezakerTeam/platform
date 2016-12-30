@@ -876,7 +876,7 @@ textarea.medium {
 	overflow:auto;
 	resize:none;
 }
-input.button{
+button.input-button ,input.button{
 	font-family: 'Open Sans', sans-serif;
 	font-size:15px;
 	line-height:52px;

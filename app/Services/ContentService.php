@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Entities\Lesson;
 use App\Entities\Subject;
+use App\Entities\User;
 use Illuminate\Support\Facades\Auth;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 
@@ -20,7 +21,7 @@ class ContentService
         $lesson->setDescription($data['description']);
         $lesson->setMaterialUrl($data['materialUrl']);
 
-        if (isset($data['youtubeVideoId']) && Auth::User()->hasType(\App\Entities\User::TYPE_ADMIN_USER)) {
+        if (isset($data['youtubeVideoId']) && Auth::User()->hasType(User::TYPE_ADMIN_USER)) {
             $youtubeVideoId = $data['youtubeVideoId'];
             $lesson->setYoutubeVideoId($youtubeVideoId);
 
@@ -35,8 +36,9 @@ class ContentService
 
         $lesson->setAuthor(Auth::user());
 
-        if ((isset($data['stauts']) && $data['status'] == Lesson::STATUS_PENDIND_APPROVAL) ||
-            Auth::User()->hasType(\App\Entities\User::TYPE_ADMIN_USER)) {
+        if (isset($data['stauts']) &&
+            ($data['status'] == Lesson::STATUS_PENDIND_APPROVAL || Auth::User()->hasType(User::TYPE_ADMIN_USER))
+        ) {
             $lesson->setStatus($data['status']);
         }
 

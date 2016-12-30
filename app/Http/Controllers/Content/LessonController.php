@@ -157,9 +157,9 @@ class LessonController extends Controller
         $contentService = App::make(ContentService::class);
         $lesson = $contentService->addLesson($form->getFieldValues());
 
-        Session::flash('flash_message', 'Post added!');
+        Session::flash('flash_message', 'Lesson added!');
 
-        return redirect('lesson/lessons');
+        return redirect(route('lesson.show', ['id' => $lesson->getId()]));
     }
 
     /**
@@ -205,12 +205,12 @@ class LessonController extends Controller
 
         $requestData = $request->all();
 
-        $post = Post::findOrFail($id);
-        $post->update($requestData);
+        $lesson = Post::findOrFail($id);
+        $lesson->update($requestData);
 
         Session::flash('flash_message', 'Post updated!');
 
-        return redirect('lesson/lessons');
+        return redirect(route('lesson.show', ['id' => $lesson->getId()]));
     }
 
     /**
@@ -226,6 +226,6 @@ class LessonController extends Controller
 
         Session::flash('flash_message', 'Post deleted!');
 
-        return redirect('lesson/lessons');
+        return redirect(route('app.dashboard'));
     }
 }

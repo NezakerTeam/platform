@@ -41,29 +41,39 @@
         <div class="container form-header">
             <div class="form-container">
                 <h2>أبدأ بتسجيل دروسك<span>قم بالتسجيل الان لأضافة الدروس الخاصة بك</span></h2>
+                {!! form_start($form) !!}
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        <input type="text" placeholder="الاسم" class="normal">
+                        {!! form_errors($form->firstName)!!}
+                        {!! form_widget($form->firstName, ['attr'=> ['class' => 'normal', 'placeholder' => 'الاسم']])!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        <input type="text" placeholder="البريد الألكتروني" class="normal">
+                        {!! form_errors($form->lastName)!!}
+                        {!! form_widget($form->lastName, ['attr'=> ['class' => 'normal', 'placeholder' => 'الاسم']])!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        <input type="password" placeholder="كلمة السر" class="normal">
+                        {!! form_errors($form->email)!!}
+                        {!! form_widget($form->email, ['attr'=> ['class' => 'normal', 'placeholder' => 'البريد الألكتروني']])!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        <select class="normal">
-                            <option>المحافظة</option>
-                        </select>
+                        {!! form_errors($form->password)!!}
+                        {!! form_widget($form->password, ['attr'=> ['class' => 'normal', 'placeholder' => 'كلمة السر']])!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        <input type="text" placeholder="رقم التليفون" class="normal">
+                        {!! form_errors($form->city)!!}
+                        {!! form_widget($form->city, ['attr'=> ['class' => 'normal']])!!}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                        {!! form_errors($form->phoneNumbers)!!}
+                        {!! form_widget($form->phoneNumbers, ['attr'=> ['class' => 'normal', 'placeholder' => 'رقم التليفون']])!!}
                     </div>          
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <input type="button" width="40%" class="button"  value="اشترك الان">
+                        {!! form_widget($form->submit, ['attr'=> ['class' => 'input-button', 'width' => '40%']])!!}
                     </div>
                 </div>
+                {!! form_end($form) !!}
+
             </div>
         </div>
 
@@ -133,58 +143,7 @@
 
     <!--popup video end --> 
     <!--popular courses start-->
-    <section class="grey_section section_gap" id="courses">
-        <div class="container">
-            <div class="heading">
-                <h1><span>أحدث الدروس </span></h1>
-                <p>Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.<br>
-                    وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
-            </div>
-            <ul class="hover_listing row">
-                <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-                    <div class="img"><a href="course-details.html"><img src="images/courses/course1.jpg" alt=""></a><a class="play-btn" href="course-details.html"><i class="fa fa-play fa-3"></i></a></div>
-                    <h3><a href="course-details.html">التدريب الأساسية وورد</a></h3>
-                    <p>5/3/2015</p>
-                </li> <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-                    <div class="img"><a href="course-details.html"><img src="images/courses/course2.jpg" alt=""></a><a class="play-btn" href="course-details.html"><i class="fa fa-play fa-3"></i></a></div>
-                    <h3><a href="course-details.html">ممارسة مصور</a></h3>
-                    <p>8-11/2/2010</p>
-                </li>
-                <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-                    <div class="img"><a href="course-details.html"><img src="images/courses/course3.jpg" alt=""></a><a class="play-btn" href="course-details.html"><i class="fa fa-play fa-3"></i></a></div>
-                    <h3><a href="course-details.html">لايت سي سي الأساسية</a></h3>
-                    <p>2014/12/02</p>
-                </li>
-                <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-                    <div class="img"><a href="course-details.html"><img src="images/courses/course4.jpg" alt=""></a><a class="play-btn" href="course-details.html"><i class="fa fa-play fa-3"></i></a></div>
-                    <h3><a href="course-details.html">العلامات التجارية خاطرة</a></h3>
-                    <p>8-11/2/2010</p>
-                </li>
-                <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-                    <div class="img"><a href="course-details.html"><img src="images/courses/course5.jpg" alt=""></a><a class="play-btn" href="course-details.html"><i class="fa fa-play fa-3"></i></a></div>
-                    <h3><a href="course-details.html">HTML5 Bacis تمارين</a></h3>
-                    <p>2014/12/02</p>
-                </li>
-                <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-                    <div class="img"><a href="course-details.html"><img src="images/courses/course6.jpg" alt=""></a><a class="play-btn" href="course-details.html"><i class="fa fa-play fa-3"></i></a></div>
-                    <h3><a href="course-details.html">نصائح التسويق</a></h3>
-                    <p>2014/12/02</p>
-                </li>
-                <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-                    <div class="img"><a href="course-details.html"><img src="images/courses/course7.jpg" alt=""></a><a class="play-btn" href="course-details.html"><i class="fa fa-play fa-3"></i></a></div>
-                    <h3><a href="course-details.html">التدريب فوتوشوب</a></h3>
-                    <p>2014/12/02</p>
-                </li>
-                <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-                    <div class="img"><a href="course-details.html"><img src="images/courses/course8.jpg" alt=""></a><a class="play-btn" href="course-details.html"><i class="fa fa-play fa-3"></i></a></div>
-                    <h3><a href="course-details.html">ظل الضوء</a></h3>
-                    <p>2014/12/02</p>
-                </li>
-            </ul>
-            <p class="text-center noPadd"><a href="portfolio-fourcolumn.html" class="btn btn-primary btn-lg" role="button">عرض جميع الدروس</a></p>
-        </div>
-    </section>
-
+    @include ('general._recent_lessons')
     <!--/popular courses end--> 
 
     <!--fun facts start -->

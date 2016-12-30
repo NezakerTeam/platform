@@ -5,12 +5,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Edit Profile {{ $user->getName() }}</div>
                 <div class="panel-body">
-
-                    {!! form_start($form) !!}
-                    {!! form_row($form->firstName) !!}
-                    {!! form_end($form, $renderRest = true) !!}
+                    {!! form($form) !!}
                 </div>
             </div>
         </div>

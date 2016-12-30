@@ -155,6 +155,11 @@ return [
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         Appzcoder\CrudGenerator\CrudGeneratorServiceProvider::class,
         /*
+         * Backpack Service Providers...
+         */
+        Backpack\Base\BaseServiceProvider::class,
+        Backpack\CRUD\CrudServiceProvider::class,
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,

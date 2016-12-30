@@ -508,6 +508,6 @@ class Lesson
 
     public function __toString()
     {
-        'asd';
+        '';
     }
 }

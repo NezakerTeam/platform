@@ -5,7 +5,7 @@ use App\Entities\City;
 use Kris\LaravelFormBuilder\Form;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 
-class RegisterTeacherForm extends Form
+class ProfileForm extends Form
 {
 
     public function buildForm()
@@ -20,20 +20,26 @@ class RegisterTeacherForm extends Form
                 'rules' => 'required|min:5',
             ])
             ->add('email', 'email')
-            ->add('password', 'password')
             ->add('city', 'entity', [
                 'label' => 'City',
-                'class' => 'App\Entities\City',
+                'class' => City::class,
                 'property' => 'name',
+                'property_key' => 'id',
+                'empty_value' => 'Select',
                 'query_builder' => function () {
-                    $cityRepo = EntityManager::getRepository(City::class);
+                    $cityRepo = new \App\Entities\Repositories\CityRepository();
 
-                    return $cityRepo->getList();
+                    return collect($cityRepo->getAll());
                 }
             ])
-            ->add('phoneNumbers', 'text', [
+            ->add('phoneNumbers', 'collection', [
+                'type' => 'text',
                 'label' => 'Phone Number',
+                'options' => [// these are options for a single type
+                    'label' => false,
+                    'attr' => ['class' => 'form-control']
+                ]
             ])
-            ->add('submit', 'submit', ['label' => 'Register']);
+            ->add('submit', 'submit', ['label' => 'Edit profile']);
     }
 }
