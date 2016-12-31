@@ -15,5 +15,5 @@
 </div>
 
 <div class="lessons-list" id="lessons_list_{{$stageId}}">
-    @include ('content.lesson._lessons_section', ['lessons' => $lessons])
+    @include ('content.lesson._lessons_section', ['lessons' => $lessons, 'contents' => $contents])
 </div>

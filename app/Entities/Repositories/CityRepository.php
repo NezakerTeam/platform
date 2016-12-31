@@ -7,31 +7,22 @@ class CityRepository extends EntityRepository
     /**
      * @inheritdoc 
      */
-    public function __construct()
+    protected static function getModel()
     {
-        parent::__construct(\App\Entities\City::class);
+        return new \App\Models\City();
     }
 
-    public function getList()
+    public static function getAll($countryId = null)
     {
-        $citiesList = [];
-        $cities = $this->getAll();
+        $citiesQB = self::getModel();
 
-        foreach ($cities as $city) {
-            $citiesList[$city->getId()] = $city->getName();
+        if ($countryId != null) {
+            $citiesQB = $citiesQB->where('country_id', $countryId);
         }
 
-        return $citiesList;
-    }
+        $cities = $citiesQB->orderBy('name', 'ASC')
+            ->get();
 
-    public function getAll($countryId = 0)
-    {
-        $criteria = [];
-
-        if (!empty($countryId)) {
-            $criteria['countryId'] = $countryId;
-        }
-
-        return $this->findBy($criteria);
+        return $cities;
     }
 }

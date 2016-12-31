@@ -7,26 +7,27 @@ class StageRepository extends EntityRepository
     /**
      * @inheritdoc 
      */
-    public function __construct()
+    protected static function getModel()
     {
-        parent::__construct(\App\Entities\Stage::class);
+        return new \App\Models\Stage();
     }
 
-    public function getAll($activeOnly = null, $offset = 0, $limit = 6)
+    public static function getAll($activeOnly = null, $offset = 0, $limit = 6)
     {
-        $qb = $this->createQueryBuilder('s');
+        $stagesQB = self::getModel();
 
         if ($activeOnly !== null) {
-            $qb->where(
-                $qb->expr()->eq('s.status', \App\Entities\Stage::STATUS_ACTIVE)
-            );
+            $stagesQB = $stagesQB->where('status', \App\Models\Stage::STATUS_ACTIVE);
         }
 
-        $stages = $qb
-                ->orderBy('s.ordering', 'ASC')
-                ->setMaxResults($limit)
-                ->setFirstResult($offset)
-                ->getQuery()->execute();
+        if ($limit >= 0) {
+            $stagesQB = $stagesQB->limit($limit)
+                ->offset($offset);
+        }
+
+        $stages = $stagesQB
+            ->orderBy('ordering', 'ASC')
+            ->get();
 
         return $stages;
     }

@@ -44,6 +44,7 @@ class UserController extends Controller
             'user' => $user,
             'form' => $form
         ];
+
         return view('user.profile.edit', $data);
     }
 

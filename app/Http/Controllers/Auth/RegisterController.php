@@ -60,51 +60,18 @@ use RegistersUsers,
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        $form = $this->form(\App\Forms\RegisterTeacherForm::class);
-
-        // It will automatically use current request, get the rules, and do the validation
-        if (!$form->isValid()) {
-            return redirect()->back()->withErrors($form->getErrors())->withInput();
-        }
-
-        // Or automatically redirect on error. This will throw an HttpResponseException with redirect
-        $form->redirectIfNotValid();
-
-        Post::create($form->getFieldValues());
-        return redirect()->route('posts');
-
-        dd($data);
-        $userService = App::make(UserService::class);
-
-        $userService->register();
-        return User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-        ]);
-    }
-
-    /**
      * Handle a registration request for the application.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function register(Request $request)
+    public function register(Request $request, UserService $userService)
     {
         $form = $this->form(\App\Forms\RegisterTeacherForm::class);
 
         // Or automatically redirect on error. This will throw an HttpResponseException with redirect
         $form->redirectIfNotValid();
 
-        $userService = App::make(UserService::class);
         $user = $userService->register($form->getFieldValues());
 
         event(new Registered($user));

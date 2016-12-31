@@ -1,19 +1,32 @@
 <?php
 namespace App\Entities\Repositories;
 
-use Doctrine\ORM\EntityRepository as BaseEntityRepository;
+use App\Models\Content;
+use Illuminate\Database\Eloquent\Model;
 
-class EntityRepository extends BaseEntityRepository
+class EntityRepository
 {
+
+    protected static $model = null;
 
     /**
      * @inheritdoc 
      */
-    public function __construct($entityClassName)
+    public function __construct($modelClass = Content::class)
     {
-        $em = app('em');
-        $classMetadata = $em->getClassMetaData($entityClassName);
+        self::setModel($modelClass);
+    }
 
-        parent::__construct($em, $classMetadata);
+    protected static function setModel($modelClass)
+    {
+        self::$model = new $modelClass();
+    }
+
+    /**
+     * @return Model 
+     */
+    protected static function getModel()
+    {
+        return self::$model;
     }
 }

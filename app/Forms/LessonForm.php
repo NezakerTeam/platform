@@ -11,38 +11,54 @@ class LessonForm extends Form
     public function buildForm()
     {
         $this
-            ->add('name', 'text', [
-                'label' => 'Name',
-                'rules' => 'required|min:5',
-            ])
-            ->add('description', 'textarea', [
-                'label' => 'Description',
-                'attr' => ['rows' => 2],
-            ])
-            ->add('materialUrl', 'url', [
-                'label' => 'Material Url',
-                'rules' => 'required',
-            ])
-            ->add('subject', 'entity', [
-                'label' => 'Subject',
-                'class' => 'App\Entities\Subject',
+            ->add('Stage', 'entity', [
+                'label' => 'Stage',
+                'class' => \App\Models\Stage::class,
                 'property' => 'name',
                 'query_builder' => function () {
-                    $SubjectRepo = EntityManager::getRepository(Subject::class);
-                    return $SubjectRepo->getList();
+                    return \App\Entities\Repositories\StageRepository::getAll(true, -1, -1);
                 },
                 'empty_value' => 'Select',
                 'rules' => 'required',
             ])
-            ->add('semester', 'choice', [
-                'label' => 'Semester',
-                'choices' => \App\Entities\Lesson::getSemestersList(),
+            ->add('Grade', 'entity', [
+                'label' => 'Grade',
+                'class' => \App\Models\Grade::class,
+                'property' => 'name',
+                'query_builder' => function () {
+                    return \App\Entities\Repositories\GradeRepository::getAll([], true, -1, -1);
+                },
                 'empty_value' => 'Select',
                 'rules' => 'required',
-                'expanded' => true,
-                'multiple' => false
+                'options' => [
+                    'attr' => ['class' => '7oksh']
+                ]
             ])
-            ->add('submit', 'submit', ['label' => 'Add Lesson'])
+            ->add('subject', 'entity', [
+                'label' => 'Subject',
+                'class' => \App\Models\Subject::class,
+                'property' => 'name',
+                'query_builder' => function () {
+                    return \App\Entities\Repositories\SubjectRepository::getAll([], true, -1, -1);
+                },
+                'empty_value' => 'Select',
+                'rules' => 'required',
+            ])
+            ->add('lesson_id', 'entity', [
+                'label' => 'Lesson',
+                'class' => \App\Models\Lesson::class,
+                'property' => 'name',
+                'query_builder' => function () {
+                    return \App\Entities\Repositories\LessonRepository::getAll([], true, -1, -1);
+                },
+                'empty_value' => 'Select',
+                'rules' => 'required',
+            ])
+            ->add('material_url', 'url', [
+                'label' => 'Material Url',
+                'rules' => 'required',
+            ])
+            ->add('submit', 'submit', ['label' => 'Add Video'])
         ;
     }
 }

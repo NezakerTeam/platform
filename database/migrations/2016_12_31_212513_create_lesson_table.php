@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateLessonTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('lesson', function(Blueprint $table)
+		{
+			$table->integer('id', true);
+			$table->integer('subject_id')->index('subject_id');
+			$table->string('name');
+			$table->text('description', 65535);
+			$table->smallInteger('status');
+			$table->smallInteger('ordering');
+			$table->timestamps();
+			$table->smallInteger('semester');
+		});
+	}
+
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('lesson');
+	}
+
+}

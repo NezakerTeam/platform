@@ -44,28 +44,28 @@
                 {!! form_start($form) !!}
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        {!! form_errors($form->firstName)!!}
-                        {!! form_widget($form->firstName, ['attr'=> ['class' => 'normal', 'placeholder' => 'الاسم']])!!}
+                        {!! form_errors($form->first_name)!!}
+                        {!! form_widget($form->first_name)!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        {!! form_errors($form->lastName)!!}
-                        {!! form_widget($form->lastName, ['attr'=> ['class' => 'normal', 'placeholder' => 'الاسم']])!!}
+                        {!! form_errors($form->last_name)!!}
+                        {!! form_widget($form->last_name)!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
                         {!! form_errors($form->email)!!}
-                        {!! form_widget($form->email, ['attr'=> ['class' => 'normal', 'placeholder' => 'البريد الألكتروني']])!!}
+                        {!! form_widget($form->email)!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
                         {!! form_errors($form->password)!!}
-                        {!! form_widget($form->password, ['attr'=> ['class' => 'normal', 'placeholder' => 'كلمة السر']])!!}
+                        {!! form_widget($form->password)!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        {!! form_errors($form->city)!!}
-                        {!! form_widget($form->city, ['attr'=> ['class' => 'normal']])!!}
+                        {!! form_errors($form->city_id)!!}
+                        {!! form_widget($form->city_id)!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        {!! form_errors($form->phoneNumbers)!!}
-                        {!! form_widget($form->phoneNumbers, ['attr'=> ['class' => 'normal', 'placeholder' => 'رقم التليفون']])!!}
+                        {!! form_errors($form->phone_numbers)!!}
+                        {!! form_widget($form->phone_numbers)!!}
                     </div>          
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

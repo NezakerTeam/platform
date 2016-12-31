@@ -2,8 +2,8 @@
 namespace App\Forms;
 
 use App\Entities\City;
+use App\Entities\Repositories\CityRepository;
 use Kris\LaravelFormBuilder\Form;
-use LaravelDoctrine\ORM\Facades\EntityManager;
 
 class ProfileForm extends Form
 {
@@ -11,28 +11,26 @@ class ProfileForm extends Form
     public function buildForm()
     {
         $this
-            ->add('firstName', 'text', [
+            ->add('first_name', 'text', [
                 'label' => 'First Name',
                 'rules' => 'required|min:5',
             ])
-            ->add('lastName', 'text', [
+            ->add('last_name', 'text', [
                 'label' => 'Last Name',
                 'rules' => 'required|min:5',
             ])
             ->add('email', 'email')
-            ->add('city', 'entity', [
+            ->add('city_id', 'entity', [
                 'label' => 'City',
                 'class' => City::class,
                 'property' => 'name',
                 'property_key' => 'id',
                 'empty_value' => 'Select',
                 'query_builder' => function () {
-                    $cityRepo = new \App\Entities\Repositories\CityRepository();
-
-                    return collect($cityRepo->getAll());
+                    return CityRepository::getAll();
                 }
             ])
-            ->add('phoneNumbers', 'collection', [
+            ->add('phone_numbers', 'collection', [
                 'type' => 'text',
                 'label' => 'Phone Number',
                 'options' => [// these are options for a single type

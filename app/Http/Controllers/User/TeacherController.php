@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\User;
 
+use App\Entities\Repositories\ContentRepository;
 use App\Entities\Repositories\GradeRepository;
 use App\Entities\Repositories\LessonRepository;
 use App\Entities\Repositories\StageRepository;
@@ -27,21 +28,23 @@ class TeacherController extends Controller
      * 
      * @return View
      */
-    public function myCourses(LessonRepository $lessonRepo, StageRepository $stageRepo
-    , GradeRepository $gradeRepo, SubjectRepository $subjectRepo)
+    public function myCourses()
     {
-        $stages = $stageRepo->getAll(true);
-        $grades = $gradesIds = $subjects = $lessons = [];
+        $stages = StageRepository::getAll(true);
+        $grades = $gradesIds = $subjects = $lessons = $contents = [];
 
         foreach ($stages as $stage) {
             $stageId = $stage->getId();
-            $grades[$stageId] = $gradeRepo->getAll([$stageId], true);
-            $gradesIds = array_column($grades[$stageId], 'id');
+            $grades[$stageId] = GradeRepository::getAll([$stageId], true);
+            $gradesIds = array_pluck($grades[$stageId], 'id');
 
-            $subjects[$stageId] = (empty($gradesIds)) ? [] : $subjectRepo->getAll($gradesIds, [], true);
-            $subjectsIds = array_column($subjects[$stageId], 'id');
+            $subjects[$stageId] = (empty($gradesIds)) ? [] : SubjectRepository::getAll($gradesIds, true);
+            $subjectsIds = array_pluck($subjects[$stageId], 'id');
 
-            $lessons[$stageId] = (empty($subjectsIds)) ? [] : $lessonRepo->getAll($subjectsIds, true);
+            $lessons[$stageId] = (empty($subjectsIds)) ? [] : LessonRepository::getAll($subjectsIds, true);
+            $lessonsIds = array_pluck($lessons[$stageId], 'id');
+
+            $contents[$stageId] = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true);
         }
 
         $data = [
@@ -49,6 +52,7 @@ class TeacherController extends Controller
             'grades' => $grades,
             'subjects' => $subjects,
             'lessons' => $lessons,
+            'contents' => $contents,
         ];
 
         return view('content.lesson.index', $data);

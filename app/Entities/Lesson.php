@@ -2,6 +2,8 @@
 namespace App\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\CrudTrait;
 
 /**
  * Lesson.
@@ -10,8 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Entities\Repositories\LessonRepository") 
  * @ORM\HasLifecycleCallbacks
  */
-class Lesson
+class Lesson extends Model
 {
+
+    use CrudTrait;
 
     const STATUS_PENDIND_APPROVAL = 1;
     const STATUS_APPROVED = 2;
@@ -19,6 +23,9 @@ class Lesson
     const TYPE_VIDEO = 1;
     const SEMESTER_FIRST = 1;
     const SEMESTER_SECOND = 2;
+
+    protected $table = 'lesson';
+    protected $fillable = ['subject_id', 'author_id', 'name', 'description', 'status', 'type', 'ordering', 'created_at', 'updated_at', 'youtube_video_id', 'material_url', 'semester', 'thumbnail'];
 
     /**
      * @var int
@@ -69,7 +76,7 @@ class Lesson
      *
      * @ORM\Column(name="status", type="smallint", nullable=false)
      */
-    private $status = self::STATUS_PENDIND_APPROVAL;
+    //public $mystatus = self::STATUS_PENDIND_APPROVAL;
 
     /**
      * @var bool
@@ -114,7 +121,6 @@ class Lesson
      *
      * @ORM\Column(name="semester", type="smallint", nullable=false)
      */
-    private $semester = self::SEMESTER_FIRST;
 
     /**
      * @var User
@@ -494,13 +500,6 @@ class Lesson
         ];
     }
 
-    public function __get($name)
-    {
-        if (property_exists($this, $name)) {
-            return $this->$name;
-        }
-    }
-
     public function __isset($name)
     {
         return isset($this->$name);
@@ -509,5 +508,34 @@ class Lesson
     public function __toString()
     {
         '';
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(\App\Entities\Subject::class);
+    }
+
+    public function getStatusName()
+    {
+        return $this->getStatusesList()[$this->getStatus()];
+    }
+
+    public function getSemesterName()
+    {
+        return $this->getSemestersList()[$this->getSemester()];
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updating(function($lesson) {
+            
+        });
     }
 }

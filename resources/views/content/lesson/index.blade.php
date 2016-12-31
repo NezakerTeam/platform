@@ -48,6 +48,7 @@
                     @include ('content.lesson._subjects_section', [
                     'subjects' => $subjects[$stage->getId()],
                     'lessons' => $lessons[$stage->getId()],
+                    'contents' => $contents[$stage->getId()],
                     'stageId' => $stage->getId()
                     ])
                 </div>

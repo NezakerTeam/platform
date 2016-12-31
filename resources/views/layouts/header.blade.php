@@ -47,12 +47,8 @@
                                             </a>
 
                                             <ul class="dropdown-menu" role="menu">
-                                                <li>
-                                                    <a href="{{ route('teacher.myCourses') }}">My courses</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ route('user.profile.edit') }}">Edit profile</a>
-                                                </li>
+                                                <!--<li><a href="{{ route('teacher.myCourses') }}">My courses</a></li>-->
+                                                <li><a href="{{ route('user.profile.edit') }}">Edit profile</a></li>
                                                 <li>
                                                     <a href="{{ url('/logout') }}"
                                                        onclick="event.preventDefault();

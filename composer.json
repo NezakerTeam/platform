@@ -7,9 +7,6 @@
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
-        "laravel-doctrine/orm": "1.2.*",
-        "laravel-doctrine/migrations": "1.0.*",
-        "laravel-doctrine/extensions": "1.0.*",
         "laravelcollective/html": "^5.3.0",
         "kris/laravel-form-builder": "^1.9",
         "laravelcollective/annotations": "^5.3.0",
@@ -23,8 +20,10 @@
         "phpunit/phpunit": "~5.0",
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
-        "appzcoder/crud-generator": "^2.0",
-        "backpack/generators": "^1.1"
+        "backpack/generators": "^1.1",
+        "way/generators": "dev-feature/laravel-five-stable",
+        "xethron/migrations-generator": "^2.0",
+        "krlove/eloquent-model-generator": "^1.2"
     },
     "autoload": {
         "classmap": [
@@ -58,5 +57,11 @@
     },
     "config": {
         "preferred-install": "dist"
+    },
+    "repositories": {
+        "repo-name": {
+            "type": "vcs",
+            "url": "https://github.com/jamisonvalenta/Laravel-4-Generators.git"
+        }
     }
 }

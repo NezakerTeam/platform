@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 /**
  * 
- * @Controller(prefix="/admin")
+ * @Controller(prefix="/old_admin")
  * @Middleware("guest:admin", except={"logout"})
  */
 class LoginController extends Controller

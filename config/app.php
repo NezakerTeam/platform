@@ -10,7 +10,7 @@ return [
       | any other location as required by the application or its packages.
      */
 
-    'name' => 'Laravel',
+    'name' => env('APP_NAME', 'Nezaker'),
     /*
       |--------------------------------------------------------------------------
       | Application Environment
@@ -149,11 +149,8 @@ return [
         /*
          * Package Service Providers...
          */
-        LaravelDoctrine\ORM\DoctrineServiceProvider::class,
-        LaravelDoctrine\Migrations\MigrationsServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
-        Appzcoder\CrudGenerator\CrudGeneratorServiceProvider::class,
         /*
          * Backpack Service Providers...
          */

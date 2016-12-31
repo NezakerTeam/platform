@@ -2,6 +2,8 @@
 namespace App\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\CrudTrait;
 
 /**
  * Grade.
@@ -9,11 +11,15 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="grade")
  * @ORM\Entity(repositoryClass="App\Entities\Repositories\GradeRepository") 
  */
-class Grade
+class Grade extends Model
 {
+
+    use CrudTrait;
 
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 2;
+
+    protected $table = 'grade';
 
     /**
      * @var int
@@ -276,17 +282,5 @@ class Grade
     public function getStage()
     {
         return $this->stage;
-    }
-
-    public function __get($name)
-    {
-        if (property_exists($this, $name)) {
-            return $this->$name;
-        }
-    }
-
-    public function __isset($name)
-    {
-        return isset($this->$name);
     }
 }

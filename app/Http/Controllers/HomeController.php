@@ -1,14 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Entities\Lesson;
-use App\Entities\Repositories\LessonRepository;
+use App\Entities\Repositories\ContentRepository;
 use App\Entities\User;
 use App\Forms\RegisterTeacherForm;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Kris\LaravelFormBuilder\FormBuilder;
-use LaravelDoctrine\ORM\Facades\EntityManager;
 
 /**
  * @Controller(prefix="")
@@ -25,14 +23,14 @@ class HomeController extends Controller
      * 
      * @return Response
      */
-    public function index(FormBuilder $formBuilder, LessonRepository $lessonRepo)
+    public function index(FormBuilder $formBuilder, ContentRepository $contentRepo)
     {
         $form = $formBuilder->create(RegisterTeacherForm::class, [
             'method' => 'POST',
             'url' => 'register'
         ]);
 
-        $recentLesson = $lessonRepo->getRecentLessons();
+        $recentLesson = $contentRepo->getRecent();
 
         $data = [
             'form' => $form,
@@ -64,10 +62,14 @@ class HomeController extends Controller
      */
     private function teacherDashboard()
     {
-        $data = [];
 
-        $lessonRepo = new LessonRepository();
-        $data['lessons'] = $lessonRepo->getByAuthor(Auth::id());
+        $activeContent = ContentRepository::getByAuthor(Auth::id());
+        $pendingContent = ContentRepository::getByAuthor(Auth::id(), \App\Models\Content::STATUS_PENDIND_APPROVAL);
+
+        $data = [
+            'activeContents' => $activeContent,
+            'pendingContent' => $pendingContent,
+        ];
 
         return view('user.teacher.dashboard', $data);
     }

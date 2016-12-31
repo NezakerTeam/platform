@@ -2,6 +2,8 @@
 namespace App\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\CrudTrait;
 
 /**
  * Subject.
@@ -9,11 +11,15 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="subject")
  * @ORM\Entity(repositoryClass="App\Entities\Repositories\SubjectRepository") 
  */
-class Subject
+class Subject extends Model
 {
+
+    use CrudTrait;
 
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 2;
+
+    protected $table = 'subject';
 
     /**
      * @var int
@@ -22,49 +28,44 @@ class Subject
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    public $key;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
-     */
-    private $name;
+
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=false)
      */
-    private $description;
+    public $description;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="status", type="boolean", nullable=false)
      */
-    private $status;
+    public $status;
 
     /**
      * @var int
      *
      * @ORM\Column(name="ordering", type="smallint", nullable=false)
      */
-    private $ordering = 1;
+    public $ordering = 1;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    private $createdAt;
+    public $createdAt;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      */
-    private $updatedAt;
+    public $updatedAt;
 
     /**
      * @var Grade
@@ -74,7 +75,7 @@ class Subject
      *   @ORM\JoinColumn(name="grade_id", referencedColumnName="id", nullable=false)
      * })
      */
-    private $grade;
+    public $grade;
 
     /**
      * Get id.
@@ -83,7 +84,7 @@ class Subject
      */
     public function getId()
     {
-        return $this->id;
+        return $this->key;
     }
 
     /**
@@ -278,20 +279,9 @@ class Subject
         return $this->grade;
     }
 
-    public function __get($name)
+    public function grade()
     {
-        if (property_exists($this, $name)) {
-            return $this->$name;
-        }
+        return $this->belongsTo(Grade::class);
     }
 
-    public function __isset($name)
-    {
-        return isset($this->$name);
-    }
-
-    public function __toString()
-    {
-        return (string) $this->getId();
-    }
 }

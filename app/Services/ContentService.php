@@ -2,8 +2,12 @@
 namespace App\Services;
 
 use App\Entities\Lesson;
+use App\Entities\Repositories\ContentRepository;
 use App\Entities\Subject;
 use App\Entities\User;
+use App\Models\Content;
+use Google_Client;
+use Google_Service_YouTube;
 use Illuminate\Support\Facades\Auth;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 
@@ -15,66 +19,61 @@ use LaravelDoctrine\ORM\Facades\EntityManager;
 class ContentService
 {
 
-    private function bindLessonData(Lesson $lesson, $data)
+    private function bindContentData(Content $content, $data)
     {
-        $lesson->setName($data['name']);
-        $lesson->setDescription($data['description']);
-        $lesson->setMaterialUrl($data['materialUrl']);
+        $content->setMaterialUrl($data['material_url']);
 
-        if (isset($data['youtubeVideoId']) && Auth::User()->hasType(User::TYPE_ADMIN_USER)) {
-            $youtubeVideoId = $data['youtubeVideoId'];
-            $lesson->setYoutubeVideoId($youtubeVideoId);
+        if (isset($data['youtube_video_id']) && Auth::User()->hasType(User::TYPE_ADMIN_USER)) {
+            $youtubeVideoId = $data['youtube_video_id'];
+            $content->setYoutubeVideoId($youtubeVideoId);
 
             $thumb = $this->fetchYoutubeVideoThumb($youtubeVideoId);
-            $lesson->setThumbnail($thumb);
+            $content->setThumbnail($thumb);
         }
 
-        $subject = EntityManager::getReference(Subject::class, $data['subject']);
-        $lesson->setSubject($subject);
+        $content->setLessonId($data['lesson_id']);
 
-        $lesson->setSemester($data['semester']);
-
-        $lesson->setAuthor(Auth::user());
+        $content->setAuthorId(Auth::id());
 
         if (isset($data['stauts']) &&
             ($data['status'] == Lesson::STATUS_PENDIND_APPROVAL || Auth::User()->hasType(User::TYPE_ADMIN_USER))
         ) {
-            $lesson->setStatus($data['status']);
+            $content->setStatus($data['status']);
         }
 
 
-        return $lesson;
+        return $content;
     }
 
-    public function addLesson($data)
+    public function addContent($data)
     {
-        $lesson = $this->bindLessonData(new Lesson(), $data);
+        $content = $this->bindContentData(new Content(), $data);
 
         // Save the entity
-        $lesson = EntityManager::getRepository(Lesson::class)->store($lesson);
+        $content = ContentRepository::store($content);
 
-        return $lesson;
+        return $content;
     }
 
-    public function editLesson(Lesson $lesson, $data)
+    public function editLesson(Content $content, $data)
     {
-        $lesson = $this->bindLessonData($lesson, $data);
+        $content = $this->bindContentData($content, $data);
 
         // Save the entity
-        $lesson = EntityManager::getRepository(Lesson::class)->store($lesson);
+        $content = ContentRepository::store($content);
 
-        return $lesson;
+        return $content;
     }
 
     private function fetchYoutubeVideoThumb($videoId)
     {
         $videoThumb = '';
 
-        $client = new \Google_Client();
+        $client = new Google_Client();
         $client->setDeveloperKey(config('app.google_api_key'));
 
         // Define an object that will be used to make all API requests.
-        $youtube = new \Google_Service_YouTube($client);
+        $youtube = new Google_Service_YouTube($client);
 
         // Call the YouTube Data API's videos.list method to retrieve videos.
         $videos = $youtube->videos->listVideos('snippet', ['id' => $videoId]);

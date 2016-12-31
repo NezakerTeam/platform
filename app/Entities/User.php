@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\CrudTrait;
 
 /**
  * User.
@@ -26,9 +28,11 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  *                      )
  * @ORM\HasLifecycleCallbacks
  */
-class User implements
+class User extends Model implements
 AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
+
+    use CrudTrait;
 
     use Authenticatable,
         Authorizable,
@@ -42,6 +46,9 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
     const GENDER_UNDEFINED = 0;
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 2;
+
+    protected $table = 'user';
+    protected $guarded = [];
 
     /**
      * @var int
@@ -73,12 +80,6 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
      */
     protected $username;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=180)
-     */
-    protected $email;
 
     /**
      * @var boolean
@@ -95,15 +96,6 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
      * @ORM\Column(name="salt", type="string", length=255)
      */
     protected $salt;
-
-    /**
-     * Encrypted password. Must be persisted.
-     *
-     * @var string
-     * 
-     * @ORM\Column(name="password", type="string", length=255)
-     */
-    protected $password;
 
     /**
      * @var \DateTime
@@ -202,19 +194,6 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
      * @ORM\Column(name="phone_numbers", type="json_array")
      */
     protected $phoneNumbers;
-
-    /**
-     * User constructor.
-     */
-    public function __construct()
-    {
-        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
-        $this->enabled = false;
-        $this->locked = false;
-        $this->expired = false;
-        $this->roles = array();
-        $this->credentialsExpired = false;
-    }
 
     /**
      * Get id.
@@ -552,15 +531,7 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
         return $this->salt;
     }
 
-    /**
-     * Gets email.
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
+   
 
     /**
      * {@inheritdoc}
@@ -759,19 +730,7 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
         return $this;
     }
 
-    /**
-     * Sets the email.
-     *
-     * @param string $email
-     *
-     * @return self
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
+    
 
     /**
      * @param bool $boolean
@@ -942,13 +901,6 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
         return $this;
     }
 
-    public function __get($name)
-    {
-        if (property_exists($this, $name)) {
-            return $this->$name;
-        }
-    }
-
     public function __isset($name)
     {
         return isset($this->$name);
@@ -984,5 +936,21 @@ AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
     {
         return true;
         return (bool) ($this->getType() == $userType);
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(\App\Models\Lesson::clas);
+    }
+
+    /**
+     * Get the user's first name.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getNameAttribute()
+    {
+        return ucfirst($this->first_name . ' ' . $this->last_name);
     }
 }

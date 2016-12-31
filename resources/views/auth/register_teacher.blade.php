@@ -9,7 +9,6 @@
                 <div class="panel-body">
 
                     {!! form_start($form) !!}
-                    {!! form_row($form->firstName) !!}
                     {!! form_end($form, $renderRest = true) !!}
                 </div>
             </div>

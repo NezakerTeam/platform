@@ -7,33 +7,34 @@ class GradeRepository extends EntityRepository
     /**
      * @inheritdoc 
      */
-    public function __construct()
+    protected static function getModel()
     {
-        parent::__construct(\App\Entities\Grade::class);
+        return new \App\Models\Grade();
     }
 
-    public function getAll($stagesIds = [], $activeOnly = null, $offset = 0, $limit = 6)
+    public static function getAll($stagesIds = [], $activeOnly = null, $offset = 0, $limit = 6)
     {
-        $qb = $this->createQueryBuilder('g');
+
+        $gradesQB = self::getModel();
 
         if (!empty($stagesIds)) {
-            $qb->andWhere(
-                $qb->expr()->in('IDENTITY(g.stage)', $stagesIds)
-            );
+            $gradesQB = $gradesQB->whereIn('stage_id', $stagesIds);
         }
 
         if ($activeOnly !== null) {
-            $qb->andWhere(
-                $qb->expr()->eq('g.status', \App\Entities\Grade::STATUS_ACTIVE)
-            );
+            $gradesQB = $gradesQB->where('status', \App\Models\Grade::STATUS_ACTIVE);
         }
 
-        $stages = $qb
-                ->orderBy('g.ordering', 'ASC')
-                ->setMaxResults($limit)
-                ->setFirstResult($offset)
-                ->getQuery()->execute();
+        if ($limit >= 0) {
+            $gradesQB = $gradesQB->limit($limit)
+                ->offset($offset);
+        }
 
-        return $stages;
+        $grades = $gradesQB
+            ->orderBy('stage_id', 'ASC')
+            ->orderBy('ordering', 'ASC')
+            ->get();
+
+        return $grades;
     }
 }

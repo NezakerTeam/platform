@@ -18,7 +18,7 @@ use function redirect;
 use function view;
 
 /**
- * @Controller(prefix="/admin/lesson")
+ * @Controller(prefix="/old_admin/lesson")
  * @Middleware("web")
  * @Middleware("auth")
  */
@@ -76,7 +76,7 @@ class LessonController extends Controller
         $form->redirectIfNotValid();
 
         $contentService = App::make(ContentService::class);
-        $lesson = $contentService->addLesson($form->getFieldValues());
+        $lesson = $contentService->addContent($form->getFieldValues());
 
         Session::flash('flash_message', 'Lesson added!');
 

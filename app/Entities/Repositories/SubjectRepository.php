@@ -7,9 +7,9 @@ class SubjectRepository extends EntityRepository
     /**
      * @inheritdoc 
      */
-    public function __construct()
+    protected static function getModel()
     {
-        parent::__construct(\App\Entities\Subject::class);
+        return new \App\Models\Subject();
     }
 
     /**
@@ -17,18 +17,14 @@ class SubjectRepository extends EntityRepository
      * 
      * @return array [id => name]
      */
-    public function getList()
+    public static function getList()
     {
-        $subjectsList = [];
-        $subjects = $this->getAll();
 
-        foreach ($subjects as $subject) {
-            $grade = $subject->getGrade();
-            $stage = $grade->getStage();
-            $subjectsList[$subject->getId()] = $stage->getName() . ' - ' . $grade->getName() . ' - ' . $subject->getName();
-        }
+        $subjects = self::getModel()::
+            orderBy('ordering', 'ASC')
+            ->get();
 
-        return $subjectsList;
+        return $subjects;
     }
 
     /**
@@ -38,34 +34,29 @@ class SubjectRepository extends EntityRepository
      * 
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAll($gradeIds = [], $stageIds = [], $activeOnly = null, $offset = 0, $limit = 6)
+    public static function getAll($gradeIds = [], $activeOnly = null, $offset = 0, $limit = 6)
     {
-        $qb = $this->createQueryBuilder('s');
+
+        $subjectQB = self::getModel();
 
         if (!empty($gradeIds)) {
-            $qb->andwhere(
-                $qb->expr()->in('IDENTITY(s.grade)', $gradeIds)
-            );
-        }
-
-        if (!empty($stageIds)) {
-            $qb->innerJoin('s.grade', 'g')
-                ->andwhere(
-                    $qb->expr()->in('IDENTITY(g.stage)', $stageIds)
-            );
+            $subjectQB = $subjectQB->whereIn('grade_id', $gradeIds);
         }
 
         if ($activeOnly !== null) {
-            $qb->andwhere(
-                $qb->expr()->eq('s.status', \App\Entities\Subject::STATUS_ACTIVE)
-            );
+            $subjectQB = $subjectQB->where('subject.status', \App\Models\Subject::STATUS_ACTIVE);
         }
-        $stages = $qb
-                ->orderBy('s.ordering', 'ASC')
-                ->setMaxResults($limit)
-                ->setFirstResult($offset)
-                ->getQuery()->execute();
 
-        return $stages;
+        if ($limit >= 0) {
+            $subjectQB = $subjectQB->limit($limit)
+                ->offset($offset);
+        }
+
+        $subjects = $subjectQB
+            ->orderBy('subject.ordering', 'ASC')
+            ->orderBy('subject.grade_id', 'ASC')
+            ->get();
+
+        return $subjects;
     }
 }

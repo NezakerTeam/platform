@@ -1,17 +1,15 @@
 <?php
 namespace App\Entities\Repositories;
 
-use App\Entities\Lesson;
-
 class LessonRepository extends EntityRepository
 {
 
     /**
      * @inheritdoc 
      */
-    public function __construct()
+    protected static function getModel()
     {
-        parent::__construct(Lesson::class);
+        return new \App\Models\Lesson();
     }
 
     public function store(Lesson $lesson)
@@ -22,64 +20,33 @@ class LessonRepository extends EntityRepository
         return $lesson;
     }
 
-    public function getByAuthor(int $authorId, $status = Lesson::STATUS_APPROVED, $offset = 0, $limit = 8)
-    {
-        $qb = $this->createQueryBuilder('l')
-            ->where('IDENTITY(l.author) = :authorId')
-            ->setParameter(':authorId', $authorId);
-
-        if ($status != null) {
-            $qb->andWhere('l.status = :status')
-                ->setParameter('status', $status);
-        }
-
-        $lessons = $qb
-                ->orderBy('l.createdAt', 'DESC')
-                ->setMaxResults($limit)
-                ->setFirstResult($offset)
-                ->getQuery()->execute();
-
-        return $lessons;
-    }
-
     public function findById($id)
     {
         return $this->find($id);
     }
 
-    public function getAll($subjectsIds = [], $activeOnly = null, $offset = 0, $limit = 8)
+    public static function getAll($subjectsIds = [], $activeOnly = null, $offset = 0, $limit = 8)
     {
-        $qb = $this->createQueryBuilder('s');
+
+        $LessonQB = self::getModel();
 
         if (!empty($subjectsIds)) {
-            $qb->andWhere(
-                $qb->expr()->in('IDENTITY(s.subject)', $subjectsIds)
-            );
+            $LessonQB = $LessonQB->whereIn('subject_id', $subjectsIds);
         }
 
         if ($activeOnly !== null) {
-            $qb->andWhere(
-                $qb->expr()->eq('s.status', Lesson::STATUS_APPROVED)
-            );
+            $LessonQB = $LessonQB->where('status', \App\Models\Lesson::STATUS_ACTIVE);
         }
 
-        $lessons = $qb
-                ->orderBy('s.ordering', 'ASC')
-                ->setMaxResults($limit)
-                ->setFirstResult($offset)
-                ->getQuery()->execute();
+        if ($limit >= 0) {
+            $LessonQB = $LessonQB->limit($limit)
+                ->offset($offset);
+        }
 
-        return $lessons;
-    }
-
-    public function getRecentLessons($limit = 8)
-    {
-        $lessons = $this->createQueryBuilder('l')
-                ->andWhere('l.status = :status')
-                ->setParameter(':status', Lesson::STATUS_APPROVED)
-                ->orderBy('l.createdAt', 'DESC')
-                ->setMaxResults($limit)
-                ->getQuery()->execute();
+        $lessons = $LessonQB
+            ->orderBy('subject_id', 'ASC')
+            ->orderBy('ordering', 'ASC')
+            ->get();
 
         return $lessons;
     }

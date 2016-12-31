@@ -2,19 +2,6 @@
 return [
     /*
       |--------------------------------------------------------------------------
-      | Default Authentication Driver
-      |--------------------------------------------------------------------------
-      |
-      | This option controls the authentication driver that will be utilized.
-      | This driver manages the retrieval and authentication of the users
-      | attempting to get access to protected areas of your application.
-      |
-      |
-     */
-
-    'driver' => 'doctrine',
-    /*
-      |--------------------------------------------------------------------------
       | Authentication Defaults
       |--------------------------------------------------------------------------
       |
@@ -23,6 +10,7 @@ return [
       | as required, but they're a perfect start for most applications.
       |
      */
+
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
@@ -48,10 +36,6 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admin_user',
-        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -75,17 +59,9 @@ return [
      */
     'providers' => [
         'users' => [
-            'driver' => 'doctrine',
-            'model' => App\Entities\User::class,
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
         ],
-        'admin_user' => [
-            'driver' => 'doctrine',
-            'model' => Admin\Entities\AdminUser::class,
-        ],
-    // 'users' => [
-    //     'driver' => 'database',
-    //     'table' => 'users',
-    // ],
     ],
     /*
       |--------------------------------------------------------------------------

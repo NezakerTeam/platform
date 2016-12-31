@@ -1,7 +1,7 @@
 <?php
 namespace App\Entities\Repositories;
 
-use App\Entities\User;
+use App\Models\User;
 
 class UserRepository extends EntityRepository
 {
@@ -9,9 +9,9 @@ class UserRepository extends EntityRepository
     /**
      * @inheritdoc 
      */
-    public function __construct($entityClassName = User::class)
+    protected static function getModel()
     {
-        parent::__construct($entityClassName);
+        return new \App\Models\User();
     }
 
     public function create(User $user)
@@ -19,11 +19,10 @@ class UserRepository extends EntityRepository
         return $this->store($user);
     }
 
-    public function store(User $user)
+    public static function store(User $user)
     {
-        $this->getEntityManager()->persist($user);
-        $this->getEntityManager()->flush();
-        
+        $user->save();
+
         return $user;
     }
 }

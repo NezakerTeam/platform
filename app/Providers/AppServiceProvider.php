@@ -28,6 +28,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(UserService::class, function ($app) {
             return new UserService();
         });
+
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(\Way\Generators\GeneratorsServiceProvider::class);
+            $this->app->register(\Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class);
+            $this->app->register(\Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class);
+        }
     }
 
     private function registerBladeDirectives()
