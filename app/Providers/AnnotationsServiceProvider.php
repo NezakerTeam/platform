@@ -56,7 +56,7 @@ class AnnotationsServiceProvider extends ServiceProvider
 
         if ($this->app->environment('local')) {
             $classes = array_merge(
-                $classes, $this->getClassesFromNamespace(\Admin\Http\Controllers::class, '/var/www/nezaker/packages')
+                $classes, $this->getClassesFromNamespace(\Admin\Http\Controllers::class, base_path('packages'))
             );
         }
 
