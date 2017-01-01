@@ -2,7 +2,6 @@
 namespace App\Entities\Repositories;
 
 use App\Models\Content;
-use App\Models\Lesson;
 
 class ContentRepository extends EntityRepository
 {

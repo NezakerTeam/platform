@@ -24,7 +24,6 @@ class Lesson extends Model
 
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 2;
-    
     const SEMESTER_FIRST = 1;
     const SEMESTER_SECOND = 2;
 
@@ -409,9 +408,8 @@ class Lesson extends Model
     public static function getStatusesList()
     {
         return [
-            self::STATUS_PENDIND_APPROVAL => 'Pending Approval',
-            self::STATUS_APPROVED => 'Approved',
-            self::STATUS_DISAPPROVED => 'Disapproved',
+            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_INACTIVE => 'InActive',
         ];
     }
 

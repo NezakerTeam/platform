@@ -1,7 +1,10 @@
 <?php
 namespace App\Models;
 
+use App\Services\ContentService;
+use Backpack\CRUD\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property integer $id
@@ -20,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Content extends Model
 {
+
+    use CrudTrait;
 
     const STATUS_PENDIND_APPROVAL = 1;
     const STATUS_APPROVED = 2;
@@ -337,25 +342,6 @@ class Content extends Model
     }
 
     /**
-     * @ORM\PrePersist 
-     */
-    public function prePersist()
-    {
-        $now = new \DateTime();
-        $this->setCreatedAt($now);
-        $this->setUpdatedAt($now);
-    }
-
-    /**
-     * @ORM\PreUpdate
-     */
-    public function preUpdate()
-    {
-        $now = new \DateTime();
-        $this->setUpdatedAt($now);
-    }
-
-    /**
      * Set semester.
      *
      * @param int $semester
@@ -406,6 +392,23 @@ class Content extends Model
         ];
     }
 
+    public function getStatusName()
+    {
+        return $this->getStatusesList()[$this->getStatus()];
+    }
+
+    public function getYoutubeUrl()
+    {
+        $url = '';
+        $youtubeVideoId = $this->getYoutubeVideoId();
+
+        if (!empty($youtubeVideoId)) {
+            $url = "https://www.youtube.com/watch?v=$youtubeVideoId";
+        }
+
+        return $url;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -435,5 +438,23 @@ class Content extends Model
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function(Content $content) {
+            if (empty($content->author_id)) {
+                $content->setAuthorId(Auth::id());
+            }
+
+            $oldYoutubeVideoId = $content->getOriginal('youtube_video_id');
+            $currentYoutubeVideoId = $content->youtube_video_id;
+            if (!empty($currentYoutubeVideoId) && $oldYoutubeVideoId != $currentYoutubeVideoId) {
+                $thumbnail = app(ContentService::class)->fetchYoutubeVideoThumb($currentYoutubeVideoId);
+                $content->setThumbnail($thumbnail);
+            }
+        });
     }
 }

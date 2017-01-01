@@ -65,7 +65,7 @@ class ContentService
         return $content;
     }
 
-    private function fetchYoutubeVideoThumb($videoId)
+    public function fetchYoutubeVideoThumb($videoId)
     {
         $videoThumb = '';
 

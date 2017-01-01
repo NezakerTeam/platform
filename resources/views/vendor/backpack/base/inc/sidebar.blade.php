@@ -20,6 +20,9 @@
             <!-- ==== Recommended place for admin menu items ==== -->
             <!-- ================================================ -->
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
+
+
+            <li><a href="{{ route('crud.content.index') }}"><i class="fa fa-tag"></i> <span>Manage Contents</span></a></li>
             <li><a href="{{ route('crud.lesson.index') }}"><i class="fa fa-tag"></i> <span>Manage Lessons</span></a></li>
 
 

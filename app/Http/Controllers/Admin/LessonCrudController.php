@@ -106,6 +106,11 @@ class LessonCrudController extends CrudController
         // $this->crud->limit();
     }
 
+    /**
+     * Set the CRUD displayed columns
+     * 
+     * @return void
+     */
     private function setupColumns()
     {
         // ------ CRUD columns
@@ -155,6 +160,11 @@ class LessonCrudController extends CrudController
         ]);
     }
 
+    /**
+     * Set the CRUD add/edit fields
+     * 
+     * @return void
+     */
     private function setupFields()
     {
         // ------ CRUD columns
@@ -223,6 +233,11 @@ class LessonCrudController extends CrudController
 //        ;
     }
 
+    /**
+     * Set the CRUD filters
+     * 
+     * @return void
+     */
     private function setupFilters()
     {
         $this->crud->addFilter([// select2 filter
