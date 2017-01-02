@@ -1,8 +1,8 @@
 <?php
 namespace App\Forms;
 
-use App\Entities\City;
-use App\Entities\Repositories\CityRepository;
+use App\Models\City;
+use App\Models\Repositories\CityRepository;
 use Kris\LaravelFormBuilder\Form;
 
 class ProfileForm extends Form

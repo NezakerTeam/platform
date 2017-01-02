@@ -50,16 +50,4 @@ class AnnotationsServiceProvider extends ServiceProvider
      */
     protected $scanEverything = true;
 
-    public function routeScans()
-    {
-        $classes = parent::routeScans();
-
-        if ($this->app->environment('local')) {
-            $classes = array_merge(
-                $classes, $this->getClassesFromNamespace(\Admin\Http\Controllers::class, base_path('packages'))
-            );
-        }
-
-        return $classes;
-    }
 }

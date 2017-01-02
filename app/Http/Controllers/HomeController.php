@@ -1,9 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Entities\Repositories\ContentRepository;
-use App\Entities\User;
+use App\Models\Repositories\ContentRepository;
 use App\Forms\RegisterTeacherForm;
+use App\Models\Content;
+use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Kris\LaravelFormBuilder\FormBuilder;
@@ -64,7 +65,7 @@ class HomeController extends Controller
     {
 
         $activeContent = ContentRepository::getByAuthor(Auth::id());
-        $pendingContent = ContentRepository::getByAuthor(Auth::id(), \App\Models\Content::STATUS_PENDIND_APPROVAL);
+        $pendingContent = ContentRepository::getByAuthor(Auth::id(), Content::STATUS_PENDIND_APPROVAL);
 
         $data = [
             'activeContents' => $activeContent,

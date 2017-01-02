@@ -1,7 +1,7 @@
 <?php
 namespace App\Forms;
 
-use App\Entities\Repositories\CityRepository;
+use App\Models\Repositories\CityRepository;
 use App\Models\City;
 use Kris\LaravelFormBuilder\Form;
 

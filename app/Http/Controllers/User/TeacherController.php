@@ -1,11 +1,11 @@
 <?php
 namespace App\Http\Controllers\User;
 
-use App\Entities\Repositories\ContentRepository;
-use App\Entities\Repositories\GradeRepository;
-use App\Entities\Repositories\LessonRepository;
-use App\Entities\Repositories\StageRepository;
-use App\Entities\Repositories\SubjectRepository;
+use App\Models\Repositories\ContentRepository;
+use App\Models\Repositories\GradeRepository;
+use App\Models\Repositories\LessonRepository;
+use App\Models\Repositories\StageRepository;
+use App\Models\Repositories\SubjectRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Kris\LaravelFormBuilder\FormBuilderTrait;

@@ -1,9 +1,7 @@
 <?php
 namespace App\Forms;
 
-use App\Entities\Subject;
 use Kris\LaravelFormBuilder\Form;
-use LaravelDoctrine\ORM\Facades\EntityManager;
 
 class LessonForm extends Form
 {
@@ -16,7 +14,7 @@ class LessonForm extends Form
                 'class' => \App\Models\Stage::class,
                 'property' => 'name',
                 'query_builder' => function () {
-                    return \App\Entities\Repositories\StageRepository::getAll(true, -1, -1);
+                    return \App\Models\Repositories\StageRepository::getAll(true, -1, -1);
                 },
                 'empty_value' => 'Select',
                 'rules' => 'required',
@@ -26,7 +24,7 @@ class LessonForm extends Form
                 'class' => \App\Models\Grade::class,
                 'property' => 'name',
                 'query_builder' => function () {
-                    return \App\Entities\Repositories\GradeRepository::getAll([], true, -1, -1);
+                    return \App\Models\Repositories\GradeRepository::getAll([], true, -1, -1);
                 },
                 'empty_value' => 'Select',
                 'rules' => 'required',
@@ -39,7 +37,7 @@ class LessonForm extends Form
                 'class' => \App\Models\Subject::class,
                 'property' => 'name',
                 'query_builder' => function () {
-                    return \App\Entities\Repositories\SubjectRepository::getAll([], true, -1, -1);
+                    return \App\Models\Repositories\SubjectRepository::getAll([], true, -1, -1);
                 },
                 'empty_value' => 'Select',
                 'rules' => 'required',
@@ -49,7 +47,7 @@ class LessonForm extends Form
                 'class' => \App\Models\Lesson::class,
                 'property' => 'name',
                 'query_builder' => function () {
-                    return \App\Entities\Repositories\LessonRepository::getAll([], true, -1, -1);
+                    return \App\Models\Repositories\LessonRepository::getAll([], true, -1, -1);
                 },
                 'empty_value' => 'Select',
                 'rules' => 'required',

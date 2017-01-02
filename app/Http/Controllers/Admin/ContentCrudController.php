@@ -37,7 +37,6 @@ class ContentCrudController extends CrudController
         $this->setupColumns();
         $this->setupFields();
         $this->setupFilters();
-        
     }
 
     /**
@@ -81,6 +80,16 @@ class ContentCrudController extends CrudController
             'name' => 'youtube_video_id', // the method in your Model
             'label' => 'Youtube video', // Table column heading
             'type' => 'youtube_video',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'created_at',
+            'label' => 'Created At',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'updated_at',
+            'label' => 'Updated At',
         ]);
     }
 

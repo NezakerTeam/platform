@@ -1,11 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Entities\Lesson;
-use App\Entities\User;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
-use LaravelDoctrine\ORM\Facades\EntityManager;
 
 /**
  * @Controller(prefix="")

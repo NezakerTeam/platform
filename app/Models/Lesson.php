@@ -40,13 +40,6 @@ class Lesson extends Model
     protected $fillable = ['subject_id', 'name', 'description', 'status', 'ordering', 'created_at', 'updated_at', 'semester'];
 
     /**
-     * The storage format of the model's date columns.
-     * 
-     * @var string
-     */
-    protected $dateFormat = 'U';
-
-    /**
      * Get id.
      *
      * @return int
@@ -411,6 +404,16 @@ class Lesson extends Model
             self::STATUS_ACTIVE => 'Active',
             self::STATUS_INACTIVE => 'InActive',
         ];
+    }
+
+    public function getStatusName()
+    {
+        return $this->getStatusesList()[$this->getStatus()];
+    }
+
+    public function getSemesterName()
+    {
+        return $this->getSemestersList()[$this->getSemester()];
     }
 
     /**

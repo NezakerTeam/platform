@@ -1,15 +1,13 @@
 <?php
 namespace App\Services;
 
-use App\Entities\Lesson;
-use App\Entities\Repositories\ContentRepository;
-use App\Entities\Subject;
-use App\Entities\User;
+use App\Models\Lesson;
+use App\Models\Repositories\ContentRepository;
+use App\Models\User;
 use App\Models\Content;
 use Google_Client;
 use Google_Service_YouTube;
 use Illuminate\Support\Facades\Auth;
-use LaravelDoctrine\ORM\Facades\EntityManager;
 
 /**
  * Description of UserService

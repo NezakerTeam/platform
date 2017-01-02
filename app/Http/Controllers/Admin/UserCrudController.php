@@ -17,7 +17,7 @@ class UserCrudController extends CrudController
           | BASIC CRUD INFORMATION
           |--------------------------------------------------------------------------
          */
-        $this->crud->setModel(\App\Entities\User::class);
+        $this->crud->setModel(\App\Models\User::class);
         $this->crud->setRouteName('crud.user');
         $this->crud->setEntityNameStrings('user', 'users');
 
@@ -28,7 +28,12 @@ class UserCrudController extends CrudController
          */
 
         $this->crud->setFromDb();
+        $this->crud->addColumn([
+            'name' => 'phone_numbers',
+            'label' => 'phone_numbers',
+                        'type' => 'array',
 
+        ]);
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');

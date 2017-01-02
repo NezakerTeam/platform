@@ -1,5 +1,5 @@
 <?php
-namespace App\Entities\Repositories;
+namespace App\Models\Repositories;
 
 use App\Models\Content;
 

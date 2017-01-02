@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 // VALIDATION: change the requests to match your own file names if you need form validation
 
 
-use App\Entities\Lesson;
-use App\Entities\Subject;
-use App\Entities\User;
+use App\Models\Lesson;
+use App\Models\Subject;
+use App\Models\User;
 use App\Http\Requests\LessonRequest as StoreRequest;
 use App\Http\Requests\LessonRequest as UpdateRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -141,15 +141,6 @@ class LessonCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
-            'label' => 'Author',
-            'type' => 'select',
-            'name' => 'author_id',
-            'entity' => 'author',
-            'attribute' => 'name',
-            'model' => User::class,
-        ]);
-
-        $this->crud->addColumn([
             'name' => 'created_at',
             'label' => 'Created At',
         ]);
@@ -177,15 +168,7 @@ class LessonCrudController extends CrudController
             'label' => 'Description',
             'type' => 'textarea'
         ]);
-        $this->crud->addField([
-            'name' => 'material_url',
-            'label' => 'Material Url',
-            'type' => 'url'
-        ]);
-        $this->crud->addField([
-            'name' => 'youtube_video_id',
-            'label' => 'Youtube video id',
-        ]);
+
         $this->crud->addField([// Select
             'label' => 'Subject',
             'type' => 'select',
@@ -212,25 +195,6 @@ class LessonCrudController extends CrudController
             'allows_null' => false,
             // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
         ]);
-
-//            ->add('semester', 'choice', [
-//                'label' => 'Semester',
-//                'choices' => \App\Entities\Lesson::getSemestersList(),
-//                'empty_value' => 'Select',
-//                'rules' => 'required',
-//                'expanded' => true,
-//                'multiple' => false
-//            ])
-//            ->add('status', 'choice', [
-//                'label' => 'Status',
-//                'choices' => \App\Entities\Lesson::getStatusesList(),
-//                'empty_value' => 'Select',
-//                'rules' => 'required',
-//                'expanded' => true,
-//                'multiple' => false
-//            ])
-//            ->add('submit', 'submit', ['label' => ($this->getData('isEdit')) ? 'Edit Lesson' : 'Add Lesson'])
-//        ;
     }
 
     /**
