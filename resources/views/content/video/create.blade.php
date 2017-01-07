@@ -7,7 +7,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{trans('content.form.title.create')}}</div>
                 <div class="panel-body">
-                    {!! form($form) !!}
+                    @include ('content.video.form')
+
                 </div>
             </div>
         </div>

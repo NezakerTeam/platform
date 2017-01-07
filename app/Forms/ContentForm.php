@@ -1,6 +1,9 @@
 <?php
 namespace App\Forms;
 
+use App\Forms\Content\GradeDropdownForm;
+use App\Models\Repositories\StageRepository;
+use App\Models\Stage;
 use Kris\LaravelFormBuilder\Form;
 
 class ContentForm extends Form
@@ -9,48 +12,23 @@ class ContentForm extends Form
     public function buildForm()
     {
         $this
-            ->add('Stage', 'entity', [
+            ->add('stage_id', 'entity', [
                 'label' => trans('content.form.stage'),
-                'class' => \App\Models\Stage::class,
+                'class' => Stage::class,
                 'property' => 'name',
                 'query_builder' => function () {
-                    return \App\Models\Repositories\StageRepository::getAll(true, -1, -1);
+                    return StageRepository::getAll(true, -1, -1);
                 },
                 'empty_value' => trans('general.select'),
                 'rules' => 'required',
-            ])
-            ->add('Grade', 'entity', [
-                'label' => trans('content.form.grade'),
-                'class' => \App\Models\Grade::class,
-                'property' => 'name',
-                'query_builder' => function () {
-                    return \App\Models\Repositories\GradeRepository::getAll([], true, -1, -1);
-                },
-                'empty_value' => trans('general.select'),
-                'rules' => 'required',
-                'options' => [
-                    'attr' => ['class' => '7oksh']
+                'attr' => [
+                    'class_append' => 'element-refresher',
+                    'data-refresh-element' => 'grade_dropdown_form',
+                    'data-refresh-url' => route('content.renderDropdownelement', ['grade']),
                 ]
             ])
-            ->add('subject', 'entity', [
-                'label' => trans('content.form.subject'),
-                'class' => \App\Models\Subject::class,
-                'property' => 'name',
-                'query_builder' => function () {
-                    return \App\Models\Repositories\SubjectRepository::getAll([], true, -1, -1);
-                },
-                'empty_value' => trans('general.select'),
-                'rules' => 'required',
-            ])
-            ->add('lesson_id', 'entity', [
-                'label' => trans('content.form.lesson'),
-                'class' => \App\Models\Lesson::class,
-                'property' => 'name',
-                'query_builder' => function () {
-                    return \App\Models\Repositories\LessonRepository::getAll([], true, -1, -1);
-                },
-                'empty_value' => trans('general.select'),
-                'rules' => 'required',
+            ->compose(GradeDropdownForm::class, [
+                'data'=>$this->getData()
             ])
             ->add('material_url', 'url', [
                 'label' => trans('content.form.materialUrl'),

@@ -19,6 +19,8 @@ class ContentService
 
     private function bindContentData(Content $content, $data)
     {
+        $content->setLessonId($data['lesson_id']);
+
         $content->setMaterialUrl($data['material_url']);
 
         if (isset($data['youtube_video_id']) && Auth::User()->hasType(User::TYPE_ADMIN_USER)) {
@@ -29,7 +31,7 @@ class ContentService
             $content->setThumbnail($thumb);
         }
 
-        $content->setLessonId($data['lesson_id']);
+        $content->setDescription($data['description']);
 
         $content->setAuthorId(Auth::id());
 

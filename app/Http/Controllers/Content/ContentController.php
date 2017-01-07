@@ -1,24 +1,24 @@
 <?php
 namespace App\Http\Controllers\Content;
 
-use App\Models\Lesson;
-use App\Models\Repositories\GradeRepository;
-use App\Models\Repositories\LessonRepository;
-use App\Models\Repositories\StageRepository;
-use App\Models\Repositories\SubjectRepository;
+use App\Forms\Content\GradeDropdownForm;
+use App\Forms\Content\LessonDropdownForm;
+use App\Forms\Content\SubjectDropdownForm;
 use App\Forms\ContentForm;
 use App\Http\Controllers\Controller;
+use App\Models\Lesson;
+use App\Models\Repositories\ContentRepository;
 use App\Post;
 use App\Services\ContentService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
 use Kris\LaravelFormBuilder\Facades\FormBuilder;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use Session;
 use function redirect;
+use function route;
 use function view;
 
 /**
@@ -84,7 +84,7 @@ class ContentController extends Controller
      */
     public function show($id)
     {
-        $content = \App\Models\Repositories\ContentRepository::findById($id);
+        $content = ContentRepository::findById($id);
 
         $data = [
             'content' => $content
@@ -142,5 +142,37 @@ class ContentController extends Controller
         Session::flash('flash_message', 'Post deleted!');
 
         return redirect(route('app.dashboard'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @Get("/render-refresh-dropdown/{type}", as="content.renderDropdownelement", where={"type": "[A-Za-z]+"})
+     * 
+     * @param  Request  $request
+     *
+     * @return View
+     */
+    public function renderDropdownElement(Request $request, $type)
+    {
+        $selectedOptionId = $request->get('selectedOptionId', 0);
+
+        switch ($type) {
+            default:
+            case 'grade':
+                $subForm = FormBuilder::create(ContentForm::class, [], ['stageId' => $selectedOptionId])
+                    ->getField('grade_id');
+                break;
+            case 'subject':
+                $subForm = FormBuilder::create(ContentForm::class, [], ['gradeId' => $selectedOptionId])
+                    ->getField('subject_id');
+                break;
+            case 'lesson':
+                $subForm = FormBuilder::create(ContentForm::class, [], ['subjectId' => $selectedOptionId])
+                    ->getField('lesson_id');
+                break;
+        }
+
+        return $subForm->render([], false);
     }
 }

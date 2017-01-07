@@ -44,11 +44,11 @@
                 <h5 class="heading">نقبل</h5>
                 <p>Phasellus ماتيس الهرية quis ENIM viverratys accumsan. Nullam RISUS بورتا الهرية، vitaeuik dapibus arcu viverra الاتحاد الأوروبي.</p>
                 <ul>
-                    <li><img src="images/paypal.gif" width="31" height="22" alt=""></li>
-                    <li><img src="images/amazon.gif" width="31" height="22" alt=""></li>
-                    <li><img src="images/visa.gif" width="31" height="22" alt=""></li>
-                    <li><img src="images/master.gif" width="31" height="22" alt=""></li>
-                    <li><img src="images/discover.gif" width="31" height="22" alt=""></li>
+                    <li><img src="{{asset(elixir('images/paypal.gif'))}}" width="31" height="22" alt=""></li>
+                    <li><img src="{{asset(elixir('images/amazon.gif'))}}" width="31" height="22" alt=""></li>
+                    <li><img src="{{asset(elixir('images/visa.gif'))}}" width="31" height="22" alt=""></li>
+                    <li><img src="{{asset(elixir('images/master.gif'))}}" width="31" height="22" alt=""></li>
+                    <li><img src="{{asset(elixir('images/discover.gif'))}}" width="31" height="22" alt=""></li>
                 </ul>
             </div>
             <!-- Footer we accept end--> 
