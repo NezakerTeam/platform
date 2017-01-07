@@ -1,9 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Repositories\ContentRepository;
+use App\Forms\ContactUsForm;
 use App\Forms\RegisterTeacherForm;
 use App\Models\Content;
+use App\Models\Repositories\ContentRepository;
 use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -26,15 +27,21 @@ class HomeController extends Controller
      */
     public function index(FormBuilder $formBuilder, ContentRepository $contentRepo)
     {
-        $form = $formBuilder->create(RegisterTeacherForm::class, [
+        $registerForm = $formBuilder->create(RegisterTeacherForm::class, [
             'method' => 'POST',
             'url' => 'register'
+        ]);
+        
+        $contactUsForm = $formBuilder->create(ContactUsForm::class, [
+            'method' => 'POST',
+            'url' => route('general.contactUs')
         ]);
 
         $recentLesson = $contentRepo->getRecent();
 
         $data = [
-            'form' => $form,
+            'registerForm' => $registerForm,
+            'contactUsForm' => $contactUsForm,
             'recentLessons' => $recentLesson
         ];
 

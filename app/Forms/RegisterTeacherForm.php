@@ -12,45 +12,45 @@ class RegisterTeacherForm extends Form
     {
         $this
             ->add('first_name', 'text', [
-                'label' => 'First Name',
+                'label' => trans('auth.form.first_name'),
                 'rules' => 'required|min:5',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => 'الإسم الأول']
+                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.first_name')]
             ])
             ->add('last_name', 'text', [
-                'label' => 'Last Name',
+                'label' => trans('auth.form.last_name'),
                 'rules' => 'required|min:5',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => 'الإسم الثاني']
+                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.last_name')]
             ])
             ->add('email', 'email', [
-                'label' => 'Email',
+                'label' => trans('auth.form.email'),
                 'rules' => 'required',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => 'البريد الألكتروني']
+                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.email')]
             ])
             ->add('password', 'password', [
-                'label' => 'Password',
+                'label' => trans('auth.form.password'),
                 'rules' => 'required|min:5',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => 'كلمة السر']
+                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.password')]
             ])
             ->add('city_id', 'entity', [
-                'label' => 'City',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => 'المدينة'],
+                'label' => trans('auth.form.city'),
+                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.city')],
                 'class' => City::class,
                 'property' => 'name',
-                'empty_value' => 'Select',
+                'empty_value' => trans('auth.form.city.select'),
                 'query_builder' => function () {
                     return CityRepository::getAll();
                 },
             ])
             ->add('phone_numbers', 'collection', [
                 'type' => 'text',
-                'label' => 'Phone Number',
-                'options' => [// these are options for a single type
+                'label' => trans('auth.form.phoneNumber'),
+                'options' => [
                     'label' => false,
-                    'attr' => ['class' => 'form-control normal', 'placeholder' => 'رقم التليفون']
+                    'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.phoneNumber')]
                 ]
             ])
             ->add('submit', 'submit', [
-                'label' => 'Register',
+                'label' => trans('auth.register'),
                 'attr' => ['class' => 'input-button', 'width' => '40%']
         ]);
     }

@@ -39,6 +39,6 @@ return [
     'template_prefix' => '',
     'default_namespace' => '',
     'custom_fields' => [
-        'nested_select' => App\Forms\Fields\NestedSelectType::class,
+        'nested_entity' => App\Forms\Fields\NestedEntityType::class,
     ]
 ];

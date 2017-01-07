@@ -3,7 +3,7 @@
 
     <!--menu start-->
     <div class="menu">
-        <div class="navbar-wrapper">
+        <div class="navbar-wrapper stuckMenu isStuck">
             <div class="container"> 
                 <!--Logo -->
                 <div class="logo">
@@ -38,8 +38,8 @@
 
                                         <!-- Authentication Links -->
                                         @if (Auth::guest())
-                                        <li><a href="{{ url('/login') }}">Login</a></li>
-                                        <li><a href="{{ url('/register') }}">Register</a></li>
+                                        <li><a href="{{ url('/login') }}">{{ trans('auth.login') }}</a></li>
+                                        <li><a href="{{ url('/register') }}">{{ trans('auth.register') }}</a></li>
                                         @else
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -48,12 +48,12 @@
 
                                             <ul class="dropdown-menu" role="menu">
                                                 <!--<li><a href="{{ route('teacher.myCourses') }}">My courses</a></li>-->
-                                                <li><a href="{{ route('user.profile.edit') }}">Edit profile</a></li>
+                                                <li><a href="{{ route('user.profile.edit') }}">{{trans('auth.editProfile')}}</a></li>
                                                 <li>
                                                     <a href="{{ url('/logout') }}"
                                                        onclick="event.preventDefault();
                                                                document.getElementById('logout-form').submit();">
-                                                        Logout
+                                                        {{trans('auth.logout')}}
                                                     </a>
                                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                                         {{ csrf_field() }}

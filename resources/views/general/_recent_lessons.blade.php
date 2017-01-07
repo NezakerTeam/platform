@@ -7,7 +7,7 @@
         </div>
         <ul class="hover_listing row">
             @forelse ($recentLessons as $lesson)
-            @include ('content.lesson._lesson_card', ['lesson' => $lesson])
+            @include ('content.video._video_card', ['video' => $lesson])
             @empty
             <p>No Lessons</p>
             @endforelse

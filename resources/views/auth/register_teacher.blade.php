@@ -2,16 +2,24 @@
 
 @section('content')
 <div class="container">
+    <div class="heading">
+        <h1>{{trans('auth.form.title.create')}}</h1>
+        <p>{{trans('auth.form.desc')}}</p>
+    </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
                 <div class="panel-body">
+                    {!! form($form) !!}
 
-                    {!! form_start($form) !!}
-                    {!! form_end($form, $renderRest = true) !!}
+                    <span>
+                        <strong>{{trans('auth.alreadyRegistered')}}</strong>
+                        <a href="{{route('login')}}">{{trans('auth.alreadyRegistered.login')}}</a>
+                    </span>
+
                 </div>
             </div>
+
         </div>
     </div>
 </div>

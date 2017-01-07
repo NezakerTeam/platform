@@ -31,7 +31,7 @@
                         <li>
                             <a href="#" class="grade-filter current"
                                data-grade-id="0" data-stage-id="{{$stage->getId()}}">
-                                All
+                                {{trans('content.all')}}
                             </a>
                         </li>
                         @foreach ($stage->getGrades(true) as $grade)

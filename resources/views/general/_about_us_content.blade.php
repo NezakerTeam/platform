@@ -16,8 +16,7 @@
                 <section id="aboutus">
                     <div class="heading">
                         <h1><span>عن نذاكر</span></h1>
-                        <p>وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin هوز tincidunt فريوس adipiscing atgfnte في. سد موليس دهليز سابين ااا ماتيس.وكالات التصنيف الائتماني القول المأثور تيلوس duvi، السيرة sollicitudin هوز tincidunt فريوس adipiscing الرهان على. سد موليس فيس tibulum سابين ااا ماتيس.</p>
-                        <p>وكالات التصنيف الائتماني القول المأثور تيلوس وثيقة الهوية الوحيدة، السيرة sollicitudin هوز tincidunt adipiscing atgfnte tibulum سابين ااا ماتيس.وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة. rthsed سد موليس دهليز سابين ماتيس.وكالات التصنيف الائتماني القول المأثور تيلوس duvi، السيرة sollicitudin هوز tincidunt adipiscing tibulum سابين ااا ماتيس.</p>
+                        {!! trans('general.aboutUs.desc') !!}
                     </div>
             </div>
         </div>

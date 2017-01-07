@@ -26,6 +26,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/main.css'))}}" />
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/inner-style.css'))}}" />
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/skins/default.css'))}}" data-name="skins" />
+        <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/custom.css'))}}" />
 
         <!--google font style-->
         <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
@@ -68,7 +69,7 @@
         <script type="text/javascript" src="{{asset(elixir('js/retina-1.1.0.min.js'))}}"></script> 
         <script type="text/javascript" src="{{asset(elixir('js/inner-js/js/jquery.theme.revolution.min.js'))}}"></script> 
         <script type="text/javascript" src="{{asset(elixir('js/jquery.jcarousel.js'))}}"></script> 
-        <script type="text/javascript" src="{{asset(elixir('js/jquery.isotope.min.js'))}}"></script> 
+        <!-- <script type="text/javascript" src="{{asset(elixir('js/jquery.isotope.min.js'))}}"></script> -->
         <script type="text/javascript" src="{{asset(elixir('js/swipe.js'))}}"></script> 
         <script type="text/javascript" src="{{asset(elixir('js/main.js'))}}"></script> 
 

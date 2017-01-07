@@ -70,7 +70,6 @@ class LessonController extends Controller
      */
     public function listSubjects(Request $request)
     {
-
         $gradeId = (int) $request->get('gradeId', 0);
         $stageId = (int) $request->get('stageId', 0);
 
@@ -104,10 +103,12 @@ class LessonController extends Controller
     public function listLessons(Request $request)
     {
 
-        $subjectId = (int) $request->get('subjectId');
-        $stageId = (int) $request->get('stageId');
+        $subjectId = (int) $request->get('subjectId', 0);
+        $stageId = (int) $request->get('stageId', 0);
 
-        $lessons = LessonRepository::getAll([$subjectId], true);
+        $subjectIds = (empty($subjectId)) ? [] : [$subjectId];
+
+        $lessons = LessonRepository::getAll($subjectIds, true);
         $lessonsIds = array_pluck($lessons, 'id');
 
         $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true);

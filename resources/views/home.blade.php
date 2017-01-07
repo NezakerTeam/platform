@@ -41,39 +41,38 @@
         <div class="container form-header">
             <div class="form-container">
                 <h2>أبدأ بتسجيل دروسك<span>قم بالتسجيل الان لأضافة الدروس الخاصة بك</span></h2>
-                {!! form_start($form) !!}
+                {!! form_start($registerForm) !!}
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        {!! form_errors($form->first_name)!!}
-                        {!! form_widget($form->first_name)!!}
+                        {!! form_errors($registerForm->first_name)!!}
+                        {!! form_widget($registerForm->first_name)!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        {!! form_errors($form->last_name)!!}
-                        {!! form_widget($form->last_name)!!}
+                        {!! form_errors($registerForm->last_name)!!}
+                        {!! form_widget($registerForm->last_name)!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        {!! form_errors($form->email)!!}
-                        {!! form_widget($form->email)!!}
+                        {!! form_errors($registerForm->email)!!}
+                        {!! form_widget($registerForm->email)!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        {!! form_errors($form->password)!!}
-                        {!! form_widget($form->password)!!}
+                        {!! form_errors($registerForm->password)!!}
+                        {!! form_widget($registerForm->password)!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        {!! form_errors($form->city_id)!!}
-                        {!! form_widget($form->city_id)!!}
+                        {!! form_errors($registerForm->city_id)!!}
+                        {!! form_widget($registerForm->city_id)!!}
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                        {!! form_errors($form->phone_numbers)!!}
-                        {!! form_widget($form->phone_numbers)!!}
+                        {!! form_errors($registerForm->phone_numbers)!!}
+                        {!! form_widget($registerForm->phone_numbers)!!}
                     </div>          
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        {!! form_widget($form->submit, ['attr'=> ['class' => 'input-button', 'width' => '40%']])!!}
+                        {!! form_widget($registerForm->submit, ['attr'=> ['class' => 'input-button', 'width' => '40%']])!!}
                     </div>
                 </div>
-                {!! form_end($form) !!}
-
+                {!! form_end($registerForm) !!}
             </div>
         </div>
 
@@ -81,59 +80,6 @@
 </section>
 <!--/Header form --> 
 
-<!--Membership features start -->
-<section class="white_section section_gap" id="features">
-    <div class="container">
-        <div class="heading">
-            <h1><span>كيف يعمل</span> </h1>
-
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="membership_listing"> <span><i class="fa fa-unlock-alt"></i></span>
-                    <h3>أرسال فيديو</h3></a></li>
-
-                    <p>مرضي RISUS ليو، بورتا ميلان consectetur، دهليز في إيروس. Vivamus sagittis lacus فيل augue laoreet rutrum faucibus دولور </p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="membership_listing"> <span><i class="fa fa-video-camera"></i></span>
-
-                    <h3>كيف تقوم بتصوير الدروس؟</h3></a></li>
-                    <p>مرضي RISUS ليو، بورتا ميلان consectetur، دهليز في إيروس. Vivamus sagittis lacus فيل augue laoreet rutrum faucibus دولور </p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="membership_listing"> <span><i class="fa fa-microphone"></i></span>
-
-                    <h3>تسجيل المعلم</h3></a></li>
-                    <p>مرضي RISUS ليو، بورتا ميلان consectetur، دهليز في إيروس. Vivamus sagittis lacus فيل augue laoreet rutrum faucibus دولور </p>
-                </div>
-            </div>
-        </div>
-        <div class="row sec_top_gp">
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="membership_listing"> <span><i class="fa fa-file-text-o"></i></span>
-                    <h3>فهم الدرس وشرحه للابناء</h3>
-                    <p>مرضي RISUS ليو، بورتا ميلان consectetur، دهليز في إيروس. Vivamus sagittis lacus فيل augue laoreet rutrum faucibus دولور </p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="membership_listing"> <span><i class="fa fa-mobile"></i></span>
-                    <h3>تصفح الأباء لنذاكر</h3>
-                    <p>مرضي RISUS ليو، بورتا ميلان consectetur، دهليز في إيروس. Vivamus sagittis lacus فيل augue laoreet rutrum faucibus دولور </p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="membership_listing"> <span><i class="fa fa-life-ring"></i></span>
-                    <h3>مراجع الفيديو وأضافتة</h3>
-                    <p>مرضي RISUS ليو، بورتا ميلان consectetur، دهليز في إيروس. Vivamus sagittis lacus فيل augue laoreet rutrum faucibus دولور </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--/Membership features end --> 
 <!--Available course start-->
 @include ('general._how_it_works_content')
 <!--/Available course end--> 
@@ -412,34 +358,33 @@
     <section class="grey_section section_gap" id="contact">
         <div class="container">
             <div class="heading">
-                <h1><span>هل لديك</span> سؤال</h1>
+                <h1><span>هل لديك سؤال</span></h1>
                 <p>Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.<br>
                     وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5"> 
-                    <!--google map start-->
-                    <div class="row mapArea">
-                        <div id="map" style="width:100%;height:100%"></div>
-                    </div>
-                    <!--google map end--> 
-                </div>
                 <!-- contact from start-->
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
                     <div id="message"></div>
-                    <form name="cform" id="cform" method="post" action="http://themeelite.com/demos/e-learn/image+text-rotator/php/contact.php">
-                        <div class="form-row clearfix">
-                            <input name="name" id="name" type="text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 normal" placeholder="Your Name">
+                    {!! form_start($contactUsForm) !!}
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                            {!! form_errors($contactUsForm->name)!!}
+                            {!! form_widget($contactUsForm->name)!!}
                         </div>
-                        <div class="form-row clearfix">
-                            <input name="email" id="email" type="email" class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 normal" placeholder="Email address">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                            {!! form_errors($contactUsForm->email)!!}
+                            {!! form_widget($contactUsForm->email)!!}
                         </div>
-                        <div class="form-row clearfix">
-                            <textarea name="comments" id="comments" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 normal medium" placeholder="Your Comments"></textarea>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                            {!! form_errors($contactUsForm->comment)!!}
+                            {!! form_widget($contactUsForm->comment)!!}
                         </div>
-                        <input type="submit" id="submit" name="send" class="button" value="أرسال الرسالة">
-                        <div id="simple-msg"></div>
-                    </form>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            {!! form_widget($contactUsForm->submit, ['attr'=> ['class' => 'input-button', 'width' => '40%']])!!}
+                        </div>
+                    </div>
+                    {!! form_end($contactUsForm) !!}
                 </div>
                 <!-- contact from end--> 
             </div>

@@ -33,4 +33,16 @@ class GeneralController extends Controller
     {
         return view('general.how_it_works');
     }
+
+    /**
+     * Post the contact us form.
+     *
+     * @Post("/contact-us", as="general.contactUs")
+     * 
+     * @return Response
+     */
+    public function contactUS()
+    {
+        return view('general.how_it_works');
+    }
 }

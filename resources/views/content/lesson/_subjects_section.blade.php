@@ -1,6 +1,11 @@
 <div class="portfolioFilter">
     <ul>
-        <li><a href="#" data-filter="*" class="current">All</a></li>
+        <li>
+            <a href="#" class="subject-filter" 
+               data-subject-id="0" data-stage-id="{{$stageId}}">
+                {{trans('content.all')}}
+            </a>
+        </li>
         @forelse ($subjects as $subject)
         <li>
             <a href="#" class="subject-filter" 

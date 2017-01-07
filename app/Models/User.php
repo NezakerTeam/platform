@@ -29,7 +29,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
 
-    use CrudTrait;
+    use CrudTrait, \Illuminate\Notifications\Notifiable;
 
     const TYPE_NONE = 0;
     const TYPE_STUDENT_PARENT = 1;

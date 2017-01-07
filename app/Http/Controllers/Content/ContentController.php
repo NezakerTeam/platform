@@ -6,7 +6,7 @@ use App\Models\Repositories\GradeRepository;
 use App\Models\Repositories\LessonRepository;
 use App\Models\Repositories\StageRepository;
 use App\Models\Repositories\SubjectRepository;
-use App\Forms\LessonForm;
+use App\Forms\ContentForm;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Services\ContentService;
@@ -40,7 +40,7 @@ class ContentController extends Controller
      */
     public function create()
     {
-        $form = FormBuilder::create(LessonForm::class, [
+        $form = FormBuilder::create(ContentForm::class, [
                 'method' => 'POST',
                 'url' => route('content.store')
         ]);
@@ -61,7 +61,7 @@ class ContentController extends Controller
     public function store(Request $request, ContentService $contentService)
     {
 
-        $form = $this->form(LessonForm::class);
+        $form = $this->form(ContentForm::class);
 
         // Or automatically redirect on error. This will throw an HttpResponseException with redirect
         $form->redirectIfNotValid();
