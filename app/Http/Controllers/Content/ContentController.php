@@ -1,25 +1,13 @@
 <?php
 namespace App\Http\Controllers\Content;
 
-use App\Forms\Content\GradeDropdownForm;
-use App\Forms\Content\LessonDropdownForm;
-use App\Forms\Content\SubjectDropdownForm;
 use App\Forms\ContentForm;
 use App\Http\Controllers\Controller;
 use App\Models\Lesson;
 use App\Models\Repositories\ContentRepository;
-use App\Post;
 use App\Services\ContentService;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
-use Illuminate\View\View;
 use Kris\LaravelFormBuilder\Facades\FormBuilder;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
-use Session;
-use function redirect;
-use function route;
-use function view;
 
 /**
  * @Controller(prefix="content")
@@ -58,9 +46,8 @@ class ContentController extends Controller
      * 
      * @return RedirectResponse|Redirector
      */
-    public function store(Request $request, ContentService $contentService)
+    public function store(ContentService $contentService)
     {
-
         $form = $this->form(ContentForm::class);
 
         // Or automatically redirect on error. This will throw an HttpResponseException with redirect
@@ -68,9 +55,9 @@ class ContentController extends Controller
 
         $lesson = $contentService->addContent($form->getFieldValues());
 
-        Session::flash('flash_message', trans('content.form.submitted'));
+        \Illuminate\Support\Facades\Session::flash('flash_message', trans('content.form.submitted'));
 
-        return redirect(route('content.show', ['id' => $lesson->getId()]));
+        return redirect(route('app.dashboard'));
     }
 
     /**
@@ -117,7 +104,6 @@ class ContentController extends Controller
      */
     public function update($id, Request $request)
     {
-
         $requestData = $request->all();
 
         $lesson = Post::findOrFail($id);
@@ -153,7 +139,7 @@ class ContentController extends Controller
      *
      * @return View
      */
-    public function renderDropdownElement(Request $request, $type)
+    public function renderDropdownElement(\Illuminate\Http\Request $request, $type)
     {
         $selectedOptionId = $request->get('selectedOptionId', 0);
 
