@@ -11,3 +11,11 @@ and open the template in the editor.
 .content-card{
     float: right !important;
 }
+
+.flash-message{
+    margin: 20px;
+}
+
+.inner-page-container{
+    margin-top: 10px;
+}

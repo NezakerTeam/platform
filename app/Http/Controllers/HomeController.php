@@ -31,7 +31,7 @@ class HomeController extends Controller
             'method' => 'POST',
             'url' => 'register'
         ]);
-        
+
         $contactUsForm = $formBuilder->create(ContactUsForm::class, [
             'method' => 'POST',
             'url' => route('general.contactUs')

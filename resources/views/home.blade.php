@@ -81,12 +81,15 @@
 <!--/Header form --> 
 
 <!--Available course start-->
-@include ('general._how_it_works_content')
+<section class="white_section section_gap" id="features">
+    @include ('general._how_it_works_content')
+</section>
 <!--/Available course end--> 
 <!--popup video start -->
 <section id="aboutus">
-    @include ('general._about_us_content')
-
+    <section class="white_section section_gap">
+        @include ('general._about_us_content')
+    </section>
     <!--popup video end --> 
     <!--popular courses start-->
     @include ('general._recent_lessons')
@@ -364,7 +367,7 @@
             </div>
             <div class="row">
                 <!-- contact from start-->
-                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7" style="float: right !important;">
                     <div id="message"></div>
                     {!! form_start($contactUsForm) !!}
                     <div class="row">

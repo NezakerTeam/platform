@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-
-<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="ar" dir="rtl"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="ar" dir="rtl"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="ar" dir="rtl"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="ar" dir="rtl"> <![endif]-->
-<!--[if gt IE 9]><!-->
 <html class="no-js" lang="ar" dir="rtl">
     <!--<![endif]-->
     <head>
@@ -16,13 +10,16 @@
         <!-- Metas Page details-->
         <title>{{ config('app.name', 'Nezaker') }}</title>
 
-        <meta name="description" content="UX designer and web developer" />
+        <meta name="description" content="{{ config('app.description', 'Nezaker') }}" />
         <meta name="author" content="" />
         <!-- Mobile Specific Metas-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!--main style-->
-        <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/bootstrap.min.css'))}}" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/main.css'))}}" />
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/inner-style.css'))}}" />
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/skins/default.css'))}}" data-name="skins" />
@@ -35,8 +32,9 @@
         <!--font-family: 'Open Sans', sans-serif; -->
 
         <!-- font icon css style-->
-        <link rel="stylesheet" href="{{asset(elixir('css/font-awesome.min.css'))}}" />
-
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+              rel="stylesheet" 
+              integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <!-- Scripts -->
         <script>
             window.Laravel = <?= json_encode(['csrfToken' => csrf_token()]); ?>
@@ -54,6 +52,12 @@
             @include('layouts.header')
             <!--End Header--> 
 
+            @if (Session::has('flash_message'))
+            <div class="alert alert-success flash-message">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <b>{{ Session::get('flash_message') }}</b></div>
+            @endif
+
             @yield('content')
 
             <!--Footer start-->
@@ -64,7 +68,10 @@
         <!--jquery min js--> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-        <script type="text/javascript" src="{{asset(elixir('js/bootstrap.min.js'))}}"></script> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <!-- Latest compiled and minified JavaScript -->
         <script type="text/javascript" src="{{asset(elixir('js/jquery.easing.1.3.js'))}}"></script> 
         <script type="text/javascript" src="{{asset(elixir('js/retina-1.1.0.min.js'))}}"></script> 
         <script type="text/javascript" src="{{asset(elixir('js/inner-js/js/jquery.theme.revolution.min.js'))}}"></script> 

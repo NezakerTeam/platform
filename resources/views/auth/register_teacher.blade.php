@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="heading">
-        <h1>{{trans('auth.form.title.create')}}</h1>
+        <h1><span>{{trans('auth.form.title.create')}}</span></h1>
         <p>{{trans('auth.form.desc')}}</p>
     </div>
     <div class="row">

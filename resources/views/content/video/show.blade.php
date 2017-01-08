@@ -30,11 +30,11 @@
                                 <figure class="post_video">
                                     <div class="blogVid">
                                         <div class="video-header" style="background-size: cover;">
-                                            <div class="video">
-                                                <iframe 
-                                                    width="560" height="315"
-                                                    src="https://www.youtube.com/embed/{{$content->getYoutubeVideoId()}}"
-                                                    frameborder="0" allowfullscreen>
+                                            <div class="embed-responsive embed-responsive-16by9 video">
+                                                <iframe class="embed-responsive-item" 
+                                                        width="560" height="315"
+                                                        src="https://www.youtube.com/embed/{{$content->getYoutubeVideoId()}}"
+                                                        frameborder="0" allowfullscreen>
                                                 </iframe>
                                             </div>
                                         </div>
@@ -142,55 +142,4 @@
 </section>
 <!--end wrapper--> 
 
-<!--Bottom Four Column start-->
-<section class="blue_section section_gap">
-    <div class="container">
-        <div class="row bottomfourcol"> 
-            <!-- Footer About us start-->
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bottomAbout">
-                <h5 class="heading">About us</h5>
-                <p>Phasellus mattis felis quis enim viverratys accumsan. Nullam porta risus felis, vitaeuik dapibus arcu viverra eu.</p>
-                <h5>We Are Social On</h5>
-                <div class="socialshare"> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-google"></i></a> <a href="#"><i class="fa fa-vimeo-square"></i></a> <a href="#"><i class="fa fa-dribbble"></i></a> <a href="#"><i class="fa fa-youtube"></i></a> </div>
-            </div>
-            <!-- Footer About us end--> 
-            <!-- Footer Recent news start-->
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <h5 class="heading">Recent News</h5>
-                <ul class="footerLinks">
-                    <li> <a href="#">Standred post with featured image</a> <span>by <a href="#">Mike Doe</a> on June 24, 2014</span> </li>
-                    <li> <a href="#">Standred post with featured image</a> <span>by <a href="#">Mike Doe</a> on June 24, 2014</span> </li>
-                    <li> <a href="#">Standred post with featured image</a> <span>by <a href="#">Mike Doe</a> on June 24, 2014</span> </li>
-                </ul>
-            </div>
-            <!-- Footer Recent news end--> 
-            <!-- Footer How it works start-->
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <h5 class="heading">How it Works?</h5>
-                <p>Phasellus mattis felis quis enim viverratys accumsan. Nullam porta risus felis, vitaeuik dapibus arcu viverra eu.</p>
-                <ul class="list">
-                    <li>Phasellus mattis felis quis enim</li>
-                    <li>Nullam porta risus vitaeuik dapibus </li>
-                    <li>Phasellus mattis felis quis enim </li>
-                    <li>Vivamus sit amet ligulague semper</li>
-                </ul>
-            </div>
-            <!-- Footer How it works end--> 
-            <!-- Footer we accept start-->
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 contactInfo">
-                <h5 class="heading">We Accept</h5>
-                <p>Phasellus mattis felis quis enim viverratys accumsan. Nullam porta risus felis, vitaeuik dapibus arcu viverra eu.</p>
-                <ul>
-                    <li><img src="images/paypal.gif" width="31" height="22" alt=""></li>
-                    <li><img src="images/amazon.gif" width="31" height="22" alt=""></li>
-                    <li><img src="images/visa.gif" width="31" height="22" alt=""></li>
-                    <li><img src="images/master.gif" width="31" height="22" alt=""></li>
-                    <li><img src="images/discover.gif" width="31" height="22" alt=""></li>
-                </ul>
-            </div>
-            <!-- Footer we accept end--> 
-        </div>
-    </div>
-</section>
-<!--/Bottom Four Column end --> 
 @endsection

@@ -28,7 +28,13 @@ class ContentForm extends Form
                 ]
             ])
             ->compose(GradeDropdownForm::class, [
-                'data'=>$this->getData()
+                'data' => $this->getData()
+            ])
+            ->add('how_to_upload', 'static', [
+                'tag' => 'div', // Tag to be used for holding static data,
+                'attr' => ['class' => ''], // This is the default
+                'label' => trans('content.form.howToUpload'), // This is the default
+                'value' => view('content.video._add_video_guide') // If nothing is passed, data is pulled from model if any
             ])
             ->add('material_url', 'url', [
                 'label' => trans('content.form.materialUrl'),
@@ -37,6 +43,12 @@ class ContentForm extends Form
             ->add('description', 'textarea', [
                 'label' => trans('content.form.description'),
                 'rules' => 'required',
+            ])
+            ->add('agree', 'checkbox', [
+                'value' => 1,
+                'checked' => false,
+                'rules' => 'required',
+                'label' => trans('content.form.agree')
             ])
             ->add('submit', 'submit', [
                 'label' => ($this->getData('isEdit')) ? trans('content.form.submit.edit') : trans('content.form.submit.create'),

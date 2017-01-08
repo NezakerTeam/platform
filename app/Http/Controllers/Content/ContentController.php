@@ -68,7 +68,7 @@ class ContentController extends Controller
 
         $lesson = $contentService->addContent($form->getFieldValues());
 
-        Session::flash('flash_message', 'Lesson added!');
+        Session::flash('flash_message', trans('content.form.submitted'));
 
         return redirect(route('content.show', ['id' => $lesson->getId()]));
     }
