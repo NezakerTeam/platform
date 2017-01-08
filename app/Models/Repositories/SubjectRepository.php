@@ -32,15 +32,18 @@ class SubjectRepository extends EntityRepository
      * 
      * @param int $gradeId  A specific grade id
      * 
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public static function getAll($gradeIds = [], $activeOnly = null, $offset = 0, $limit = 6)
+    public static function getAll($gradeIds = [], $stagesIds = [], $activeOnly = null, $offset = 0, $limit = 6)
     {
-
-        $subjectQB = self::getModel();
+        $subjectQB = self::getModel()->select('subject.*');
 
         if (!empty($gradeIds)) {
-            $subjectQB = $subjectQB->whereIn('grade_id', $gradeIds);
+            $subjectQB->whereIn('grade_id', $gradeIds);
+        }
+
+        if (!empty($stagesIds)) {
+            $subjectQB->join('grade', 'subject.grade_id', '=', 'grade.id')->whereIn('grade.stage_id', $stagesIds);
         }
 
         if ($activeOnly !== null) {

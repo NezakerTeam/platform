@@ -19,3 +19,7 @@ and open the template in the editor.
 .inner-page-container{
     margin-top: 10px;
 }
+
+.lessons-list{
+    padding: 10px 0;
+}

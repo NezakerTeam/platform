@@ -7,7 +7,10 @@
 
         <ul class="hover_listing row">
             @forelse ($activeContents as $content)
-            @include ('content.video._video_card', ['video' => $content])
+            <li class="content-card col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
+                @include ('content.video._video_card', ['video' => $content])
+            </li>
+
             @empty
             <p>No Courses</p>
             @endforelse
@@ -27,16 +30,20 @@
             <table class="table table-hover table-striped">
                 <thead>
                     <tr>
-                        <th>Subject</th>
-                        <th>Lesson</th>
-                        <th>Added on</th>
+                        <th>{{trans('content.entity.name')}}</th>
+                        <th>{{trans('subject.name')}}</th>
+                        <th>{{trans('general.createdAt')}}</th>
                     </tr> 
                 </thead>
                 <tbody> 
                     @forelse ($pendingContent as $content)
-                    <tr>
-                        <td>{{$content->getLesson()->getSubject()->getName()}}</td> 
+                    <tr>                 
                         <td>{{$content->getLesson()->getName()}}</td> 
+                        <td>
+                            {{$content->getLesson()->getSubject()->getName()}}
+                            - {{$content->getLesson()->getSubject()->getGrade()->getName()}}
+                            - {{$content->getLesson()->getSubject()->getGrade()->getStage()->getName()}}
+                        </td> 
                         <td>{{$content->getCreatedAt()}}</td>
                     </tr>
                     @empty

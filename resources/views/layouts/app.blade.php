@@ -20,10 +20,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.2.0-rc2/css/bootstrap-rtl.min.css">
+
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/main.css'))}}" />
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/inner-style.css'))}}" />
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/skins/default.css'))}}" data-name="skins" />
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/custom.css'))}}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/vertical-tabs.css'))}}" />
 
         <!--google font style-->
         <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
@@ -84,11 +87,23 @@
         <script type="text/javascript" src="{{asset(elixir('js/custom.js'))}}"></script>
 
         <script type="text/javascript" src="{{asset(elixir('js/jquery.superslides.js'))}}" type="text/javascript"></script>
+
+        <!--for video lightbox -->
+        <link rel="stylesheet" href="{{asset(elixir('css/prettyPhoto.css'))}}" 
+              type="text/css" title="prettyPhoto main stylesheet" property="stylesheet" media="screen"></link>
+        <script src="{{asset(elixir('js/jquery.prettyPhoto.js'))}}" type="text/javascript"></script>
+
         <script type="text/javascript">
             "use strict";
             $('.header_v1 #banner').superslides({
                 animation: 'fade',
                 play: 5000
+            });
+            jQuery(function ($) {
+                $(document).ready(function () {
+                    // Video lightbox
+                    $("a[data-rel^='prettyPhoto']").prettyPhoto();
+                });
             });
         </script> 
 

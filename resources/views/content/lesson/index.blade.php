@@ -1,70 +1,87 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container list-all-lesson">
+    <div>
+        <ul class="nav nav-tabs" id="myTabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#subjects_list_0_0"  class="btn-link"
+                   aria-controls="subjects_list_0_0" role="tab" data-toggle="tab">{{trans('content.all')}}</a>
+            </li>
+            @forelse ($stages as $stage)
+            <li role="presentation" class="dropdown">
+                <a href="#" class="dropdown-toggle btn-link" id="stage_tab_{{$stage->getId()}}" data-toggle="dropdown"  
+                   role="button" aria-haspopup="true" aria-controls="stage_tab_{{$stage->getId()}}-contents" aria-expanded="false">
+                    {{$stage->getName()}} <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="stage_tab_{{$stage->getId()}}" id="stage_tab_{{$stage->getId()}}-contents">
+                    <!--All-->
+                    <li class="">
+                        <a href="#subjects_list_{{$stage->getId()}}_0"  class="grade-filter btn-link"
+                           id="grade_tab_{{$stage->getId()}}_0"
+                           data-stage-id="{{$stage->getId()}}" data-grade-id="0"
+                           aria-controls="subjects_list_{{$stage->getId()}}_0"
+                           role="tab" data-toggle="tab" aria-expanded="false">
+                            {{trans('content.all')}}
+                        </a>
+                    </li>
+                    <!------->
+                    <li role="separator" class="divider"></li>
+                    @foreach ($stage->getGrades(true) as $grade)
+                    <li>
+                        <a href="#subjects_list_{{$stage->getId()}}_{{$grade->getId()}}" class="grade-filter btn-link" 
+                           id="grade_tab_{{$stage->getId()}}_{{$grade->getId()}}"
+                           data-stage-id="{{$stage->getId()}}" data-grade-id="{{$grade->getId()}}"
+                           aria-controls="subjects_list_{{$stage->getId()}}_{{$grade->getId()}}"
+                           role="tab" data-toggle="tab"  aria-expanded="false">
+                            {{$grade->getName()}}
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>
+            </li>
+            @empty
+            <p>No Stages</p>
+            @endforelse
+        </ul>
 
-<section class="wrapper">
-    <section class="page_head">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <h2>Portfolio</h2>
-                    <nav id="breadcrumbs">
-                        <ul>
-                            <li>You are here:</li>
-                            <li><a href="index-2.html">Home</a></li>
-                            <li>Portfolio</li>
-                        </ul>
-                    </nav>
-                </div>
+
+        <div class="tab-content subjects-list" id="myTabContent" >
+            <div class="tab-pane active" role="tabpanel" id="subjects_list_0_0" 
+                 aria-labelledby="grade_tab_0_0">
+                @include ('content.lesson._subjects_section', [
+                'stageId' => 0,
+                'gradeId' => 0,
+                'subjects' => $subjects,
+                'lessons' => $lessons,
+                'contents' => $contents,
+                ])
             </div>
+            @foreach ($stages as $stage)
+
+            <div class="tab-pane fade" role="tabpanel" id="subjects_list_{{$stage->getId()}}_0" 
+                 aria-labelledby="grade_tab_{{$stage->getId()}}_0">
+            </div>
+
+            @foreach ($stage->getGrades(true) as $grade)
+
+            <div class="tab-pane fade" role="tabpanel" id="subjects_list_{{$stage->getId()}}_{{$grade->getId()}}" 
+                 aria-labelledby="grade_tab_{{$stage->getId()}}_{{$grade->getId()}}">
+            </div>
+
+            @endforeach
+
+            @endforeach
         </div>
-    </section>
-
-    <div class="container portfolio-center">
-
-        @forelse ($stages as $stage)
-        <section class="protfolio" id="ourwork">
-            <div class="row">
-                <h2>{{$stage->getName()}}</h2>
-                <div class="portfolioFilter">
-                    <ul>
-                        <li>
-                            <a href="#" class="grade-filter current"
-                               data-grade-id="0" data-stage-id="{{$stage->getId()}}">
-                                {{trans('content.all')}}
-                            </a>
-                        </li>
-                        @foreach ($stage->getGrades(true) as $grade)
-                        <li>
-                            <a href="#" class="grade-filter" 
-                               data-grade-id="{{$grade->getId()}}" data-stage-id="{{$stage->getId()}}">
-                                {{$grade->getName()}}
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="subjects-list" id="subjects_list_{{$stage->getId()}}">
-                    @include ('content.lesson._subjects_section', [
-                    'subjects' => $subjects[$stage->getId()],
-                    'lessons' => $lessons[$stage->getId()],
-                    'contents' => $contents[$stage->getId()],
-                    'stageId' => $stage->getId()
-                    ])
-                </div>
-            </div>
-        </section>
-        @empty
-        <p>No Stages</p>
-        @endforelse
     </div>
-</section>
+</div>
+
 @endsection
 
 @section('jsBodyEnd')
 <script>
     $(document).ready(function () {
-        $(".wrapper").on('click', '.grade-filter', function (e) {
+        $(".list-all-lesson").on('click', '.grade-filter', function (e) {
             gradeId = $(this).data('grade-id');
             stageId = $(this).data('stage-id');
             e.preventDefault();
@@ -73,25 +90,27 @@
                 url: "{{route('lesson.index.listSubjects')}}",
                 data: {gradeId: gradeId, stageId: stageId},
                 success: function (data) {
-                    $("#subjects_list_" + stageId).html(data);
+                    $("#subjects_list_" + stageId + "_" + gradeId).html(data);
                 }
             });
-            return false;
+            return true;
         });
 
-        $(".wrapper").on('click', '.subject-filter', function (e) {
-            subjectId = $(this).data('subject-id');
+        $(".list-all-lesson").on('click', '.subject-filter', function (e) {
             stageId = $(this).data('stage-id');
+            gradeId = $(this).data('grade-id');
+            subjectId = $(this).data('subject-id');
+
             e.preventDefault();
             $.ajax({
                 type: "GET",
                 url: "{{route('lesson.index.listLessons')}}",
-                data: {subjectId: subjectId, stageId: stageId},
+                data: {stageId: stageId, gradeId: gradeId, subjectId: subjectId},
                 success: function (data) {
-                    $("#lessons_list_" + stageId).html(data);
+                    $("#lessons_list_" + stageId + "_" + gradeId + "_" + subjectId).html(data);
                 }
             });
-            return false;
+            return true;
         });
     });
 </script>

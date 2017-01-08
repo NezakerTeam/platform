@@ -1,24 +1,36 @@
-<div class="portfolioFilter">
-    <ul>
-        <li>
-            <a href="#" class="subject-filter" 
-               data-subject-id="0" data-stage-id="{{$stageId}}">
+<div class="col-xs-3">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs tabs-left" role="tablist">
+        <li class="active" role="presentation">
+            <a href="#lessons_list_{{$stageId}}_{{$gradeId}}_0" class="subject-filter btn-link"
+               data-stage-id="{{$stageId}}" data-grade-id="{{$gradeId}}" data-subject-id="0"
+               aria-controls="home" role="tab" data-toggle="tab">
                 {{trans('content.all')}}
             </a>
         </li>
-        @forelse ($subjects as $subject)
-        <li>
-            <a href="#" class="subject-filter" 
-               data-subject-id="{{$subject->getId()}}" data-stage-id="{{$stageId}}">
+        @foreach ($subjects as $subject)
+        <li role="presentation">
+            <a href="#lessons_list_{{$stageId}}_{{$gradeId}}_{{$subject->getId()}}" class="subject-filter btn-link" 
+               data-stage-id="{{$stageId}}" data-grade-id="{{$gradeId}}" data-subject-id="{{$subject->getId()}}" 
+               aria-controls="profile" role="tab" data-toggle="tab" >
                 {{$subject->getName()}}
             </a>
         </li>
-        @empty
-        <p>No Subjects</p>
-        @endforelse
+        @endforeach
     </ul>
 </div>
 
-<div class="lessons-list" id="lessons_list_{{$stageId}}">
-    @include ('content.lesson._lessons_section', ['lessons' => $lessons, 'contents' => $contents])
+<div class="col-xs-9">
+    <!-- Tab panes --> 
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active lessons-list" id="lessons_list_{{$stageId}}_{{$gradeId}}_0">
+            @include ('content.lesson._lessons_section', ['lessons' => $lessons, 'contents' => $contents])
+        </div>
+        @foreach ($subjects as $subject)
+        <div role="tabpanel" class="tab-pane lessons-list" id="lessons_list_{{$stageId}}_{{$gradeId}}_{{$subject->getId()}}">
+        </div>
+        @endforeach
+    </div>
 </div>
+
+

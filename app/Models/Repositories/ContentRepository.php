@@ -46,7 +46,7 @@ class ContentRepository extends EntityRepository
     public static function getAll($lessonsIds = [], $activeOnly = null, $offset = 0, $limit = 8)
     {
 
-        $contentsQB = self::getModel();
+        $contentsQB = self::getModel()::with('lesson');
 
         if (!empty($lessonsIds)) {
             $contentsQB = $contentsQB->whereIn('lesson_id', $lessonsIds);
@@ -56,10 +56,13 @@ class ContentRepository extends EntityRepository
             $contentsQB = $contentsQB->where('status', Content::STATUS_APPROVED);
         }
 
+        if ($limit >= 0) {
+            $contentsQB = $contentsQB->limit($limit)
+                ->offset($offset);
+        }
+
         $contents = $contentsQB
             ->orderBy('created_at', 'DESC')
-            ->limit($limit)
-            ->offset($offset)
             ->get();
 
         return $contents;

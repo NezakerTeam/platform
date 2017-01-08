@@ -314,6 +314,16 @@ class Lesson extends Model
     }
 
     /**
+     * Get subject id
+     *
+     * @return Subject
+     */
+    public function getSubjectId()
+    {
+        return $this->subject_id;
+    }
+
+    /**
      * Set author.
      *
      * @param User $author
@@ -335,25 +345,6 @@ class Lesson extends Model
     public function getAuthor()
     {
         return $this->author;
-    }
-
-    /**
-     * @ORM\PrePersist 
-     */
-    public function prePersist()
-    {
-        $now = new \DateTime();
-        $this->setCreatedAt($now);
-        $this->setUpdatedAt($now);
-    }
-
-    /**
-     * @ORM\PreUpdate
-     */
-    public function preUpdate()
-    {
-        $now = new \DateTime();
-        $this->setUpdatedAt($now);
     }
 
     /**

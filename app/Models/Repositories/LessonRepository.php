@@ -25,17 +25,30 @@ class LessonRepository extends EntityRepository
         return $this->find($id);
     }
 
-    public static function getAll($subjectsIds = [], $activeOnly = null, $offset = 0, $limit = 8)
+    public static function getAll($subjectsIds = [], $gradesIds = [], $stagesIds = [], $activeOnly = null, $offset = 0, $limit = 8)
     {
 
-        $LessonQB = self::getModel();
+        $LessonQB = self::getModel()->select('lesson.*');
 
         if (!empty($subjectsIds)) {
             $LessonQB = $LessonQB->whereIn('subject_id', $subjectsIds);
         }
 
+        if (!empty($gradesIds) || !empty($stagesIds)) {
+            $LessonQB = $LessonQB->join('subject', 'subject.id', '=', 'lesson.subject_id');
+
+            if (!empty($gradesIds)) {
+                $LessonQB = $LessonQB->whereIn('grade_id', $gradesIds);
+            }
+
+            if (!empty($stagesIds)) {
+                $LessonQB = $LessonQB->join('grade', 'grade.id', '=', 'subject.grade_id')
+                    ->whereIn('stage_id', $stagesIds);
+            }
+        }
+
         if ($activeOnly !== null) {
-            $LessonQB = $LessonQB->where('status', \App\Models\Lesson::STATUS_ACTIVE);
+            $LessonQB = $LessonQB->where('lesson.status', \App\Models\Lesson::STATUS_ACTIVE);
         }
 
         if ($limit >= 0) {
@@ -44,8 +57,8 @@ class LessonRepository extends EntityRepository
         }
 
         $lessons = $LessonQB
-            ->orderBy('subject_id', 'ASC')
-            ->orderBy('ordering', 'ASC')
+            ->orderBy('lesson.subject_id', 'ASC')
+            ->orderBy('lesson.ordering', 'ASC')
             ->get();
 
         return $lessons;
