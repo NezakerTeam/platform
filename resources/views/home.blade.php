@@ -81,317 +81,287 @@
 <!--/Header form --> 
 
 <!--Available course start-->
-<section class="white_section section_gap" id="features">
+<section class="white_section section_gap" id="how-it-works">
     @include ('general._how_it_works_content')
 </section>
 <!--/Available course end--> 
 <!--popup video start -->
-<section id="aboutus">
-    <section class="white_section section_gap">
-        @include ('general._about_us_content')
-    </section>
-    <!--popup video end --> 
-    <!--popular courses start-->
+<section class="white_section section_gap" id="about-us">
+    @include ('general._about_us_content')
+</section>
+<!--popup video end --> 
+<!--popular courses start-->
+<section class="grey_section section_gap" id="recent-lessons">
     @include ('general._recent_lessons')
-    <!--/popular courses end--> 
+</section>
 
-    <!--fun facts start -->
-    <!--
-    <section class="yellow_section numbers_section factabout">
-      <div class="container">
-        <ul class="numbers countarea row">
-          <li> <i class="fa fa-smile-o"></i>
-            <h3 class="timer" data-from="100" data-to="24500" data-speed="10000"> </h3>
-            <span>سعيد طالب</span> </li>
-          <li> <i class="fa fa-smile-o"></i>
-            <h3 class="timer" data-from="100" data-to="4500" data-speed="10000"> </h3>
-            <span>مجموع الدورات</span> </li>
-          <li> <i class="fa fa-smile-o"></i>
-            <h3 class="timer" data-from="100" data-to="2200" data-speed="10000"> </h3>
-            <span>دورات الفيديو</span> </li>
-          <li> <i class="fa fa-smile-o"></i>
-            <h3 class="timer" data-from="100" data-to="1450" data-speed="10000"> </h3>
-            <span>مجموع المعلمين</span> </li>
-          <li> <i class="fa fa-smile-o"></i>
-            <h3 class="timer" data-from="100" data-to="550" data-speed="10000"> </h3>
-            <span>شهادة</span> </li>
+<!--/popular courses end--> 
+
+<!--fun facts start -->
+<!--
+<section class="yellow_section numbers_section factabout">
+  <div class="container">
+    <ul class="numbers countarea row">
+      <li> <i class="fa fa-smile-o"></i>
+        <h3 class="timer" data-from="100" data-to="24500" data-speed="10000"> </h3>
+        <span>سعيد طالب</span> </li>
+      <li> <i class="fa fa-smile-o"></i>
+        <h3 class="timer" data-from="100" data-to="4500" data-speed="10000"> </h3>
+        <span>مجموع الدورات</span> </li>
+      <li> <i class="fa fa-smile-o"></i>
+        <h3 class="timer" data-from="100" data-to="2200" data-speed="10000"> </h3>
+        <span>دورات الفيديو</span> </li>
+      <li> <i class="fa fa-smile-o"></i>
+        <h3 class="timer" data-from="100" data-to="1450" data-speed="10000"> </h3>
+        <span>مجموع المعلمين</span> </li>
+      <li> <i class="fa fa-smile-o"></i>
+        <h3 class="timer" data-from="100" data-to="550" data-speed="10000"> </h3>
+        <span>شهادة</span> </li>
+    </ul>
+  </div>
+</section>
+-->
+<!--fun facts end --> 
+
+<!-- Teachers details start-->
+<!--
+<section class="grey_section section_gap" id="teachers">
+    <div class="container">
+        <div class="heading">
+            <h1>المعلمون <span></span></h1>
+            <p>Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.<br>
+                وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
+        </div>
+        <ul class="hover_listing row"> 
+<li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
+    <div class="img"><img src="images/teachers/teacher1.jpg" alt="معلم">
+        <ul class="hover-social-icons">
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-google"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
         </ul>
-      </div>
-    </section>
-    -->
-    <!--fun facts end --> 
-
-    <!-- Teachers details start-->
-    <!--
-    <section class="grey_section section_gap" id="teachers">
-        <div class="container">
-            <div class="heading">
-                <h1>المعلمون <span></span></h1>
-                <p>Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.<br>
-                    وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
-            </div>
-            <ul class="hover_listing row"> 
-    <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-        <div class="img"><img src="images/teachers/teacher1.jpg" alt="معلم">
-            <ul class="hover-social-icons">
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-google"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-            </ul>
-        </div>
-        <h3 class="uppercase">ANA وزارة الطاقة</h3>
-        <p>tincidunt adipiscing فريوس atgfnte في. سد موليس دهليز سابين </p>
-    </li>
-    <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-        <div class="img"><img src="images/teachers/teacher2.jpg" alt="معلم">
-            <ul class="hover-social-icons">
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-google"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-            </ul>
-        </div>
-        <h3 class="uppercase">جوناثان وزارة الطاقة</h3>
-        <p>tincidunt adipiscing فريوس atgfnte في. سد موليس دهليز سابين </p>
-    </li>
-    <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-        <div class="img"><img src="images/teachers/teacher3.jpg" alt="معلم">
-            <ul class="hover-social-icons">
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-google"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-            </ul>
-        </div>
-        <h3 class="uppercase">ليزا براون</h3>
-        <p>tincidunt adipiscing فريوس atgfnte في. سد موليس دهليز سابين </p>
-    </li>
-    <li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
-        <div class="img"><img src="images/teachers/teacher4.jpg" alt="معلم">
-            <ul class="hover-social-icons">
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-google"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-            </ul>
-        </div>
-        <h3 class="uppercase">بيتر Mitchlle</h3>
-        <p>tincidunt adipiscing فريوس atgfnte في. سد موليس دهليز سابين </p>
-    </li>
+    </div>
+    <h3 class="uppercase">ANA وزارة الطاقة</h3>
+    <p>tincidunt adipiscing فريوس atgfnte في. سد موليس دهليز سابين </p>
+</li>
+<li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
+    <div class="img"><img src="images/teachers/teacher2.jpg" alt="معلم">
+        <ul class="hover-social-icons">
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-google"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+        </ul>
+    </div>
+    <h3 class="uppercase">جوناثان وزارة الطاقة</h3>
+    <p>tincidunt adipiscing فريوس atgfnte في. سد موليس دهليز سابين </p>
+</li>
+<li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
+    <div class="img"><img src="images/teachers/teacher3.jpg" alt="معلم">
+        <ul class="hover-social-icons">
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-google"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+        </ul>
+    </div>
+    <h3 class="uppercase">ليزا براون</h3>
+    <p>tincidunt adipiscing فريوس atgfnte في. سد موليس دهليز سابين </p>
+</li>
+<li class="col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
+    <div class="img"><img src="images/teachers/teacher4.jpg" alt="معلم">
+        <ul class="hover-social-icons">
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-google"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+        </ul>
+    </div>
+    <h3 class="uppercase">بيتر Mitchlle</h3>
+    <p>tincidunt adipiscing فريوس atgfnte في. سد موليس دهليز سابين </p>
+</li>
 </ul>
 </div>
 </section>
-    -->
+-->
 
-    <!-- Teachers details end--> 
+<!-- Teachers details end--> 
 
-    <!--Pricing Tables start-->
-    <!--
-    
-    <section class="pricingtables section_gap" id="pricing">
-    <div class="container">
-    <div class="heading">
-      <h1><span>من السهل</span> التسعير</h1>
-      <p>Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.<br>
-        وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
-    </div>
-    <div class="row">
-      <ul class="pricing-boxes three">
-        <li>
-          <div class="plan-name">
-            <h2>بداية</h2>
-            <h4>الخطة الشهرية</h4>
-          </div>
-          <div class="plan-price">
-            <h4>10 دولارات أمريكية (أو ما يعادلها بالعملة المحلية)</h4>
-          </div>
-          <div class="plan-features">
-            <ul>
-              <li>غير محدود وصول الدورة</li>
-              <li>20 فيديو وصول الدورة</li>
-              <li>دراسة عبر الإنترنت</li>
-              <li>لا Cretifications</li>
-              <li>استشارات مجانية المعلم </li>
-              <li>التلقائي الغيمة المساعدون</li>
-            </ul>
-            <a class="btn btn-primary" href="#">اقرأ المزيد</a> </div>
-        </li>
-        <li class="best-plan">
-          <div class="plan-name color">
-            <h2>*غير محدود</h2>
-            <h4>الخطة الشهرية</h4>
-          </div>
-          <div class="plan-price color">
-            <h4>8-11/2/2010</h4>
-          </div>
-          <div class="plan-features">
-            <ul>
-              <li>غير محدود وصول الدورة</li>
-              <li>250 فيديو وصول الدورة</li>
-              <li>دراسة عبر الإنترنت</li>
-              <li>Cretifications</li>
-              <li>استشارات مجانية المعلم </li>
-              <li>التلقائي الغيمة المساعدون</li>
-            </ul>
-            <a class="btn btn-primary" href="#">اقرأ المزيد</a> </div>
-        </li>
-        <li>
-          <div class="plan-name">
-            <h2>بريميم</h2>
-            <h4>الخطة الشهرية</h4>
-          </div>
-          <div class="plan-price last-child">
-            <h4>8-11/2/2010</h4>
-          </div>
-          <div class="plan-features">
-            <ul>
-              <li>غير محدود وصول الدورة</li>
-              <li>كامل الوصول دورة فيديو</li>
-              <li>دراسة عبر الإنترنت</li>
-              <li>Cretifications</li>
-              <li>استشارات مجانية المعلم </li>
-              <li>التلقائي الغيمة المساعدون</li>
-            </ul>
-            <a class="btn btn-primary" href="#">اقرأ المزيد</a> </div>
-        </li>
-      </ul>
-    </div>
-    </div>
-    </section>
-    -->
+<!--Pricing Tables start-->
+<!--
 
-    <!--Pricing Tables end --> 
-    <!--Happy Students star-->
-    <!--    
-    <section class="white_section section_gap" id="testimonial">
-            <div class="container">
-                <div class="heading">
-                    <h1>أباء سعداء<span></span></h1>
-                    <p>Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.<br>
-                        وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
-                </div>
-                <div class="imageSlide">
-                    <div class="imageBox"><img src="images/testimonials/thumb1.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
-                    <div class="imageBox"><img src="images/testimonials/thumb2.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
-                    <div class="imageBox"><img src="images/testimonials/thumb3.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
-                    <div class="imageBox"><img src="images/testimonials/thumb4.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
-                    <div class="imageBox"><img src="images/testimonials/thumb5.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
-                    <div class="imageBox"><img src="images/testimonials/thumb6.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
-                    <div class="imageBox"><img src="images/testimonials/thumb7.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
-                    <div class="imageBox"><img src="images/testimonials/thumb8.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
-                    <div class="imageBox"><img src="images/testimonials/thumb9.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
-                    <div class="imageBox"><img src="images/testimonials/thumb10.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
-                </div>
-                <div class="footerTopContent">
-                    <div class="quote"><i class="fa fa-quote-left"></i></div>
-                    <ul class="slides testimonialText list-unstyled">
-                        <li>
-                            <p class="font-openBold">Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin. Nullam elementum تيلوس pretium feugiat</p>
-                            <h3 class="uppercase">جيسي بينكمان، MDM شركة</h3>
-                        </li>
-                        <li>
-                            <p class="font-openBold">Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.نونك pretium بتوقيت شرق الولايات المتحدة quis placerat congue. نام LECTUS وثيقة الهوية الوحيدة، pretium الحصول إيليت الهوية، ultricies interdum neque.</p>
-                            <h3 class="uppercase">رينيه براون</h3>
-                        </li>
-                        <li>
-                            <p class="font-openBold">Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
-                            <h3 class="uppercase">جوناثان، Lexodia</h3>
-                        </li>
-                        <li>
-                            <p class="font-openBold">Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
-                            <h3 class="uppercase">Jinia الفلاني، ماركو وسائل الإعلام</h3>
-                        </li>
-                        <li>
-                            <p class="font-openBold">وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin هوز. Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. tincidunt في. سد tincidunt tristique ENIM ااا shasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.</p>
-                            <h3 class="uppercase">الدماغ رايس، كافة وسائل الإعلام</h3>
-                        </li>
-                        <li>
-                            <p class="font-openBold">Vivamus finibus neque تيمبوس ENIM ماتيس pellentesque eget eget turpis. في URNA فيل الهرية ultricies scelerisque غير المصنفة في موضع غير المصنفة في موضع سابق. Phasellus غير دولور nibh. Nullam elementu السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
-                            <h3 class="uppercase">جيني بارك، التسويق Oham</h3>
-                        </li>
-                        <li>
-                            <p class="font-openBold">Donec معرف viverra بقطر. التحرير quis augue feugiat Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
-                            <h3 class="uppercase">يوهان دو</h3>
-                        </li>
-                        <li>
-                            <p class="font-openBold">Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
-                            <h3 class="uppercase">داني Wahel، Crikinfo</h3>
-                        </li>
-                        <li>
-                            <p class="font-openBold">Maecenas غير المصنفة في موضع metus حامل؛ حبلى، السيرة euismod احترازيا. nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
-                            <h3 class="uppercase">اندى سيموند</h3>
-                        </li>
-                        <li>
-                            <p class="font-openBold">أبجد هوز دولور الجلوس امات، consectetur adipiscing elitPhasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
-                            <h3 class="uppercase">كريستي Gabbor، Martix وسائل الإعلام</h3>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>-->
-    <!--/Happy Students end--> 
-    <!--Newsletter section star -->
-    <!--   
-    <section class="yellow_section section_gap" id="blog">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <h3 class="signup_text">الاشتراك للحصول على آخر الأخبار والمستجدات</h3>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <div id="mesaj"></div>
-                        <form name="sform" id="subscribeform" method="post" action="http://themeelite.com/demos/e-learn/image+text-rotator/php/subscribe.php">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
-                                    <input name="subemail" id="subemail" type="email" class="normal" placeholder="Email Address">
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 button">
-                                    <input type="submit" id="subsubmit" name="send" class="button" value="تسجيل
-                                           ">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>-->
-    <!--/Newsletter section end--> 
-    <!--have Question start -->
-    <section class="grey_section section_gap" id="contact">
+<section class="pricingtables section_gap" id="pricing">
+<div class="container">
+<div class="heading">
+  <h1><span>من السهل</span> التسعير</h1>
+  <p>Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.<br>
+    وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
+</div>
+<div class="row">
+  <ul class="pricing-boxes three">
+    <li>
+      <div class="plan-name">
+        <h2>بداية</h2>
+        <h4>الخطة الشهرية</h4>
+      </div>
+      <div class="plan-price">
+        <h4>10 دولارات أمريكية (أو ما يعادلها بالعملة المحلية)</h4>
+      </div>
+      <div class="plan-features">
+        <ul>
+          <li>غير محدود وصول الدورة</li>
+          <li>20 فيديو وصول الدورة</li>
+          <li>دراسة عبر الإنترنت</li>
+          <li>لا Cretifications</li>
+          <li>استشارات مجانية المعلم </li>
+          <li>التلقائي الغيمة المساعدون</li>
+        </ul>
+        <a class="btn btn-primary" href="#">اقرأ المزيد</a> </div>
+    </li>
+    <li class="best-plan">
+      <div class="plan-name color">
+        <h2>*غير محدود</h2>
+        <h4>الخطة الشهرية</h4>
+      </div>
+      <div class="plan-price color">
+        <h4>8-11/2/2010</h4>
+      </div>
+      <div class="plan-features">
+        <ul>
+          <li>غير محدود وصول الدورة</li>
+          <li>250 فيديو وصول الدورة</li>
+          <li>دراسة عبر الإنترنت</li>
+          <li>Cretifications</li>
+          <li>استشارات مجانية المعلم </li>
+          <li>التلقائي الغيمة المساعدون</li>
+        </ul>
+        <a class="btn btn-primary" href="#">اقرأ المزيد</a> </div>
+    </li>
+    <li>
+      <div class="plan-name">
+        <h2>بريميم</h2>
+        <h4>الخطة الشهرية</h4>
+      </div>
+      <div class="plan-price last-child">
+        <h4>8-11/2/2010</h4>
+      </div>
+      <div class="plan-features">
+        <ul>
+          <li>غير محدود وصول الدورة</li>
+          <li>كامل الوصول دورة فيديو</li>
+          <li>دراسة عبر الإنترنت</li>
+          <li>Cretifications</li>
+          <li>استشارات مجانية المعلم </li>
+          <li>التلقائي الغيمة المساعدون</li>
+        </ul>
+        <a class="btn btn-primary" href="#">اقرأ المزيد</a> </div>
+    </li>
+  </ul>
+</div>
+</div>
+</section>
+-->
+
+<!--Pricing Tables end --> 
+<!--Happy Students star-->
+<!--    
+<section class="white_section section_gap" id="testimonial">
         <div class="container">
             <div class="heading">
-                <h1><span>هل لديك سؤال</span></h1>
+                <h1>أباء سعداء<span></span></h1>
                 <p>Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.<br>
                     وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
             </div>
-            <div class="row">
-                <!-- contact from start-->
-                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7" style="float: right !important;">
-                    <div id="message"></div>
-                    {!! form_start($contactUsForm) !!}
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                            {!! form_errors($contactUsForm->name)!!}
-                            {!! form_widget($contactUsForm->name)!!}
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                            {!! form_errors($contactUsForm->email)!!}
-                            {!! form_widget($contactUsForm->email)!!}
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
-                            {!! form_errors($contactUsForm->comment)!!}
-                            {!! form_widget($contactUsForm->comment)!!}
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            {!! form_widget($contactUsForm->submit, ['attr'=> ['class' => 'input-button', 'width' => '40%']])!!}
-                        </div>
-                    </div>
-                    {!! form_end($contactUsForm) !!}
-                </div>
-                <!-- contact from end--> 
+            <div class="imageSlide">
+                <div class="imageBox"><img src="images/testimonials/thumb1.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
+                <div class="imageBox"><img src="images/testimonials/thumb2.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
+                <div class="imageBox"><img src="images/testimonials/thumb3.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
+                <div class="imageBox"><img src="images/testimonials/thumb4.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
+                <div class="imageBox"><img src="images/testimonials/thumb5.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
+                <div class="imageBox"><img src="images/testimonials/thumb6.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
+                <div class="imageBox"><img src="images/testimonials/thumb7.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
+                <div class="imageBox"><img src="images/testimonials/thumb8.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
+                <div class="imageBox"><img src="images/testimonials/thumb9.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
+                <div class="imageBox"><img src="images/testimonials/thumb10.jpg" width="98" height="98" alt="{0}{/0} {1}طالب"></div>
+            </div>
+            <div class="footerTopContent">
+                <div class="quote"><i class="fa fa-quote-left"></i></div>
+                <ul class="slides testimonialText list-unstyled">
+                    <li>
+                        <p class="font-openBold">Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin. Nullam elementum تيلوس pretium feugiat</p>
+                        <h3 class="uppercase">جيسي بينكمان، MDM شركة</h3>
+                    </li>
+                    <li>
+                        <p class="font-openBold">Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.نونك pretium بتوقيت شرق الولايات المتحدة quis placerat congue. نام LECTUS وثيقة الهوية الوحيدة، pretium الحصول إيليت الهوية، ultricies interdum neque.</p>
+                        <h3 class="uppercase">رينيه براون</h3>
+                    </li>
+                    <li>
+                        <p class="font-openBold">Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
+                        <h3 class="uppercase">جوناثان، Lexodia</h3>
+                    </li>
+                    <li>
+                        <p class="font-openBold">Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
+                        <h3 class="uppercase">Jinia الفلاني، ماركو وسائل الإعلام</h3>
+                    </li>
+                    <li>
+                        <p class="font-openBold">وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin هوز. Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. tincidunt في. سد tincidunt tristique ENIM ااا shasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.</p>
+                        <h3 class="uppercase">الدماغ رايس، كافة وسائل الإعلام</h3>
+                    </li>
+                    <li>
+                        <p class="font-openBold">Vivamus finibus neque تيمبوس ENIM ماتيس pellentesque eget eget turpis. في URNA فيل الهرية ultricies scelerisque غير المصنفة في موضع غير المصنفة في موضع سابق. Phasellus غير دولور nibh. Nullam elementu السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
+                        <h3 class="uppercase">جيني بارك، التسويق Oham</h3>
+                    </li>
+                    <li>
+                        <p class="font-openBold">Donec معرف viverra بقطر. التحرير quis augue feugiat Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
+                        <h3 class="uppercase">يوهان دو</h3>
+                    </li>
+                    <li>
+                        <p class="font-openBold">Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
+                        <h3 class="uppercase">داني Wahel، Crikinfo</h3>
+                    </li>
+                    <li>
+                        <p class="font-openBold">Maecenas غير المصنفة في موضع metus حامل؛ حبلى، السيرة euismod احترازيا. nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
+                        <h3 class="uppercase">اندى سيموند</h3>
+                    </li>
+                    <li>
+                        <p class="font-openBold">أبجد هوز دولور الجلوس امات، consectetur adipiscing elitPhasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat. وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
+                        <h3 class="uppercase">كريستي Gabbor، Martix وسائل الإعلام</h3>
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
-    <!--have Question end --> 
-    @endsection
+    </section>-->
+<!--/Happy Students end--> 
+<!--Newsletter section star -->
+<!--   
+<section class="yellow_section section_gap" id="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <h3 class="signup_text">الاشتراك للحصول على آخر الأخبار والمستجدات</h3>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div id="mesaj"></div>
+                    <form name="sform" id="subscribeform" method="post" action="http://themeelite.com/demos/e-learn/image+text-rotator/php/subscribe.php">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
+                                <input name="subemail" id="subemail" type="email" class="normal" placeholder="Email Address">
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 button">
+                                <input type="submit" id="subsubmit" name="send" class="button" value="تسجيل
+                                       ">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>-->
+<!--/Newsletter section end--> 
+<!--have Question start -->
+<section class="grey_section section_gap" id="contact-us">
+    @include ('general._contact_us_content')
+</section>
+<!--have Question end --> 
+@endsection

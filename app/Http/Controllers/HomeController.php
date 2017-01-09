@@ -34,7 +34,7 @@ class HomeController extends Controller
 
         $contactUsForm = $formBuilder->create(ContactUsForm::class, [
             'method' => 'POST',
-            'url' => route('general.contactUs')
+            'url' => route('general.postContactUs')
         ]);
 
         $recentLesson = $contentRepo->getRecent();
@@ -70,7 +70,6 @@ class HomeController extends Controller
      */
     private function teacherDashboard()
     {
-
         $activeContent = ContentRepository::getByAuthor(Auth::id());
         $pendingContent = ContentRepository::getByAuthor(Auth::id(), Content::STATUS_PENDIND_APPROVAL);
 

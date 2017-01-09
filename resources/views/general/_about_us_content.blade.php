@@ -6,7 +6,9 @@
                 <a title="تاريخ الرسوم المتحركة من بولندا" 
                    class="play-btn rellight" 
                    href="http://www.youtube.com/watch?v=2DrXgj1NwN8" 
-                   data-rel="prettyPhoto">
+                   
+                   type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"
+                   >
                     <i class="fa fa-play fa-2"></i>
                 </a>
             </div>
@@ -19,4 +21,25 @@
                 </div>
         </div>
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

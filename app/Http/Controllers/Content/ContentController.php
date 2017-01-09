@@ -16,8 +16,6 @@ use Kris\LaravelFormBuilder\FormBuilderTrait;
 class ContentController extends Controller
 {
 
-    use FormBuilderTrait;
-
     /**
      * Show the form for creating a new resource.
      *
