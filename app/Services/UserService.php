@@ -55,11 +55,4 @@ class UserService
 
         return $user;
     }
-
-    public static function getNotifiableAdmin()
-    {
-        $admin = User::limit(1)->get();
-
-        return $admin;
-    }
 }

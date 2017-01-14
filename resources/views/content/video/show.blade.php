@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('main-content')
 <!--start wrapper-->
 <section class="wrapper">
     <section class="page_head">
@@ -10,10 +10,10 @@
                     <h2>{{$content->getLesson()->getName()}}</h2>
                     <nav id="breadcrumbs">
                         <ul>
-                            <li>You are here:</li>
-                            <li><a href="index-2.html">Home</a></li>
-                            <li><a href="index-2.html">Blog</a></li>
-                            <li>{{$content->getLesson()->getName()}}</li>
+                            <li></li>
+                            <li>{{$content->getLesson()->getSubject()->getGrade()->getStage()->getName()}}</li>
+                            <li>{{$content->getLesson()->getSubject()->getGrade()->getName()}}</li>
+                            <li>{{$content->getLesson()->getSubject()->getName()}}</li>
                         </ul>
                     </nav>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
                     <div class="blog_large">
                         <article class="post">
-                            <div class="post_content medium">
+                            <div class="">
                                 <figure class="post_video">
                                     <div class="blogVid">
                                         <div class="video-header" style="background-size: cover;">
@@ -40,14 +40,18 @@
                                         </div>
                                     </div>
                                 </figure>
-                                <div class="post_meta">
-                                    <h2>{{$content->getLesson()->getName()}}</h2>
-                                    <div class="metaInfo"> 
-                                        <span>By {{$content->getAuthor()->getName()}} </span>
-                                        <span><a href="#">Webdesign, Media, Logo</a> </span> 
-                                        <span><a href="#" class="admin">5</a> Comments</span>
+                                <div class="video_meta">   
+                                    <div class="sharing-buttons">
+                                        <div class="addthis_inline_share_toolbox pull-left"></div>
                                     </div>
-                                    {{$content->getDescription()}}
+                                    <div class="author">
+                                        <span class="by">شرح/</span class="label"> {{$content->getAuthor()->getName()}}
+                                    </div>
+                                    <!-- Go to www.addthis.com/dashboard to customize your tools --> 
+                                    <div class="description">
+                                        <h3><span>ملخص الدرس</span></h3>
+                                        <p>{{$content->getDescription()}}</p>
+                                    </div>
                                 </div>
                             </div>
                             <section id="comments">

@@ -16,7 +16,7 @@ class CreateCommentTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->text('body', 65535);
-			$table->integer('author_id')->index('author_id');
+			$table->integer('author_id')->unsigned()->index('author_id');
 			$table->boolean('status');
 			$table->integer('thread_id')->index('thread_id');
 			$table->timestamps();

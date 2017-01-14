@@ -97,6 +97,13 @@
               type="text/css" title="prettyPhoto main stylesheet" property="stylesheet" media="screen"></link>
         <script src="{{asset(elixir('js/jquery.prettyPhoto.js'))}}" type="text/javascript"></script>
 
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-587a9514d260794d"></script> 
+        <script type="text/javascript">
+            var addthis_config = addthis_config || {};
+            addthis_config.lang = 'ar' //show in Spanish regardless of browser settings;
+        </script>
+
         <script type="text/javascript">
             "use strict";
             $('.header_v1 #banner').superslides({

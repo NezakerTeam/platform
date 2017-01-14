@@ -2,9 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Forms\ContactUsForm;
-use App\Notifications\ContactUs;
+use App\Services\NotifiableAdmin;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Kris\LaravelFormBuilder\Facades\FormBuilder;
@@ -80,9 +79,7 @@ class GeneralController extends Controller
 
         $contactUs = \App\Models\ContactUs::create($form->getFieldValues());
 
-        $adminuser = \App\Services\UserService::getNotifiableAdmin();
-
-        Notification::send($adminuser, new ContactUs($contactUs));
+        Notification::send(NotifiableAdmin::getInstance(), new \App\Notifications\ContactUs($contactUs));
 
         Session::flash('flash_message', trans('general.form.contactUs.thanks'));
 

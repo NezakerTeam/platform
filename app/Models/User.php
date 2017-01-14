@@ -2,7 +2,11 @@
 namespace App\Models;
 
 use Backpack\CRUD\CrudTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property integer $id
@@ -30,7 +34,8 @@ class User extends Authenticatable
 {
 
     use CrudTrait,
-        \Illuminate\Notifications\Notifiable;
+        HasRoles,
+        Notifiable;
 
     const TYPE_NONE = 0;
     const TYPE_STUDENT_PARENT = 1;
@@ -350,23 +355,6 @@ class User extends Authenticatable
     /**
      * {@inheritdoc}
      */
-    public function addRole($role)
-    {
-        $role = strtoupper($role);
-        if ($role === static::ROLE_DEFAULT) {
-            return $this;
-        }
-
-        if (!in_array($role, $this->roles, true)) {
-            $this->roles[] = $role;
-        }
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function serialize()
     {
         return serialize(array(
@@ -449,40 +437,6 @@ class User extends Authenticatable
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getRoles()
-    {
-        $roles = $this->roles;
-
-        foreach ($this->getGroups() as $group) {
-            $roles = array_merge($roles, $group->getRoles());
-        }
-
-        // we need to make sure to have at least one role
-        $roles[] = static::ROLE_DEFAULT;
-
-        return array_unique($roles);
-    }
-
-    /**
-     * Never use this to check if this user has access to anything!
-     *
-     * Use the AuthorizationChecker, or an implementation of AccessDecisionManager
-     * instead, e.g.
-     *
-     *         $authorizationChecker->isGranted('ROLE_USER');
-     *
-     * @param string $role
-     *
-     * @return bool
-     */
-    public function hasRole($role)
-    {
-        return in_array(strtoupper($role), $this->getRoles(), true);
-    }
-
-    /**
      * @return bool
      */
     public function isCredentialsExpired()
@@ -512,33 +466,6 @@ class User extends Authenticatable
     public function isLocked()
     {
         return !$this->isAccountNonLocked();
-    }
-
-    /**
-     * Tells if the the given user has the super admin role.
-     *
-     * @return bool
-     */
-    public function isSuperAdmin()
-    {
-        return $this->hasRole(static::ROLE_SUPER_ADMIN);
-    }
-
-    /**
-     * Removes a role to the user.
-     *
-     * @param string $role
-     *
-     * @return self
-     */
-    public function removeRole($role)
-    {
-        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
-            unset($this->roles[$key]);
-            $this->roles = array_values($this->roles);
-        }
-
-        return $this;
     }
 
     /**
@@ -619,24 +546,6 @@ class User extends Authenticatable
     public function setPassword($password)
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Sets the super admin status.
-     *
-     * @param bool $boolean
-     *
-     * @return self
-     */
-    public function setSuperAdmin($boolean)
-    {
-        if (true === $boolean) {
-            $this->addRole(static::ROLE_SUPER_ADMIN);
-        } else {
-            $this->removeRole(static::ROLE_SUPER_ADMIN);
-        }
 
         return $this;
     }
@@ -725,26 +634,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Sets the roles of the user.
-     *
-     * This overwrites any previous roles.
-     *
-     * @param array $roles
-     *
-     * @return self
-     */
-    public function setRoles(array $roles)
-    {
-        $this->roles = array();
-
-        foreach ($roles as $role) {
-            $this->addRole($role);
-        }
-
-        return $this;
-    }
-
-    /**
      * @ORM\PrePersist 
      */
     public function prePersist()
@@ -828,7 +717,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function city()
     {
@@ -836,7 +725,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function comments()
     {
@@ -844,7 +733,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function contents()
     {

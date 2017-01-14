@@ -14,7 +14,7 @@ class CreateUserTable extends Migration
     public function up()
     {
         Schema::create('user', function(Blueprint $table) {
-            $table->integer('id', true);
+            $table->integer('id', true)->unsigned();
             $table->string('username', 180);
             $table->string('email', 180);
             $table->boolean('status');
@@ -27,7 +27,7 @@ class CreateUserTable extends Migration
             $table->string('photo_name')->nullable();
             $table->string('address')->nullable();
             $table->integer('city_id')->nullable()->index('IDX_8D93D6498BAC62AF');
-            $table->json_array('phone_numbers');
+            $table->longText('phone_numbers');
             $table->integer('type');
             $table->rememberToken();
             $table->timestamps();

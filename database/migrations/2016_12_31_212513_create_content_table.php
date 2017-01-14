@@ -16,7 +16,7 @@ class CreateContentTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->integer('lesson_id')->index('subject_id');
-			$table->integer('author_id')->index('author');
+			$table->integer('author_id')->unsigned()->index('author');
 			$table->text('description', 65535);
 			$table->smallInteger('status');
 			$table->smallInteger('type');

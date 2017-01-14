@@ -59,7 +59,7 @@
                                             @else
                                             @php $contactUsUrl = route('general.contactUs');@endphp
                                             @endif
-                                            <a href="{{$contactUsUrl}}">جهة اتصال</a>
+                                            <a href="{{$contactUsUrl}}">أتصل بنا</a>
                                         </li>
 
                                         <!-- Authentication Links -->

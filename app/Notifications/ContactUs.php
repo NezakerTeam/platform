@@ -42,8 +42,6 @@ class ContactUs extends Notification
      */
     public function toMail($notifiable)
     {
-        //dd($this->contactUsData);
-
         return (new MailMessage)
                 ->replyTo($this->contactUsModel->email)
                 ->greeting('New contact us message')

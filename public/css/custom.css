@@ -8,10 +8,6 @@ and open the template in the editor.
     Author     : Sherif Medhat <sherif.mohamed.medhat@gmail.com>
 */
 
-.content-card{
-    float: right !important;
-}
-
 .flash-message{
     margin: 20px;
 }
@@ -23,4 +19,44 @@ and open the template in the editor.
 
 .lessons-list{
     padding: 10px 0;
+}
+
+.subjects-list{
+    margin: 10px;
+}
+
+.page_head{
+    background:#24a1db;
+}
+
+
+.video_meta .description{
+    text-align:right ;
+    padding-bottom:20px;
+}
+.video_meta .description h3 {
+    color:#24a1db;
+    display:block;
+    text-transform:uppercase;
+    padding: 15px;
+    border-right :8px solid;
+    border-color:#f5d76e;
+    margin: 0px
+}
+.video_meta .description h3 span {
+    display:block;
+}
+.video_meta .description p{
+    font-size:16px;
+    font-weight:400;
+    color:#8c9099;
+    line-height:24px;
+}
+
+
+.video_meta .author{
+    color:#8c9099;
+}
+.video_meta .author .by{
+    color:#24a1db;
 }

@@ -990,7 +990,7 @@ h3.succes_message {
 /* tabnav */
 .custom-nav-tabs {
 	border:none;
-	margin-left :53px;
+	margin-left :30px;
 	border-left :8px solid;
 }
 .custom-nav-tabs > li {
@@ -1004,7 +1004,7 @@ h3.succes_message {
 	text-transform:uppercase;
 	text-align:center;
 	line-height:59px;
-	background:#2f4e71;
+	background:#24a1db;
 	border:none;
 	padding:0;
 	margin:0;

@@ -4,22 +4,17 @@
         <div class="row bottomfourcol"> 
             <!-- Footer About us start-->
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bottomAbout">
-                <h5 class="heading">حولنا</h5>
-                <p>Phasellus ماتيس الهرية quis ENIM viverratys accumsan. Nullam RISUS بورتا الهرية، vitaeuik dapibus arcu viverra الاتحاد الأوروبي.</p>
-                <h5>نحن على الاجتماعي</h5>
-                <div class="socialshare"> 
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-google"></i></a>
-                    <a href="#"><i class="fa fa-vimeo-square"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                    <a href="#"><i class="fa fa-youtube"></i></a> 
+                <h5 class="heading">حول {{trans('general.siteName')}}</h5>
+                <p>{{trans('footer.aboutUs')}}</p>
+                <!-- Go to www.addthis.com/dashboard to customize your tools --> 
+                <div class="addthis_inline_follow_toolbox pull-right">
+                    <h5>نحن على الاجتماعي</h5>
                 </div>
             </div>
             <!-- Footer About us end--> 
             <!-- Footer Recent news start-->
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <h5 class="heading">آخر الأخبار</h5>
+                <h5 class="heading">أحدث الفيديوهات</h5>
                 <ul class="footerLinks">
                     <li><a href="#">Standred الرد مع صورة مميزة</a><span>عن طريق <a href="#">مايك دو</a> في 24 يونيو 2014</span></li>
                     <li><a href="#">Standred الرد مع صورة مميزة</a><span>عن طريق <a href="#">مايك دو</a> في 24 يونيو 2014</span></li>
@@ -29,7 +24,7 @@
             <!-- Footer Recent news end--> 
             <!-- Footer How it works start-->
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <h5 class="heading">كيف تعمل ؟</h5>
+                <h5 class="heading">كيف نعمل ؟</h5>
                 <p>Phasellus ماتيس الهرية quis ENIM viverratys accumsan. Nullam RISUS بورتا الهرية، vitaeuik dapibus arcu viverra الاتحاد الأوروبي.</p>
                 <ul class="list">
                     <li>Phasellus ماتيس الهرية quis ENIM</li>
@@ -40,15 +35,12 @@
             </div>
             <!-- Footer How it works end--> 
             <!-- Footer we accept start-->
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 contactInfo">
-                <h5 class="heading">نقبل</h5>
-                <p>Phasellus ماتيس الهرية quis ENIM viverratys accumsan. Nullam RISUS بورتا الهرية، vitaeuik dapibus arcu viverra الاتحاد الأوروبي.</p>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <h5 class="heading">روابط مهمة</h5>
                 <ul>
-                    <li><img src="{{asset(elixir('images/paypal.gif'))}}" width="31" height="22" alt=""></li>
-                    <li><img src="{{asset(elixir('images/amazon.gif'))}}" width="31" height="22" alt=""></li>
-                    <li><img src="{{asset(elixir('images/visa.gif'))}}" width="31" height="22" alt=""></li>
-                    <li><img src="{{asset(elixir('images/master.gif'))}}" width="31" height="22" alt=""></li>
-                    <li><img src="{{asset(elixir('images/discover.gif'))}}" width="31" height="22" alt=""></li>
+                    <li><a href="{{route('register')}}">{{trans('footer.register')}}</a></li>
+                    <li><a href="#">{{trans('footer.termsAndConditions')}}</a></li>
+                    <li><a href="{{route('general.contactUs')}}">{{trans('footer.contactUs')}}</a></li>
                 </ul>
             </div>
             <!-- Footer we accept end--> 

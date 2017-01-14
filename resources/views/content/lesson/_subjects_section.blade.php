@@ -1,8 +1,8 @@
 <div class="col-xs-3">
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs tabs-left" role="tablist">
+    <ul class="nav nav-tabs custom-nav-tabs" role="tablist">
         <li class="active" role="presentation">
-            <a href="#lessons_list_{{$stageId}}_{{$gradeId}}_0" class="subject-filter btn-link"
+            <a href="#lessons_list_{{$stageId}}_{{$gradeId}}_0" class="subject-filter"
                data-stage-id="{{$stageId}}" data-grade-id="{{$gradeId}}" data-subject-id="0"
                aria-controls="home" role="tab" data-toggle="tab">
                 {{trans('content.all')}}
@@ -10,7 +10,7 @@
         </li>
         @foreach ($subjects as $subject)
         <li role="presentation">
-            <a href="#lessons_list_{{$stageId}}_{{$gradeId}}_{{$subject->getId()}}" class="subject-filter btn-link" 
+            <a href="#lessons_list_{{$stageId}}_{{$gradeId}}_{{$subject->getId()}}" class="subject-filter" 
                data-stage-id="{{$stageId}}" data-grade-id="{{$gradeId}}" data-subject-id="{{$subject->getId()}}" 
                aria-controls="profile" role="tab" data-toggle="tab" >
                 {{$subject->getName()}}
