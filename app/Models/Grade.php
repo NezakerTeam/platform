@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
 class Grade extends Model
 {
 
+    use \Backpack\CRUD\CrudTrait;
+
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 2;
 
@@ -240,7 +242,7 @@ class Grade extends Model
      */
     public function stage()
     {
-        return $this->belongsTo('App\Models\Stage');
+        return $this->belongsTo(Stage::class);
     }
 
     /**
@@ -248,6 +250,6 @@ class Grade extends Model
      */
     public function subjects()
     {
-        return $this->hasMany('App\Models\Subject');
+        return $this->hasMany(Subject::class);
     }
 }

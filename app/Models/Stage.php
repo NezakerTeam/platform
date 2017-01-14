@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\Model;
 class Stage extends Model
 {
 
+    use \Backpack\CRUD\CrudTrait;
+
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 2;
 
