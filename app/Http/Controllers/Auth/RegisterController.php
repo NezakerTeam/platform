@@ -3,12 +3,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Services\UserService;
-use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
-use LaravelDoctrine\ORM\Facades\EntityManager;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use Illuminate\Http\Request;
@@ -45,18 +42,6 @@ use RegistersUsers,
     public function __construct()
     {
         $this->middleware('guest');
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-        ]);
     }
 
     /**

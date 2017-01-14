@@ -8,36 +8,35 @@ use Kris\LaravelFormBuilder\Form;
 class ProfileForm extends Form
 {
 
+    protected $languageName = 'user.form.edit';
+
     public function buildForm()
     {
         $this
             ->add('first_name', 'text', [
-                'label' => 'First Name',
                 'rules' => 'required|min:5',
             ])
             ->add('last_name', 'text', [
-                'label' => 'Last Name',
                 'rules' => 'required|min:5',
             ])
             ->add('email', 'email')
             ->add('city_id', 'entity', [
-                'label' => 'City',
                 'class' => City::class,
                 'property' => 'name',
                 'property_key' => 'id',
-                'empty_value' => 'Select',
+                'empty_value' => trans($this->languageName . '.city.empty_value'),
                 'query_builder' => function () {
                     return CityRepository::getAll();
                 }
             ])
             ->add('phone_numbers', 'collection', [
                 'type' => 'text',
-                'label' => 'Phone Number',
                 'options' => [// these are options for a single type
                     'label' => false,
-                    'attr' => ['class' => 'form-control']
                 ]
             ])
-            ->add('submit', 'submit', ['label' => 'Edit profile']);
+            ->add('submit', 'submit', [
+                'attr' => ['class' => 'input-button']
+        ]);
     }
 }

@@ -63,7 +63,7 @@
                     <div class="form-group">
                         {{ Form::label('phoneNumbers', 'Phone Number', ['class' => 'col-md-4 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::text('phoneNumbers', '', ['class' => 'form-control']) }}
+                            {{ Form::text('phoneNumbers', '', ['class' => 'form-control normal']) }}
                         </div>
                     </div>
 

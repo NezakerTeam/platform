@@ -14,12 +14,12 @@ class LoginForm extends Form
             ->add('email', 'email', [
                 'label' => trans('auth.form.email'),
                 'rules' => 'required',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.email')]
+                'attr' => ['placeholder' => trans('auth.form.email')]
             ])
             ->add('password', 'password', [
                 'label' => trans('auth.form.password'),
                 'rules' => 'required|min:5',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.password')]
+                'attr' => ['placeholder' => trans('auth.form.password')]
             ])
             ->add('remember_me', 'checkbox', [
                 'label' => trans('auth.form.login.rememberMe'),

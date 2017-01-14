@@ -78,9 +78,13 @@ class GeneralController extends Controller
         // Or automatically redirect on error. This will throw an HttpResponseException with redirect
         $form->redirectIfNotValid();
 
-        Notification::send(Auth::user(), new ContactUs($form->getFieldValues()));
+        $contactUs = \App\Models\ContactUs::create($form->getFieldValues());
 
-        Session::flash('flash_message', 'Thanks for contacting us!');
+        $adminuser = \App\Services\UserService::getNotifiableAdmin();
+
+        Notification::send($adminuser, new ContactUs($contactUs));
+
+        Session::flash('flash_message', trans('general.form.contactUs.thanks'));
 
         return redirect(route('general.contactUs'));
     }

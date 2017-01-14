@@ -29,7 +29,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
 
-    use CrudTrait, \Illuminate\Notifications\Notifiable;
+    use CrudTrait,
+        \Illuminate\Notifications\Notifiable;
 
     const TYPE_NONE = 0;
     const TYPE_STUDENT_PARENT = 1;
@@ -848,5 +849,15 @@ class User extends Authenticatable
     public function contents()
     {
         return $this->hasMany('App\Models\Content', 'author_id');
+    }
+
+    /**
+     * Route notifications for the mail channel.
+     *
+     * @return string
+     */
+    public function routeNotificationForMail()
+    {
+        return $this->email;
     }
 }

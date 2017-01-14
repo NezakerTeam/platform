@@ -22,6 +22,7 @@
     </div>
 </section>
 
+@if (count($pendingContent) > 0)
 <section class="white_section section_gap" id="courses">
     <div class="container">
         <h1><span>دروس تحت المراجعة</span></h1>
@@ -56,4 +57,6 @@
         </div>
     </div>
 </section>
+@endif
+
 @endsection

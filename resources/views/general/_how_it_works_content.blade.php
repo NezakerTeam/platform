@@ -1,8 +1,7 @@
 <div class="container">
     <div class="heading">
-        <h1><span>كيف يعمل</span></h1>
-        <p>Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.<br>
-            وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
+        <h1><span>{{trans('general.page.howItWorks.title')}}</span></h1>
+        <p>{{trans('general.page.howItWorks.desc')}}</p>
     </div>
     <div class="row"> 
         <!-- Vertical tabs start-->

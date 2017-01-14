@@ -14,26 +14,26 @@ class RegisterTeacherForm extends Form
             ->add('first_name', 'text', [
                 'label' => trans('auth.form.first_name'),
                 'rules' => 'required|min:5',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.first_name')]
+                'attr' => ['placeholder' => trans('auth.form.first_name')]
             ])
             ->add('last_name', 'text', [
                 'label' => trans('auth.form.last_name'),
                 'rules' => 'required|min:5',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.last_name')]
+                'attr' => ['placeholder' => trans('auth.form.last_name')]
             ])
             ->add('email', 'email', [
                 'label' => trans('auth.form.email'),
-                'rules' => 'required',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.email')]
+                'rules' => 'required|unique:user',
+                'attr' => ['placeholder' => trans('auth.form.email')]
             ])
             ->add('password', 'password', [
                 'label' => trans('auth.form.password'),
                 'rules' => 'required|min:5',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.password')]
+                'attr' => ['placeholder' => trans('auth.form.password')]
             ])
             ->add('city_id', 'entity', [
                 'label' => trans('auth.form.city'),
-                'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.city')],
+                'attr' => ['placeholder' => trans('auth.form.city')],
                 'class' => City::class,
                 'property' => 'name',
                 'empty_value' => trans('auth.form.city.select'),
@@ -46,7 +46,7 @@ class RegisterTeacherForm extends Form
                 'label' => trans('auth.form.phoneNumber'),
                 'options' => [
                     'label' => false,
-                    'attr' => ['class' => 'form-control normal', 'placeholder' => trans('auth.form.phoneNumber')]
+                    'attr' => ['placeholder' => trans('auth.form.phoneNumber')]
                 ]
             ])
             ->add('submit', 'submit', [

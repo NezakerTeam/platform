@@ -37,7 +37,13 @@ return [
     'form.login.notRegisteredYet.register' => 'إشترك الأن',
     'form.login.forgotPassword' => 'هل نسيت كلمة المرور؟',
     // Forgot & reset password forms
-    'form.forgetPassword.submit' => 'إرسل رابط إعادة تحديد كلمة السر',
+    'form.forgetPassword.submit' => 'ارسال رابط تغير كلمة المرور',
     'form.resetPassword.passwordConfirm' => 'تأكيد كلمة السر',
     'form.resetPassword.submit' => 'تغير كلمة السر',
+    'form' => [
+        'login' => [
+            'title' => 'تسجيل دخول',
+            'desc' => 'من فضلك قم بإدخال بريدك الإلكتروني المسجل و كلمة المرور .'
+        ]
+    ]
 ];

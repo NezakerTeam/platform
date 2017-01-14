@@ -1,34 +1,35 @@
 <?php
 namespace App\Forms;
 
-use App\Models\Repositories\CityRepository;
-use App\Models\City;
 use Kris\LaravelFormBuilder\Form;
 
 class ContactUsForm extends Form
 {
 
+    protected $languageName = 'general.form.contactUs';
+
     public function buildForm()
     {
         $this
             ->add('name', 'text', [
-                'label' => 'Your Name',
                 'rules' => 'required|min:5',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => 'الإسم']
+                'attr' => ['placeholder' => trans($this->languageName . '.name')],
             ])
             ->add('email', 'email', [
-                'label' => 'Your Email',
                 'rules' => 'required',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => 'البريد الألكتروني']
+                'attr' => ['placeholder' => trans($this->languageName . '.email')],
             ])
-            ->add('comment', 'textarea', [
-                'label' => 'Your comment',
+            ->add('phone_number', 'tel', [
+                'rules' => '',
+                'attr' => ['placeholder' => trans($this->languageName . '.phone_number')],
+            ])
+            ->add('message', 'textarea', [
                 'rules' => 'required|min:5',
-                'attr' => ['class' => 'form-control normal', 'placeholder' => 'السؤال']
+                'attr' => ['placeholder' => trans($this->languageName . '.message')],
             ])
             ->add('submit', 'submit', [
                 'label' => trans('general.contactUs.send'),
-                'attr' => ['class' => 'input-button', 'width' => '40%', 'placeholder' => trans('general.contactUs.send')]
+                'attr' => ['class' => 'input-button']
         ]);
     }
 }

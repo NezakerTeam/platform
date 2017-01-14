@@ -2,10 +2,13 @@
 
 @section('content')
 <div class="container">
+    <div class="heading">
+        <h1><span>{{trans('auth.form.login.title')}}</span></h1>
+        <p>{{trans('auth.form.login.desc')}}</p>
+    </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">{{trans('auth.form.login.title')}}</div>
                 <div class="panel-body">
                     {!! form($loginForm) !!}
 

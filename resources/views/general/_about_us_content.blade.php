@@ -1,16 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="video_preview">
-                <img src="{{asset(elixir('images/video.gif'))}}" alt="">
-                <a title="تاريخ الرسوم المتحركة من بولندا" 
-                   class="play-btn rellight" 
-                   href="http://www.youtube.com/watch?v=2DrXgj1NwN8" 
-                   
-                   type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"
-                   >
-                    <i class="fa fa-play fa-2"></i>
-                </a>
+            <!-- 16:9 aspect ratio -->
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/2DrXgj1NwN8" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 watch_text">

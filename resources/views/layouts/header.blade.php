@@ -28,19 +28,19 @@
                                         <li class="menuItem" id="home"><a href="{{route('app.home')}}">الصفحة الرئيسية</a></li>
                                         <li class="menuItem">
                                             @if (Auth::guest())
-                                            @php $howItWorksUrl = route('app.home').'#how-it-works';@endphp
-                                            @else
-                                            @php $howItWorksUrl = route('general.howItWorks');@endphp
-                                            @endif
-                                            <a href="{{$howItWorksUrl}}">كيف يعمل</a>
-                                        </li>
-                                        <li class="menuItem">
-                                            @if (Auth::guest())
                                             @php $aboutUsUrl = route('app.home').'#about-us';@endphp
                                             @else
                                             @php $aboutUsUrl = route('general.aboutUs');@endphp
                                             @endif
                                             <a href="{{$aboutUsUrl}}">عن نذاكر</a>
+                                        </li>
+                                        <li class="menuItem">
+                                            @if (Auth::guest())
+                                            @php $howItWorksUrl = route('app.home').'#how-it-works';@endphp
+                                            @else
+                                            @php $howItWorksUrl = route('general.howItWorks');@endphp
+                                            @endif
+                                            <a href="{{$howItWorksUrl}}">كيف يعمل</a>
                                         </li>
                                         <li class="menuItem">
                                             @if (Auth::guest())
@@ -50,6 +50,9 @@
                                             @endif
                                             <a href="{{$allLessonsUrl}}">كل الدروس</a>
                                         </li>
+                                        @if (Auth::check())
+                                        <li><a href="{{ route('content.create') }}">{{ trans('content.createNew') }}</a></li>
+                                        @endif
                                         <li class="menuItem">
                                             @if (Auth::guest())
                                             @php $contactUsUrl = route('app.home').'#contact-us';@endphp

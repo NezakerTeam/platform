@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('main-content')
 
 <section class="" id="register">
     <div class="">
@@ -80,16 +80,16 @@
 </section>
 <!--/Header form --> 
 
+<section class="white_section section_gap" id="about-us">
+    @include ('general._about_us_content')
+</section>
+
 <!--Available course start-->
 <section class="white_section section_gap" id="how-it-works">
     @include ('general._how_it_works_content')
 </section>
 <!--/Available course end--> 
-<!--popup video start -->
-<section class="white_section section_gap" id="about-us">
-    @include ('general._about_us_content')
-</section>
-<!--popup video end --> 
+
 <!--popular courses start-->
 <section class="grey_section section_gap" id="recent-lessons">
     @include ('general._recent_lessons')

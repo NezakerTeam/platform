@@ -11,16 +11,16 @@ class ContactUs extends Notification
 
     use Queueable;
 
-    private $contactUsData = [];
+    private $contactUsModel = [];
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(array $contactUsData)
+    public function __construct(\App\Models\ContactUs $contactUsModel)
     {
-        $this->contactUsData = $contactUsData;
+        $this->contactUsModel = $contactUsModel;
     }
 
     /**
@@ -42,10 +42,15 @@ class ContactUs extends Notification
      */
     public function toMail($notifiable)
     {
+        //dd($this->contactUsData);
+
         return (new MailMessage)
-                ->line('The introduction to the notification.')
-                ->action('Notification Action', 'https://laravel.com')
-                ->line('Thank you for using our application!');
+                ->replyTo($this->contactUsModel->email)
+                ->greeting('New contact us message')
+                ->line('From: ' . $this->contactUsModel->name)
+                ->line('Email: ' . $this->contactUsModel->email)
+                ->line('Phone Number: ' . $this->contactUsModel->phone_number)
+                ->line('Message: ' . $this->contactUsModel->message);
     }
 
     /**

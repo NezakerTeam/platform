@@ -53,8 +53,7 @@ class ContentForm extends Form
             ->add('submit', 'submit', [
                 'label' => ($this->getData('isEdit')) ? trans('content.form.submit.edit') : trans('content.form.submit.create'),
                 'attr' => [
-                    'class' => 'btn btn-primary btn-lg',
-                    'width' => '40%'
+                    'class' => 'input-button',
                 ]
             ])
         ;

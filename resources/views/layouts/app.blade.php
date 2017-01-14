@@ -61,7 +61,11 @@
                 <b>{{ Session::get('flash_message') }}</b></div>
             @endif
 
-            @yield('content')
+            @section('main-content')
+            <div class='inner-page-container'>
+                @yield('content')
+            </div>
+            @show
 
             <!--Footer start-->
             @include('layouts.footer')
