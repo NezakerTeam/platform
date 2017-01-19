@@ -16,7 +16,7 @@ class CreateStageTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->string('name');
-			$table->text('description', 65535);
+			$table->text('description', 65535)->nullable();
 			$table->boolean('status');
 			$table->timestamps();
 			$table->smallInteger('ordering');

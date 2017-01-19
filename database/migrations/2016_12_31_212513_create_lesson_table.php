@@ -17,7 +17,7 @@ class CreateLessonTable extends Migration {
 			$table->integer('id', true);
 			$table->integer('subject_id')->index('subject_id');
 			$table->string('name');
-			$table->text('description', 65535);
+			$table->text('description', 65535)->nullable();
 			$table->smallInteger('status');
 			$table->smallInteger('ordering');
 			$table->timestamps();

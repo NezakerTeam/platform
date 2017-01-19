@@ -8,6 +8,7 @@ use App\Http\Requests\SubjectRequest as StoreRequest;
 use App\Http\Requests\SubjectRequest as UpdateRequest;
 use App\Models\Grade;
 use App\Models\Lesson;
+use App\Models\Stage;
 use App\Models\Subject;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
@@ -127,14 +128,21 @@ class SubjectCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
+            'label' => 'Stage',
+            'type' => 'model_function_attribute',
+            'function_name' => 'getStage', // the method in your Model
+            'attribute' => 'name'
+        ]);
+
+        $this->crud->addColumn([
             'name' => 'description',
             'label' => 'Description',
         ]);
 
         $this->crud->addColumn([
             // run a function on the CRUD model and show its return value
-            'label' => "status", // Table column heading
-            'type' => "model_function",
+            'label' => 'status', // Table column heading
+            'type' => 'model_function',
             'function_name' => 'getStatusName', // the method in your Model
         ]);
 
@@ -168,19 +176,36 @@ class SubjectCrudController extends CrudController
         ]);
 
         $this->crud->addField([// Select
+            'label' => 'Stage',
+            'type' => 'select_function',
+            'name' => 'stage_id', // the db column for the foreign key
+            'function' => 'getStageId', // the db column for the foreign key
+            'entity' => 'stage', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'model' => Stage::class, // foreign key model
+            'empty_value' => 'Select',
+            'attributes' => [
+                'data-target-dependent-element-id' => 'grade-id'
+            ]
+        ]);
+
+        $this->crud->addField([// Select
             'label' => 'Grade',
             'type' => 'select',
             'name' => 'grade_id', // the db column for the foreign key
             'entity' => 'grade', // the method that defines the relationship in your Model
             'attribute' => 'name', // foreign key attribute that is shown to user
-            'model' => Grade::class // foreign key model
+            'model' => Grade::class, // foreign key model
+            'empty_value' => 'Select',
+            'dependentValue' => 'stage_id',
+            'attributes' => ['id' => 'grade-id'],
         ]);
 
         $this->crud->addField([// select_from_array
             'name' => 'status',
             'label' => 'Status',
             'type' => 'select_from_array',
-            'options' => [''] + Subject::getStatusesList(),
+            'options' => Subject::getStatusesList(),
             'value' => null,
             'allows_null' => false,
             // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;

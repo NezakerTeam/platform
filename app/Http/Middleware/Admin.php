@@ -20,7 +20,7 @@ class Admin extends \Backpack\Base\app\Http\Middleware\Admin
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->guest() || !$request->user()->hasRole('Admin')) {
-            abort(403);
+            return redirect()->guest(route('login'));
         }
 
         return parent::handle($request, $next, $guard);

@@ -422,6 +422,36 @@ class Content extends Model
         return $this->lesson;
     }
 
+    public function getSubject()
+    {
+        return $this->getLesson()->getSubject();
+    }
+
+    public function getSubjectId()
+    {
+        return $this->getSubject()->getId();
+    }
+
+    public function getGrade()
+    {
+        return $this->getSubject()->getGrade();
+    }
+
+    public function getGradeId()
+    {
+        return $this->getGrade()->getId();
+    }
+
+    public function getStage()
+    {
+        return $this->getGrade()->getStage();
+    }
+
+    public function getStageId()
+    {
+        return $this->getStage()->getId();
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

@@ -17,7 +17,7 @@ class CreateGradeTable extends Migration {
 			$table->integer('id', true);
 			$table->integer('stage_id')->index('IDX_595AAE342298D193');
 			$table->string('name');
-			$table->text('description', 65535);
+			$table->text('description', 65535)->nullable();
 			$table->boolean('status');
 			$table->timestamps();
 			$table->smallInteger('ordering');

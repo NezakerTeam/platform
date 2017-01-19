@@ -140,6 +140,24 @@ class Stage extends Model
     }
 
     /**
+     * Get statuses.
+     *
+     * @return array()
+     */
+    public static function getStatusesList()
+    {
+        return [
+            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_INACTIVE => 'InActive',
+        ];
+    }
+
+    public function getStatusName()
+    {
+        return $this->getStatusesList()[$this->getStatus()];
+    }
+
+    /**
      * Set ordering.
      *
      * @param bool $ordering

@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Admin;
 // VALIDATION: change the requests to match your own file names if you need form validation
 
 
-use App\Models\Lesson;
-use App\Models\Subject;
-use App\Models\User;
 use App\Http\Requests\LessonRequest as StoreRequest;
 use App\Http\Requests\LessonRequest as UpdateRequest;
+use App\Models\Grade;
+use App\Models\Lesson;
+use App\Models\Stage;
+use App\Models\Subject;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 class LessonCrudController extends CrudController
@@ -37,7 +38,6 @@ class LessonCrudController extends CrudController
 
         $this->setupColumns();
         $this->setupFields();
-        $this->setupFilters();
 
 
 //        $this->crud->addFilter([// dropdown filter
@@ -127,6 +127,20 @@ class LessonCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
+            'label' => 'Grade',
+            'type' => 'model_function_attribute',
+            'function_name' => 'getGrade', // the method in your Model
+            'attribute' => 'name'
+        ]);
+
+        $this->crud->addColumn([
+            'label' => 'Stage',
+            'type' => 'model_function_attribute',
+            'function_name' => 'getStage', // the method in your Model
+            'attribute' => 'name'
+        ]);
+
+        $this->crud->addColumn([
             // run a function on the CRUD model and show its return value
             'label' => 'Semester', // Table column heading
             'type' => 'model_function',
@@ -170,18 +184,52 @@ class LessonCrudController extends CrudController
         ]);
 
         $this->crud->addField([// Select
+            'label' => 'Stage',
+            'type' => 'select_function',
+            'name' => 'stage_id', // the db column for the foreign key
+            'function' => 'getStageId', // the db column for the foreign key
+            'entity' => 'stage', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'model' => Stage::class, // foreign key model
+            'empty_value' => 'Select',
+            'attributes' => [
+                'data-target-dependent-element-id' => 'grade-id'
+            ]
+        ]);
+
+        $this->crud->addField([// Select
+            'label' => 'Grade',
+            'type' => 'select_function',
+            'name' => 'grade_id', // the db column for the foreign key
+            'function' => 'getGradeId', // the db column for the foreign key
+            'entity' => 'grade', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'model' => Grade::class, // foreign key model
+            'empty_value' => 'Select',
+            'dependentValue' => 'stage_id',
+            'attributes' => [
+                'id' => 'grade-id',
+                'data-target-dependent-element-id' => 'subject-id'
+            ],
+        ]);
+
+        $this->crud->addField([// Select
             'label' => 'Subject',
             'type' => 'select',
             'name' => 'subject_id', // the db column for the foreign key
             'entity' => 'subject', // the method that defines the relationship in your Model
             'attribute' => 'name', // foreign key attribute that is shown to user
-            'model' => Subject::class // foreign key model
+            'model' => Subject::class, // foreign key model
+            'empty_value' => 'Select',
+            'dependentValue' => 'grade_id',
+            'attributes' => ['id' => 'subject-id'],
         ]);
+
         $this->crud->addField([// select_from_array
             'name' => 'semester',
             'label' => 'Semester',
             'type' => 'select_from_array',
-            'options' => [''] + Lesson::getSemestersList(),
+            'options' => Lesson::getSemestersList(),
             'value' => null,
             'allows_null' => false,
             // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
@@ -190,35 +238,11 @@ class LessonCrudController extends CrudController
             'name' => 'status',
             'label' => 'Status',
             'type' => 'select_from_array',
-            'options' => [''] + Lesson::getStatusesList(),
+            'options' => Lesson::getStatusesList(),
             'value' => null,
             'allows_null' => false,
             // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
         ]);
-    }
-
-    /**
-     * Set the CRUD filters
-     * 
-     * @return void
-     */
-    private function setupFilters()
-    {
-        $this->crud->addFilter([// select2 filter
-            'name' => 'subject_id',
-            'type' => 'select2',
-            'label' => 'Subject'
-            ], function() {
-            return Subject::all()->pluck('name', 'id')->toArray();
-        });
-
-
-        $this->crud->addFilter([// dropdown filter
-            'name' => 'status',
-            'type' => 'dropdown',
-            'label' => 'Status'
-            ], Lesson::getStatusesList()
-        );
     }
 
     public function store(StoreRequest $request)

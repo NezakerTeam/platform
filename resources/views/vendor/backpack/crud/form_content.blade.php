@@ -75,4 +75,28 @@
           @endif
         });
 	</script>
+    
+    <script>
+    jQuery(document).ready(function ($) {
+        $("[data-target-dependent-element-id]").change(function () {
+            selectedValue = $(this).val();
+            targetElementId = $(this).data('target-dependent-element-id');
+            updateDependentDropdown(targetElementId, selectedValue, true);
+        });
+
+        $("[data-target-dependent-element-id]").each(function (index) {
+            selectedValue = $(this).val();
+            targetElementId = $(this).data('target-dependent-element-id');
+            updateDependentDropdown(targetElementId, selectedValue, false);
+
+        });
+    });
+    function updateDependentDropdown(targetElementId, selectedValue, changeSelection) {
+        if(changeSelection){
+            $("#" + targetElementId).val('').change();
+        }
+        $("#" + targetElementId + " option[data-dependent-value]").fadeOut();
+        $("#" + targetElementId + " option[data-dependent-value='" + selectedValue + "']").fadeIn();
+    }
+</script>
 @endsection

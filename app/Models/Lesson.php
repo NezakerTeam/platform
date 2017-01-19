@@ -323,6 +323,26 @@ class Lesson extends Model
         return $this->subject_id;
     }
 
+    public function getGrade()
+    {
+        return $this->getSubject()->getGrade();
+    }
+
+    public function getGradeId()
+    {
+        return $this->getGrade()->getId();
+    }
+
+    public function getStage()
+    {
+        return $this->getGrade()->getStage();
+    }
+
+    public function getStageId()
+    {
+        return $this->getStage()->getId();
+    }
+
     /**
      * Set author.
      *

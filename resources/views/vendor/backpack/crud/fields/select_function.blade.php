@@ -1,5 +1,10 @@
 <!-- select -->
+<?php
+if (!empty($entry)) {
+    $field['value'] = $entry->{$field['function']}();
+}
 
+?>
 <div @include('crud::inc.field_wrapper_attributes') >
 
       <label>{!! $field['label'] !!}</label>
@@ -10,7 +15,7 @@
         @include('crud::inc.field_attributes')
         >
 
-        @if ($entity_model::isColumnNullable($field['name']) || isset($field['empty_value']))
+        @if (isset($field['empty_value']))
         <option value="">{{ $field['empty_value'] or '-' }}</option>
         @endif
 
@@ -18,14 +23,14 @@
         @foreach ($field['model']::all() as $connected_entity_entry)
         <option value="{{ $connected_entity_entry->getKey() }}"
 
-            @if ( ( old($field['name']) && old($field['name']) == $connected_entity_entry->getKey() ) || (!old($field['name']) && isset($field['value']) && $connected_entity_entry->getKey()==$field['value']))
+                @if ( ( old($field['name']) && old($field['name']) == $connected_entity_entry->getKey() ) || (!old($field['name']) && isset($field['value']) && $connected_entity_entry->getKey()==$field['value']))
 
-            selected
-            @endif
-            @if (isset($field['dependentValue']))
-            data-dependent-value="{{ $connected_entity_entry->{$field['dependentValue']} }}"
-            @endif
-            >{{ $connected_entity_entry->{$field['attribute']} }}</option>
+                selected
+                @endif
+                @if (isset($field['dependentValue']))
+                data-dependent-value="{{ $connected_entity_entry->{$field['dependentValue']} }}"
+                @endif
+                >{{ $connected_entity_entry->{$field['attribute']} }}</option>
         @endforeach
         @endif
     </select>

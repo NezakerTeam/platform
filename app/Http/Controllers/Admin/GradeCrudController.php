@@ -1,10 +1,14 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
+
+
 use App\Http\Requests\GradeRequest as StoreRequest;
 use App\Http\Requests\GradeRequest as UpdateRequest;
+use App\Models\Grade;
+use App\Models\Stage;
+use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 class GradeCrudController extends CrudController
 {
@@ -17,7 +21,7 @@ class GradeCrudController extends CrudController
           | BASIC CRUD INFORMATION
           |--------------------------------------------------------------------------
          */
-        $this->crud->setModel(\App\Models\Grade::class);
+        $this->crud->setModel(Grade::class);
         $this->crud->setRouteName('crud.grade');
         $this->crud->setEntityNameStrings('grade', 'grades');
 
@@ -27,8 +31,10 @@ class GradeCrudController extends CrudController
           |--------------------------------------------------------------------------
          */
 
-        $this->crud->setFromDb();
-
+        // $this->crud->setFromDb();
+        $this->setupColumns();
+        $this->setupFields();
+        // $this->setupFilters();
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
@@ -101,5 +107,91 @@ class GradeCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
+    }
+
+    private function setupColumns()
+    {
+        // ------ CRUD columns
+        $this->crud->addColumn([
+            'name' => 'name',
+            'label' => 'Name',
+        ]);
+
+        $this->crud->addColumn([
+            'label' => 'Stage',
+            'type' => 'select',
+            'entity' => 'stage',
+            'attribute' => 'name',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'description',
+            'label' => 'Description',
+        ]);
+
+        $this->crud->addColumn([
+            // run a function on the CRUD model and show its return value
+            'label' => 'status', // Table column heading
+            'type' => 'model_function',
+            'function_name' => 'getStatusName', // the method in your Model
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'created_at',
+            'label' => 'Created At',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'updated_at',
+            'label' => 'Updated At',
+        ]);
+    }
+
+    /**
+     * Set the CRUD add/edit fields
+     * 
+     * @return void
+     */
+    private function setupFields()
+    {
+        // ------ CRUD columns
+        $this->crud->addField([
+            'name' => 'name',
+            'label' => 'Name',
+        ]);
+        $this->crud->addField([
+            'name' => 'description',
+            'label' => 'Description',
+            'type' => 'textarea'
+        ]);
+
+        $this->crud->addField([// Select
+            'label' => 'Stage',
+            'type' => 'select',
+            'name' => 'stage_id', // the db column for the foreign key
+            'entity' => 'stage', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'model' => Stage::class // foreign key model
+        ]);
+
+        $this->crud->addField([// select_from_array
+            'name' => 'status',
+            'label' => 'Status',
+            'type' => 'select_from_array',
+            'options' => Grade::getStatusesList(),
+            'value' => null,
+            'allows_null' => false,
+            // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+        ]);
+    }
+
+    /**
+     * Set the CRUD filters
+     * 
+     * @return void
+     */
+    private function setupFilters()
+    {
+        
     }
 }

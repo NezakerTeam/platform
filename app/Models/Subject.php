@@ -264,6 +264,14 @@ class Subject extends Model
         return $this->belongsTo('App\Models\Grade', 'grade_id');
     }
 
+    
+    public function getStage(){
+        return $this->getGrade()->getStage();
+    }
+    
+    public function getStageId(){
+        return $this->getStage()->getId();
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
