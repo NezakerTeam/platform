@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -7,6 +6,7 @@ use Illuminate\Support\Str;
 
 class DisqusMiddleware
 {
+
     /**
      * Handle an incoming request.
      *
@@ -18,7 +18,7 @@ class DisqusMiddleware
     {
         $response = $next($request);
 
-        if (config('disqus.enabled', false) && ! empty(config('disqus.username'))) {
+        if (config('disqus.enabled', false) && !empty(config('disqus.username'))) {
             $this->appendDisqusScript($request, $response);
         }
 
@@ -36,13 +36,13 @@ class DisqusMiddleware
     {
         $content = $response->getContent();
 
-        if (! Str::contains($content, '<div id="disqus_thread"></div>')) {
+        if (!Str::contains($content, '<div id="disqus_thread"></div>')) {
             return;
         }
 
-        $uri      = $request->getRequestUri();
-        $pageUrl  = url($uri);
-        $pageId   = 'route' . implode('.', explode('/', $uri));
+        $uri = $request->getRequestUri();
+        $pageUrl = url($uri);
+        $pageId = 'route' . implode('.', explode('/', $uri));
         $username = config('disqus.username');
 
         $disqusHtml = <<<CDATA

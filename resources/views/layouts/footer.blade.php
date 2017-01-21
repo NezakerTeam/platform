@@ -1,3 +1,5 @@
+@inject('contetnService', '\App\Services\ContentService')
+
 <!--Bottom Four Column start-->
 <section class="blue_section section_gap">
     <div class="container">
@@ -16,21 +18,33 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <h5 class="heading">أحدث الفيديوهات</h5>
                 <ul class="footerLinks">
-                    <li><a href="#">Standred الرد مع صورة مميزة</a><span>عن طريق <a href="#">مايك دو</a> في 24 يونيو 2014</span></li>
-                    <li><a href="#">Standred الرد مع صورة مميزة</a><span>عن طريق <a href="#">مايك دو</a> في 24 يونيو 2014</span></li>
-                    <li><a href="#">Standred الرد مع صورة مميزة</a><span>عن طريق <a href="#">مايك دو</a> في 24 يونيو 2014</span></li>
+                    @foreach ($contetnService->getRecentContents(3) as $content)
+                    <li>
+                        <span>
+                            {{$content->getLesson()->getSubject()->getName()}} - 
+                            <a href="{{route('content.show', ['id' => $content->getId()])}}">
+                                {{$content->getLesson()->getName()}}
+                            </a>
+                            <span>
+                                {{$content->getAuthor()->getName()}}
+                            </span>
+                        </span>
+                    </li>
+                    @endforeach
                 </ul>
             </div>
             <!-- Footer Recent news end--> 
             <!-- Footer How it works start-->
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <h5 class="heading">كيف نعمل ؟</h5>
-                <p>Phasellus ماتيس الهرية quis ENIM viverratys accumsan. Nullam RISUS بورتا الهرية، vitaeuik dapibus arcu viverra الاتحاد الأوروبي.</p>
+                <h5 class="heading">كيف يعمل؟</h5>
                 <ul class="list">
-                    <li>Phasellus ماتيس الهرية quis ENIM</li>
-                    <li>Nullam بورتا RISUS vitaeuik dapibus </li>
-                    <li>Phasellus ماتيس الهرية quis ENIM </li>
-                    <li>Vivamus الجلوس امات ligulague سمبر</li>
+                    @for ($i = 0; $i < 5; $i++)
+                    <li>
+                        <a href="{{route('general.howItWorks')}}#about-us-tab-{{$i}}">
+                            {{trans("general.page.howItWorks.sections.$i.title")}}
+                        </a>
+                    </li>                    
+                    @endfor
                 </ul>
             </div>
             <!-- Footer How it works end--> 
@@ -54,7 +68,7 @@
     <div class="container">
         <div class="row">
             <div class="pull-left">
-                <p>&copy; 2015  eLearn Theme. All Rights Reserved</p>
+                <p>Copyright Nezaker.com &copy; {{date("Y")}}</p>
             </div>
             <div class="pull-right">
                 <a class="gototop smooth" href="#wrapper">Go To Top<i class="fa fa-chevron-up"></i></a>

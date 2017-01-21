@@ -88,4 +88,17 @@ class ContentService
 
         return $videoThumb;
     }
+
+    /**
+     * Get the recent posted contents
+     * 
+     * @param int $limit    MAx number of contents
+     * @return type
+     */
+    public static function getRecentContents($limit = 8)
+    {
+        $recentContents = ContentRepository::getRecent($limit);
+
+        return $recentContents;
+    }
 }

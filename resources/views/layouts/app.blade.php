@@ -118,6 +118,19 @@
             });
         </script> 
 
+        <script type="text/javascript">
+            $(function () {
+                var hash = window.location.hash;
+                hash && $('ul.url-tabs a[href="' + hash + '"]').tab('show');
+
+                $('.url-tabs a').click(function (e) {
+                    $(this).tab('show');
+                    var scrollmem = $('body').scrollTop() || $('html').scrollTop();
+                    window.location.hash = this.hash;
+                    $('html,body').scrollTop(scrollmem);
+                });
+            });
+        </script>
         @yield('jsBodyEnd')
 
     </body>

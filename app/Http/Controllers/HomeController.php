@@ -25,7 +25,7 @@ class HomeController extends Controller
      * 
      * @return Response
      */
-    public function index(FormBuilder $formBuilder, ContentRepository $contentRepo)
+    public function index(FormBuilder $formBuilder)
     {
         $registerForm = $formBuilder->create(RegisterTeacherForm::class, [
             'method' => 'POST',
@@ -37,7 +37,7 @@ class HomeController extends Controller
             'url' => route('general.postContactUs')
         ]);
 
-        $recentLesson = $contentRepo->getRecent();
+        $recentLesson = \App\Services\ContentService::getRecentContents(8);
 
         $data = [
             'registerForm' => $registerForm,
