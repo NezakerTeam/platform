@@ -55,86 +55,9 @@
                                 </div>
                             </div>
                             <section id="comments">
-                                <h6 class="section-title">3 Comments</h6>
-                                <p>Comments are optional and I am editable! Whoop!</p>
-                                <ol class="comments-list">
-                                    <li class="comment">
-                                        <article> <img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=50" alt="Image" class="avatar">
-                                            <div class="comment-meta">
-                                                <h5 class="author">Admin, January 06, 2011 . <a href="#" class="comment-reply-link">Reply</a></h5>
-                                            </div>
-                                            <!-- end .comment-meta -->
-
-                                            <div class="comment-body">
-                                                <p>Morbi velit eros, sagittis in facilisis non, rhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque non metus.</p>
-                                            </div>
-                                            <!-- end .comment-body --> 
-
-                                        </article>
-                                        <ul class="children">
-                                            <li class="comment">
-                                                <article> <img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=50" alt="Image" class="avatar">
-                                                    <div class="comment-meta">
-                                                        <h5 class="author">Admin, January 06, 2011 . <a href="#" class="comment-reply-link">Reply</a></h5>
-                                                    </div>
-                                                    <!-- end .comment-meta -->
-
-                                                    <div class="comment-body">
-                                                        <p>Morbi velit eros, sagittis in facilisis non, rhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque non metus.</p>
-                                                    </div>
-                                                    <!-- end .comment-body --> 
-
-                                                </article>
-                                            </li>
-                                        </ul>
-                                        <!-- end .children --> 
-
-                                    </li>
-                                    <li class="comment">
-                                        <article> <img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=50" alt="Image" class="avatar">
-                                            <div class="comment-meta">
-                                                <h5 class="author">Admin, January 06, 2011 . <a href="#" class="comment-reply-link">Reply</a></h5>
-                                            </div>
-                                            <!-- end .comment-meta -->
-
-                                            <div class="comment-body">
-                                                <p>Morbi velit eros, sagittis in facilisis non, rhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque non metus.</p>
-                                            </div>
-                                            <!-- end .comment-body --> 
-
-                                        </article>
-                                    </li>
-                                </ol>
+                                <div id="disqus_thread"></div>
                             </section>
-                            <section id="respond">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blogleft contact">
-                                        <form method="post" action="#" name="cform" id="cform">
-                                            <h3 class="contactTitle">Leave a Comment</h3>
-                                            <p>Curabitur tincidunt est sit amet nibh imperdiet dapibus. Praesent tristique diam eros,</p>
-                                            <div class="row">
-                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group form-row">
-                                                    <input type="text" class="normal" id="name" placeholder="Name" name="name">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group form-row">
-                                                    <input type="email" class="normal" id="email" placeholder="Email Address" name="email">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group form-row">
-                                                    <textarea name="comments" placeholder="Comments" rows="4" class="normal"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                    <input type="submit" id="submit" name="send" value="COMMENT" class="button">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                            </section>
+
                         </article>
                     </div>
                 </div>

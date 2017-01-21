@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerBladeDirectives();
+        $this->registerMiddleware();
     }
 
     /**
@@ -41,5 +42,15 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('datetime', function ($expression) {
             return "<?php echo ($expression)->format('Y/m/d H:i'); ?>";
         });
+    }
+
+    /**
+     * Register disqus middleware.
+     */
+    protected function registerMiddleware()
+    {
+        $this->app[\Illuminate\Contracts\Http\Kernel::class]->pushMiddleware(
+            \App\Http\Middleware\DisqusMiddleware::class
+        );
     }
 }
