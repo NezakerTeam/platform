@@ -553,7 +553,7 @@ header{
 }
 .menu{
 	 margin-top:0px;
-	 position: absolute;
+/*	 position: absolute;*/
 	 z-index:9999;
 	 margin-top:25px;
 	 right :0px;

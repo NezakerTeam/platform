@@ -1,22 +1,43 @@
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Google Drive</h3>
-            </div>
             <div class="panel-body">
-                Panel content
+                <a href="#" data-toggle="modal" data-target="#videoModal" data-theVideo="http://www.youtube.com/embed/-HU9Z5gtQVk">
+                    <img class="img-responsive center-block" src="{{asset(elixir('images/google-drive-vector-logo.png'))}}" />
+                </a>
             </div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Dropbox</h3>
-            </div>
             <div class="panel-body">
-                Panel content
+                <a href="#" data-toggle="modal" data-target="#videoModal" data-theVideo="https://www.youtube.com/embed/G2Lr5ymvrJ0">
+                    <img class="img-responsive center-block" src="{{asset(elixir('images/dropbox-vector-logo.png'))}}" />
+                </a>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div>
+                    <iframe width="100%" height="350" src=""></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section('jsBodyEnd')
+<script>
+    $(document).ready(function () {
+        autoPlayYouTubeModal();
+
+    });
+</script>
+@endsection
+
