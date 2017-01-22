@@ -33,6 +33,8 @@
 </div>
 
 @section('jsBodyEnd')
+@parent
+
 <script>
     $(document).ready(function () {
         autoPlayYouTubeModal();
