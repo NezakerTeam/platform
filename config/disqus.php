@@ -10,5 +10,5 @@ return [
     /**
      * Your disqus username.
      */
-    'username' => env('DISQUS_USERNAME', 'nezaker-local'),
+    'username' => env('DISQUS_USERNAME', 'nezaker-dev'),
 ];
