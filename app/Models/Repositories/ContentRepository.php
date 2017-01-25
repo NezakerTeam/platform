@@ -24,7 +24,13 @@ class ContentRepository extends EntityRepository
     public static function getByAuthor(int $authorId, $status = Content::STATUS_APPROVED, $offset = 0, $limit = 8)
     {
 
-        $contentsQB = self::getModel()->where('author_id', $authorId);
+        $contentsQB = self::getModel()
+            ->with('author')
+            ->with('lesson')
+            ->with('lesson.subject')
+            ->with('lesson.subject.grade')
+            ->with('lesson.subject.grade.stage')
+            ->where('author_id', $authorId);
 
         if ($status != null) {
             $contentsQB->where('status', $status);
@@ -46,7 +52,13 @@ class ContentRepository extends EntityRepository
     public static function getAll($lessonsIds = [], $activeOnly = null, $offset = 0, $limit = 8)
     {
 
-        $contentsQB = self::getModel()->with('lesson');
+        $contentsQB = self::getModel()
+            ->with('author')
+            ->with('lesson')
+            ->with('lesson.subject')
+            ->with('lesson.subject.grade')
+            ->with('lesson.subject.grade.stage')
+        ;
 
         if (!empty($lessonsIds)) {
             $contentsQB = $contentsQB->whereIn('lesson_id', $lessonsIds);
@@ -70,7 +82,11 @@ class ContentRepository extends EntityRepository
 
     public static function getRecent($limit = 8)
     {
-        $recentContents = self::getModel()->where('status', Content::STATUS_APPROVED)
+        $recentContents = self::getModel()
+            ->with('author')
+            ->with('lesson')
+            ->with('lesson.subject')
+            ->where('status', Content::STATUS_APPROVED)
             ->orderBy('created_at', 'DESC')
             ->take($limit)
             ->get();

@@ -34,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Way\Generators\GeneratorsServiceProvider::class);
             $this->app->register(\Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class);
             $this->app->register(\Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class);
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+            $this->app->alias(Barryvdh\Debugbar\Facade::class, 'Debugbar');
         }
     }
 

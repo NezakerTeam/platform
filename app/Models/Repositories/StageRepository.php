@@ -14,7 +14,9 @@ class StageRepository extends EntityRepository
 
     public static function getAll($activeOnly = null, $offset = 0, $limit = 6)
     {
-        $stagesQB = self::getModel();
+        $stagesQB = self::getModel()
+            ->with('grades')
+        ;
 
         if ($activeOnly !== null) {
             $stagesQB = $stagesQB->where('status', \App\Models\Stage::STATUS_ACTIVE);

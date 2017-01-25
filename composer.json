@@ -25,7 +25,8 @@
         "backpack/generators": "^1.1",
         "way/generators": "dev-feature/laravel-five-stable",
         "xethron/migrations-generator": "^2.0",
-        "krlove/eloquent-model-generator": "^1.2"
+        "krlove/eloquent-model-generator": "^1.2",
+        "barryvdh/laravel-debugbar": "^2.3"
     },
     "autoload": {
         "classmap": [

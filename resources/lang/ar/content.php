@@ -6,7 +6,7 @@ $formCreate = array_merge(
     $formAll, [
     'title' => ' إضافة درس',
     'desc' => 'هنا يمكنك اضافة الدروس التي قمت بتسجيلها إلى نذاكر ويمكن ايضا الاطلاع على كيفية تسجيل الدروس بطرق مختلفة عن طريق الاطلاع على صفحة
-<a href="' . route('general.howItWorks') . '" target="_blank">كيف تقوم بتصوير الدروس؟</a>',
+<a href="' . route('general.howItWorks') . '#about-us-tab-1" target="_blank">كيف تقوم بتصوير الدروس؟</a>',
     'submit' => 'تعديل البيانات',
     ]
 );

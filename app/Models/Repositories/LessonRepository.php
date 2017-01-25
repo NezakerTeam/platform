@@ -28,7 +28,8 @@ class LessonRepository extends EntityRepository
     public static function getAll($subjectsIds = [], $gradesIds = [], $stagesIds = [], $activeOnly = null, $offset = 0, $limit = 8)
     {
 
-        $LessonQB = self::getModel()->select('lesson.*');
+        $LessonQB = self::getModel()->select('lesson.*')
+        ;
 
         if (!empty($subjectsIds)) {
             $LessonQB = $LessonQB->whereIn('subject_id', $subjectsIds);
