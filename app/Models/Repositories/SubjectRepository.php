@@ -20,7 +20,7 @@ class SubjectRepository extends EntityRepository
     public static function getList()
     {
 
-        $subjects = self::getModel()::
+        $subjects = self::getModel()->
             orderBy('ordering', 'ASC')
             ->get();
 

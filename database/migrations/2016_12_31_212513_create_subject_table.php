@@ -20,7 +20,7 @@ class CreateSubjectTable extends Migration
             $table->text('description', 65535)->nullable();
             $table->boolean('status');
             $table->timestamps();
-            $table->smallInteger('ordering');
+            $table->smallInteger('ordering')->default(0);
         });
     }
 
