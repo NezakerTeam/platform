@@ -53,7 +53,7 @@
                 <h5 class="heading">روابط مهمة</h5>
                 <ul>
                     <li><a href="{{route('register')}}">{{trans('footer.register')}}</a></li>
-                    <li><a href="#">{{trans('footer.termsAndConditions')}}</a></li>
+                    <li><a href="{{route('general.termsAndConditions')}}">{{trans('footer.termsAndConditions')}}</a></li>
                     <li><a href="{{route('general.contactUs')}}">{{trans('footer.contactUs')}}</a></li>
                 </ul>
             </div>

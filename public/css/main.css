@@ -554,11 +554,11 @@ header{
 .menu{
     margin-top:0px;
     position: absolute;
-        margin-top:25px;
-    margin-bottom:-100px;
     z-index:100;
+    margin-top:25px;
     right :0px;
     left :0px;
+    margin-bottom:-100px;
     display:block;
 }
 .menu.showmenu {

@@ -43,6 +43,18 @@ class GeneralController extends Controller
     }
 
     /**
+     * Show the application terms and conditions.
+     *
+     * @Get("/terms-and-conditions", as="general.termsAndConditions")
+     * 
+     * @return Response
+     */
+    public function termsAndConditions()
+    {
+        return view('general.terms_and_conditions');
+    }
+
+    /**
      * Show the contact us page.
      *
      * @Get("/contact-us", as="general.contactUs")
@@ -53,7 +65,7 @@ class GeneralController extends Controller
     {
         $contactUsForm = FormBuilder::create(ContactUsForm::class, [
                 'method' => 'POST',
-                'url' => route('general.postContactUs')
+                'url'    => route('general.postContactUs')
         ]);
 
         $data = [
