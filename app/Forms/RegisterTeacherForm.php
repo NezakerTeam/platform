@@ -13,12 +13,12 @@ class RegisterTeacherForm extends Form
         $this
             ->add('first_name', 'text', [
                 'label' => trans('auth.form.first_name'),
-                'rules' => 'required|min:5',
+                'rules' => 'required|min:2',
                 'attr' => ['placeholder' => trans('auth.form.first_name')]
             ])
             ->add('last_name', 'text', [
                 'label' => trans('auth.form.last_name'),
-                'rules' => 'required|min:5',
+                'rules' => 'required|min:2',
                 'attr' => ['placeholder' => trans('auth.form.last_name')]
             ])
             ->add('email', 'email', [

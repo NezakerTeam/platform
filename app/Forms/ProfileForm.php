@@ -14,10 +14,10 @@ class ProfileForm extends Form
     {
         $this
             ->add('first_name', 'text', [
-                'rules' => 'required|min:5',
+                'rules' => 'required|min:2',
             ])
             ->add('last_name', 'text', [
-                'rules' => 'required|min:5',
+                'rules' => 'required|min:2',
             ])
             ->add('email', 'email')
             ->add('city_id', 'entity', [

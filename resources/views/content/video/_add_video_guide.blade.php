@@ -5,7 +5,7 @@
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <div class="panel panel-default">
             <div class="panel-body">
-                <a href="#" data-toggle="modal" data-target="#videoModal" data-theVideo="http://www.youtube.com/embed/-HU9Z5gtQVk">
+                <a href="#" data-toggle="modal" data-target="#videoModal" data-theVideo="http://www.youtube.com/embed/V2kTbjA3F60">
                     <img class="img-responsive center-block" src="{{asset(elixir('images/google-drive-vector-logo.png'))}}" />
                 </a>
             </div>
@@ -14,7 +14,7 @@
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <div class="panel panel-default">
             <div class="panel-body">
-                <a href="#" data-toggle="modal" data-target="#videoModal" data-theVideo="https://www.youtube.com/embed/G2Lr5ymvrJ0">
+                <a href="#" data-toggle="modal" data-target="#videoModal" data-theVideo="https://www.youtube.com/embed/t7wQ1f8rx-s">
                     <img class="img-responsive center-block" src="{{asset(elixir('images/dropbox-vector-logo.png'))}}" />
                 </a>
             </div>

@@ -71,7 +71,7 @@
                 <p>Copyright Nezaker.com &copy; {{date("Y")}}</p>
             </div>
             <div class="pull-right">
-                <a class="gototop smooth" href="#wrapper">Go To Top<i class="fa fa-chevron-up"></i></a>
+                <a class="gototop smooth" href="#wrapper">بداية الصفحة<i class="fa fa-chevron-up"></i></a>
             </div>
         </div>
     </div>

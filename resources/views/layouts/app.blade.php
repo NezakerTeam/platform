@@ -16,6 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!--main style-->
+        <link rel="shortcut icon" type="image/png" href="{{asset(elixir('images/favicon.png'))}}"/>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -99,7 +100,7 @@
 
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58868a0e4a040acb"></script> 
-        
+
         <script type="text/javascript">
             var addthis_config = addthis_config || {};
             addthis_config.lang = 'ar' //show in Spanish regardless of browser settings;

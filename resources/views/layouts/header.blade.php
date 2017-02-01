@@ -51,7 +51,9 @@
                                             <a href="{{$allLessonsUrl}}">كل الدروس</a>
                                         </li>
                                         @if (Auth::check())
-                                        <li><a href="{{ route('content.create') }}">{{ trans('content.createNew') }}</a></li>
+                                        <li class="menuItem">
+                                            <a href="{{ route('content.create') }}">{{ trans('content.createNew') }}</a>
+                                        </li>
                                         @endif
                                         <li class="menuItem">
                                             @if (Auth::guest())
@@ -64,10 +66,14 @@
 
                                         <!-- Authentication Links -->
                                         @if (Auth::guest())
-                                        <li><a href="{{ url('/login') }}">{{ trans('auth.login') }}</a></li>
-                                        <li><a href="{{ url('/register') }}">{{ trans('auth.register') }}</a></li>
+                                        <li class="menuItem">
+                                            <a href="{{ url('/login') }}">{{ trans('auth.login') }}</a>
+                                        </li>
+                                        <li class="menuItem">
+                                            <a href="{{ url('/register') }}">{{ trans('auth.register') }}</a>
+                                        </li>
                                         @else
-                                        <li class="dropdown">
+                                        <li class="dropdown menuItem">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                                 {{ Auth::user()->getName() }} <span class="caret"></span>
                                             </a>

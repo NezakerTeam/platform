@@ -1,12 +1,11 @@
 <div class="container">
     <div class="heading">
         <h1><span>أحدث الدروس </span></h1>
-        <p>Phasellus غير دولور nibh. Nullam elementum تيلوس pretium feugiat.<br>
-            وكالات التصنيف الائتماني القول المأثور TELLUS وثيقة الهوية الوحيدة، السيرة sollicitudin tincidunt هوز في. سد سد tincidunt tristique ENIM sollcitudin.</p>
+        <p>آخر مشاركات أعضاء نذاكر والمعلمين في قائمة الفيديوهات التالية ويمكن مشاهدة كل الفيديوهات على نذاكر بالضغط على عرض جميع الدروس</p>
     </div>
     <ul class="hover_listing row">
         @forelse ($recentLessons as $lesson)
-        <li class="content-card col-xs-12 col-sm-6 col-md-3 col-lg-3 noPadd">
+        <li class="content-card col-xs-12 col-sm-6 col-md-3 col-lg-3">
             @include ('content.video._video_card', ['video' => $lesson])
         </li>
         @empty
