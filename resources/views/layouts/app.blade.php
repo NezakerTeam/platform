@@ -42,7 +42,10 @@
         <!-- Scripts -->
         <script>
             window.Laravel = <?= json_encode(['csrfToken' => csrf_token()]); ?>
-        </script>
+        </script>     
+        
+        @include('includes.google_analytics')
+
     </head>
     <body class="inner-page" dir="rtl" >
         <!--wrapper start-->
