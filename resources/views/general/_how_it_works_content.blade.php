@@ -33,7 +33,7 @@
 
                     <div class="row"> 
                         <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-                            <img src="{{asset(elixir('images/general/about_us/register_now.png'))}}" alt="">
+                            <img src="{{asset(elixir('images/general/about_us/register_now.jpg'))}}" alt="">
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">                   
                             <h3>{{trans('general.page.howItWorks.sections.0.title')}}</h3>
@@ -45,11 +45,21 @@
                 <div class="tab-pane fade" id="about-us-tab-1" role="tabpanel">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-                            <img src="{{asset(elixir('images/general/about_us/internet-marketing.jpg'))}}" alt="">
+                            <img src="{{asset(elixir('images/general/about_us/record_video.jpg'))}}" alt="">
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
                             <h3>{{trans('general.page.howItWorks.sections.1.title')}}</h3>
-                            <p>{!!trans('general.page.howItWorks.sections.1.desc')!!}</p>
+                            <p>
+                                {!!trans('general.page.howItWorks.sections.1.desc')!!}
+                                <br />
+                                <a href="{{route('general.howToRecordTheVideo')}}#computer-recording">
+                                    الطريقة الأولى :- استخدام جهاز الكمبيوتر
+                                </a>
+                                -
+                                <a href="{{route('general.howToRecordTheVideo')}}#cam-recording">
+                                    الطريقة الثانية:- استخدام الكاميرا
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -57,7 +67,7 @@
                 <div class="tab-pane fade" id="about-us-tab-2" role="tabpanel">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-                            <img src="{{asset(elixir('images/general/about_us/send_video.png'))}}" alt="">
+                            <img src="{{asset(elixir('images/general/about_us/send_video.jpg'))}}" alt="">
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
                             <h3>{{trans('general.page.howItWorks.sections.2.title')}}</h3>
@@ -81,7 +91,7 @@
                 <div class="tab-pane fade" id="about-us-tab-4" role="tabpanel">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-                            <img src="{{asset(elixir('images/general/about_us/parent_browse.png'))}}" alt="">
+                            <img src="{{asset(elixir('images/general/about_us/parent_browse.jpg'))}}" alt="">
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
                             <h3>{{trans('general.page.howItWorks.sections.4.title')}}</h3>

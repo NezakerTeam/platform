@@ -97,4 +97,16 @@ class GeneralController extends Controller
 
         return redirect(route('general.contactUs'));
     }
+
+    /**
+     * Show how to record the video.
+     *
+     * @Get("/how-to-record-the-video", as="general.howToRecordTheVideo")
+     * 
+     * @return Response
+     */
+    public function howToRecordTheVideo()
+    {
+        return view('general.how_to_record_the_video');
+    }
 }
