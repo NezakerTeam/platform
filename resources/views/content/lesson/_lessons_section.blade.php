@@ -8,6 +8,6 @@ $midColSize = $largeColSize = 12/$itemsPerRow;
         @include ('content.video._video_card', ['video' => $video])
     </li>
     @empty
-    <p>No Lessons</p>
+    <p>لا توجد دروس</p>
     @endforelse
 </ul>
