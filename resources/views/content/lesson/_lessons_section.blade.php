@@ -1,5 +1,5 @@
 @php
-$itemsPerRow = ($itemsPerRow)? : 3;
+$itemsPerRow = isset($itemsPerRow)? $itemsPerRow: 3;
 $midColSize = $largeColSize = 12/$itemsPerRow;
 @endphp
 <ul class="row list-unstyled">
