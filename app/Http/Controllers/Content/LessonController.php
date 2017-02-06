@@ -52,7 +52,7 @@ class LessonController extends Controller
         $data = [
             'stages' => $stages,
             'grades' => $grades,
-            'subjects' => $subjects,
+            'subjects' => [],
             'lessons' => $lessons,
             'contents' => $contents,
         ];

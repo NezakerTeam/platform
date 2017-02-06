@@ -1,3 +1,4 @@
+@if (count($subjects) > 0)
 <div class="col-xs-3">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs custom-nav-tabs" role="tablist">
@@ -19,18 +20,26 @@
         @endforeach
     </ul>
 </div>
+@endif
 
+@if (count($subjects) > 0)
 <div class="col-xs-9">
-    <!-- Tab panes --> 
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active lessons-list" id="lessons_list_{{$stageId}}_{{$gradeId}}_0">
-            @include ('content.lesson._lessons_section', ['lessons' => $lessons, 'contents' => $contents])
+    @else
+    <div>
+        @endif
+
+        <!-- Tab panes --> 
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active lessons-list" id="lessons_list_{{$stageId}}_{{$gradeId}}_0">
+                @include ('content.lesson._lessons_section', ['lessons' => $lessons, 'contents' => $contents,
+                'itemsPerRow' => (count($subjects) > 0)? 3:4,
+                ])
+            </div>
+            @foreach ($subjects as $subject)
+            <div role="tabpanel" class="tab-pane lessons-list" id="lessons_list_{{$stageId}}_{{$gradeId}}_{{$subject->getId()}}">
+            </div>
+            @endforeach
         </div>
-        @foreach ($subjects as $subject)
-        <div role="tabpanel" class="tab-pane lessons-list" id="lessons_list_{{$stageId}}_{{$gradeId}}_{{$subject->getId()}}">
-        </div>
-        @endforeach
     </div>
-</div>
 
 

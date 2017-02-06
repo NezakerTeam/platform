@@ -20,7 +20,7 @@ class LessonDropdownForm extends Form
                 'query_builder' => function() use ($subjectId) {
                     $lessons = [];
                     if (!empty($subjectId)) {
-                        $lessons = LessonRepository::getAll([$subjectId]);
+                        $lessons = LessonRepository::getAll([$subjectId], [], [], null, -1, -1);
                     }
                     return $lessons;
                 },
