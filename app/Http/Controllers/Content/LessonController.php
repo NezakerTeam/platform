@@ -35,10 +35,10 @@ class LessonController extends Controller
 
         $stages = $grades = $gradesIds = $subjects = $lessons = $contents = [];
 
-        $stages = StageRepository::getAll(true);
+        $stages = StageRepository::getAll(true, -1, -1);
         $stagesIds = array_pluck($stages, 'id');
 
-        $grades = GradeRepository::getAll($stagesIds, true);
+        $grades = GradeRepository::getAll($stagesIds, true, -1, -1);
         $gradesIds = array_pluck($grades, 'id');
 
         $subjects = (empty($gradesIds)) ? [] : SubjectRepository::getAll($gradesIds, [], true, -1, -1);
