@@ -47,7 +47,7 @@ class LessonController extends Controller
         $lessons = (empty($subjectsIds)) ? [] : LessonRepository::getAll($subjectsIds, [], [], true, -1, -1);
         $lessonsIds = array_pluck($lessons, 'id');
 
-        $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true);
+        $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true, -1, -1);
 
         $data = [
             'stages' => $stages,
