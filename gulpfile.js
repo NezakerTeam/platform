@@ -1,6 +1,7 @@
 const elixir = require('laravel-elixir');
 
 require('laravel-elixir-vue-2');
+require('laralix-imagemin');
 
 /*
  |--------------------------------------------------------------------------
@@ -16,7 +17,8 @@ require('laravel-elixir-vue-2');
 elixir(mix => {
     mix
             .copy('resources/assets/css', 'public/css')
-            .copy('resources/assets/images', 'public/images')
+            //.copy('resources/assets/images', 'public/images')
+            .imagemin('resources/assets/images', 'public/images')
             .copy('resources/assets/fonts', 'public/fonts')
             .copy('resources/assets/switcher', 'public/switcher')
             .copy('resources/assets/js/', 'public/js/')
