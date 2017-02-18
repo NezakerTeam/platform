@@ -79,7 +79,7 @@
                 <div class="tab-pane fade" id="about-us-tab-3" role="tabpanel">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-                            <img src="{{asset(elixir('images/general/about_us/branding.jpg'))}}" alt="">
+                            <img src="{{asset(elixir('images/general/about_us/branding-optimized.jpg'))}}" alt="">
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
                             <h3>{{trans('general.page.howItWorks.sections.3.title')}}</h3>
