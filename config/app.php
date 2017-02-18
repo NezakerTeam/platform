@@ -159,6 +159,7 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         /*
          * Backpack Service Providers...
          */
@@ -224,5 +225,6 @@ return [
         'Form'          => Collective\Html\FormFacade::class,
         'Html'          => Collective\Html\HtmlFacade::class,
         'FormBuilder'   => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
+        'SEO'           => Artesaos\SEOTools\Facades\SEOTools::class,
     ],
 ];

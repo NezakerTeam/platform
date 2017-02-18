@@ -28,7 +28,7 @@ class ContentController extends Controller
     {
         $form = FormBuilder::create(ContentForm::class, [
                 'method' => 'POST',
-                'url' => route('content.store')
+                'url'    => route('content.store')
         ]);
 
         return view('content.video.create', compact('form'));
@@ -71,8 +71,14 @@ class ContentController extends Controller
     {
         $content = ContentRepository::findById($id);
 
+        $this->seo()->setTitle($content->getLesson()->getName());
+        $this->seo()->setDescription($content->getDescription());
+        $this->seo()->opengraph()->setUrl(route('content.show', ['id' => $content->getId()]));
+        $this->seo()->opengraph()->addProperty('type', 'articles');
+        $this->seo()->addImages([$content->getThumbnail()]);
+
         $data = [
-            'content' => $content
+        'content' => $content
         ];
 
         return view('content.video.show', $data);

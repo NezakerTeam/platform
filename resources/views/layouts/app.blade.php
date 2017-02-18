@@ -7,13 +7,10 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Metas Page details-->
-        <title>{{ config('app.name', 'Nezaker') }}</title>
-
-        <meta name="description" content="{{ config('app.description', 'Nezaker') }}" />
-        <meta name="author" content="" />
         <!-- Mobile Specific Metas-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        {!! SEO::generate() !!}
 
         <!--main style-->
         <link rel="shortcut icon" type="image/png" href="{{asset(elixir('images/favicon.png'))}}"/>
@@ -41,7 +38,7 @@
         <script>
             window.Laravel = <?= json_encode(['csrfToken' => csrf_token()]); ?>
         </script>     
-        
+
         @include('includes.google_analytics')
 
     </head>
