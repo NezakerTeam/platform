@@ -7,7 +7,7 @@
                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/2DrXgj1NwN8" frameborder="0" allowfullscreen></iframe>
                 </div>
             -->
-            <img src="{{asset(elixir('images/general/about_us/main-image-optimized.png'))}}"/>
+            <img src="{{asset(elixir('images/general/about_us/main-image.png'))}}"/>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 watch_text">
             <section id="aboutus">
