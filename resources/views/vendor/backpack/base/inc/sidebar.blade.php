@@ -40,6 +40,15 @@
                     <i class="fa fa-sign-out"></i> <span>{{ trans('backpack::base.logout') }}</span>
                 </a>
             </li>
+            <li class="header">Settings</li>
+
+            <li>
+                <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/backup') }}">
+                    <i class="fa fa-hdd-o"></i>
+                    <span>Backups</span>
+                </a>
+            </li>
+
         </ul>
     </section>
     <!-- /.sidebar -->
