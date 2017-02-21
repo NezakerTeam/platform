@@ -25,9 +25,9 @@
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/vertical-tabs.css'))}}" />
 
         <!--google font style-->
-        <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
         <!--font-family: 'Great Vibes', cursive; -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600italic,600,700italic,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600italic,600,700italic,700' rel='stylesheet' type='text/css'>
         <!--font-family: 'Open Sans', sans-serif; -->
 
         <!-- font icon css style-->
