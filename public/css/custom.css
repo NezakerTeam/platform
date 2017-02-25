@@ -60,3 +60,7 @@ and open the template in the editor.
 .video_meta .author .by{
     color:#24a1db;
 }
+
+.content-card{
+    height: 305px;
+}
