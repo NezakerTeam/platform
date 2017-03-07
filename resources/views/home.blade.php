@@ -2,7 +2,7 @@
 
 @section('main-content')
 
-<section class="" id="register">
+<section class="" id="register" style="margin-bottom: 40px;">
     <div class="">
         <!--banner start -->
         <div class="header_v1">
