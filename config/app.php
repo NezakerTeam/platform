@@ -160,6 +160,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
+        Dingo\Api\Provider\LaravelServiceProvider::class,
         /*
          * Backpack Service Providers...
          */
@@ -228,5 +229,7 @@ return [
         'Html'          => Collective\Html\HtmlFacade::class,
         'FormBuilder'   => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'SEO'           => Artesaos\SEOTools\Facades\SEOTools::class,
+        'DignoApi'      => Dingo\Api\Facade\API::class,
+        'DignoRoute'    => Dingo\Api\Facade\Route::class,
     ],
 ];
