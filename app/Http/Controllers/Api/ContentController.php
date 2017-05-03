@@ -17,7 +17,7 @@ class ContentController extends \App\Http\Controllers\Api\BaseApiController
      */
     public function stages()
     {
-        $stages = \App\Models\Repositories\StageRepository::getAll(true);
+        $stages = \App\Models\Repositories\StageRepository::getAll(true, -1, -1);
 
         return $this->response->collection($stages, new \App\Transformers\Api\StageTransformer());
     }
@@ -32,7 +32,7 @@ class ContentController extends \App\Http\Controllers\Api\BaseApiController
      */
     public function grades($stageId)
     {
-        $grades = \App\Models\Repositories\GradeRepository::getAll([$stageId], true);
+        $grades = \App\Models\Repositories\GradeRepository::getAll([$stageId], true, -1, -1);
 
         return $this->response->collection($grades, new \App\Transformers\Api\GradeTransformer());
     }
@@ -47,7 +47,7 @@ class ContentController extends \App\Http\Controllers\Api\BaseApiController
      */
     public function subjects($gradeId)
     {
-        $subjects = \App\Models\Repositories\SubjectRepository::getAll([$gradeId], [], true);
+        $subjects = \App\Models\Repositories\SubjectRepository::getAll([$gradeId], [], true, -1, -1);
 
         return $this->response->collection($subjects, new \App\Transformers\Api\SubjectTransformer());
     }
@@ -62,7 +62,7 @@ class ContentController extends \App\Http\Controllers\Api\BaseApiController
      */
     public function lessons($subjectId)
     {
-        $lessons = \App\Models\Repositories\LessonRepository::getAll([$subjectId], [], [], true);
+        $lessons = \App\Models\Repositories\LessonRepository::getAll([$subjectId], [], [], true, -1, -1);
 
         return $this->response->collection($lessons, new \App\Transformers\Api\LessonTransformer());
     }
@@ -77,7 +77,7 @@ class ContentController extends \App\Http\Controllers\Api\BaseApiController
      */
     public function videos($lessonId)
     {
-        $contents = \App\Models\Repositories\ContentRepository::getAll([$lessonId], [], [], true);
+        $contents = \App\Models\Repositories\ContentRepository::getAll([$lessonId], true, -1, -1);
 
         return $this->response->collection($contents, new \App\Transformers\Api\ContentTransformer());
     }
