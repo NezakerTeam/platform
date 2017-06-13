@@ -169,6 +169,8 @@ return [
         Backpack\PermissionManager\PermissionManagerServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
         Backpack\BackupManager\BackupManagerServiceProvider::class,
+        Cviebrock\EloquentSluggable\ServiceProvider::class,
+        Backpack\PageManager\PageManagerServiceProvider::class,
         /*
          * Application Service Providers...
          */

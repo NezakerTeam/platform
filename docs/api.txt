@@ -1,0 +1,65 @@
+FORMAT: 1A
+
+# Nezaker API
+
+# Content
+
+## Show all stages [GET /api/stages]
+Get a JSON representation of all the active stages.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 10,
+                "name": "foo"
+            }
+
+## Show all grades [GET /api/grades/{stageId}]
+Get a JSON representation of all the active grades.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 10,
+                "name": "foo"
+            }
+
+## Show all subjects [GET /api/subjects/{gradeId}]
+Get a JSON representation of all the active subjects.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 10,
+                "name": "foo"
+            }
+
+## Show all lessons [GET /api/lessons/{subjectId}]
+Get a JSON representation of all the active lessons.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 10,
+                "name": "foo"
+            }
+
+## Show all videos [GET /api/videos/{lessonId}]
+Get a JSON representation of all the active videos.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 10,
+                "lessonName": "foo",
+                "youtubeVideoId": "RbaW-WTsVTk",
+                "author": {
+                    "name": "Islam Ibrahim"
+                },
+                "status": "Approved"
+            }

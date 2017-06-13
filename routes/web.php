@@ -29,3 +29,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
     // [...] other routes
 });
+
+Route::get(\App\Models\Page::URL_PREFIX . '{page}/{subs?}', ['uses' => 'PageController@index'])
+    ->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
