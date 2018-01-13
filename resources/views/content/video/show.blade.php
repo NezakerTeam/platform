@@ -49,7 +49,7 @@
                                     </div>
                                     <!-- Go to www.addthis.com/dashboard to customize your tools --> 
                                     <div class="description">
-                                        <h3><span>ملخص الدرس</span></h3>
+                                        <h3><span>ملخص الفيديو</span></h3>
                                         <p>{{$content->getDescription()}}</p>
                                     </div>
                                 </div>
