@@ -5,8 +5,8 @@ $formAll = [
 $formCreate = array_merge(
     $formAll, [
     'title'  => ' إضافة درس',
-    'desc'   => 'هنا يمكنك اضافة الدروس التي قمت بتسجيلها إلى نذاكر ويمكن ايضا الاطلاع على كيفية تسجيل الدروس بطرق مختلفة عن طريق الاطلاع على صفحة
-<a href="' . route('general.howItWorks') . '#about-us-tab-1" target="_blank">كيف تقوم بتصوير الدروس؟</a>',
+    'desc'   => 'هنا يمكنك اضافة الفيديوهات التي قمت بتسجيلها إلى نذاكر ويمكن ايضا الاطلاع على كيفية تسجيل الفيديوهات بطرق مختلفة عن طريق الاطلاع على صفحة
+<a href="' . route('general.howItWorks') . '#about-us-tab-1" target="_blank">كيف تقوم بتصوير الفيديوهات؟</a>',
     'submit' => 'تعديل البيانات',
     ]
 );
@@ -22,20 +22,20 @@ return [
       |
      */
 
-    'form.title.create'  => 'إضافة درس',
+    'form.title.create'  => 'اضافة فيديو',
     'form.stage'         => 'المرحلة التعليمية',
     'form.grade'         => 'الصف الدراسي',
     'form.subject'       => 'المادة',
-    'form.lesson'        => 'الدرس',
+    'form.lesson'        => 'الفيديوهات',
     'form.howToUpload'   => 'طريقة رفع الفيديو',
     'form.materialUrl'   => 'رابط الفيديو',
-    'form.description'   => 'ملخص الدرس',
-    'form.submit.create' => 'أضف درس جديد',
-    'form.submit.edit'   => 'عدل الدرس',
+    'form.description'   => 'ملخص الفيديو',
+    'form.submit.create' => 'اضف فيديو جديد',
+    'form.submit.edit'   => 'عدل الفيديو',
     'form.agree'         => 'هل توافق علي <a href="' . route('general.termsAndConditions') . '" target="_blank">الشروط والأحكام؟</a>',
-    'form.submitted'     => 'تم إضافة الدرس بنجاح وجاري مراجعته.',
-    'createNew'          => 'أضف درس',
-    'entity.name'        => 'الدرس',
+    'form.submitted'     => 'تم اضافة الفيديو بنجاح وجاري مراجعته',
+    'createNew'          => 'اضف فيديو',
+    'entity.name'        => 'الفيديوهات',
     'login'              => 'دخول',
     'register'           => 'إشترك الأن',
     'select.city'        => 'إختار المدينة',
