@@ -37,17 +37,17 @@ class User extends Authenticatable
         HasRoles,
         Notifiable;
 
-    const TYPE_NONE = 0;
-    const TYPE_STUDENT_PARENT = 1;
-    const TYPE_TEACHER = 2;
-    const TYPE_ADMIN_USER = 3;
+    const TYPE_NONE                   = 0;
+    const TYPE_STUDENT_PARENT         = 1;
+    const TYPE_TEACHER                = 2;
+    const TYPE_ADMIN_USER             = 3;
     // Define the gender values
-    const GENDER_UNDEFINED = 0;
-    const GENDER_MALE = 1;
-    const GENDER_FEMALE = 2;
+    const GENDER_UNDEFINED            = 0;
+    const GENDER_MALE                 = 1;
+    const GENDER_FEMALE               = 2;
     // Status values
     const STATUS_PENDIND_CONFIRMATION = 1;
-    const STATUS_CONFIRMED = 2;
+    const STATUS_CONFIRMED            = 2;
 
     /**
      * The table associated with the model.
@@ -450,6 +450,24 @@ class User extends Authenticatable
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Get statuses.
+     *
+     * @return array()
+     */
+    public static function getStatusesList()
+    {
+        return [
+            self::STATUS_PENDIND_CONFIRMATION => 'Pending Confirmation',
+            self::STATUS_CONFIRMED            => 'Confirmed',
+        ];
+    }
+
+    public function getStatusName()
+    {
+        return $this->getStatusesList()[$this->getStatus()];
     }
 
     /**

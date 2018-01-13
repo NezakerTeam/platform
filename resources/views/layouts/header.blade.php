@@ -48,7 +48,7 @@
                                             @else
                                             @php $allLessonsUrl = route('lesson.all');@endphp
                                             @endif
-                                            <a href="{{$allLessonsUrl}}">كل الدروس</a>
+                                            <a href="{{$allLessonsUrl}}">كل الفيديوهات</a>
                                         </li>
                                         @if (Auth::check())
                                         <li class="menuItem">
@@ -62,6 +62,12 @@
                                             @php $contactUsUrl = route('general.contactUs');@endphp
                                             @endif
                                             <a href="{{$contactUsUrl}}">أتصل بنا</a>
+                                        </li>
+                                        <li class="menuItem">
+                                           
+                                            @php $blogUsUrl = route('app.home').'/page/مدونة-نذاكر';@endphp
+                                            
+                                            <a href="{{$blogUsUrl}}">مدونة نذاكر</a>
                                         </li>
 
                                         <!-- Authentication Links -->

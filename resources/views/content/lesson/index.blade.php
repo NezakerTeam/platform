@@ -15,18 +15,6 @@
                     {{$stage->getName()}} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="stage_tab_{{$stage->getId()}}" id="stage_tab_{{$stage->getId()}}-contents">
-                    <!--All-->
-                    <li class="">
-                        <a href="#subjects_list_{{$stage->getId()}}_0"  class="grade-filter btn-link"
-                           id="grade_tab_{{$stage->getId()}}_0"
-                           data-stage-id="{{$stage->getId()}}" data-grade-id="0"
-                           aria-controls="subjects_list_{{$stage->getId()}}_0"
-                           role="tab" data-toggle="tab" aria-expanded="false">
-                            {{trans('content.all')}}
-                        </a>
-                    </li>
-                    <!------->
-                    <li role="separator" class="divider"></li>
                     @foreach ($stage->getGrades(true) as $grade)
                     <li>
                         <a href="#subjects_list_{{$stage->getId()}}_{{$grade->getId()}}" class="grade-filter btn-link" 

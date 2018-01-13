@@ -808,7 +808,7 @@ ul.language li ul li a:focus {
     position:absolute;
     right :0;
     left :0;
-    top:160px;
+    top:120px;
     margin:0 auto;
 }
 .form-container {
@@ -843,7 +843,7 @@ ul.language li ul li a:focus {
 }
 .form-row {
     margin-bottom:17px;
-    font-size:0;
+    font-size:14px;
     letter-spacing:0;
 }
 input.normal,

@@ -4,9 +4,9 @@
 <div class="container">
     <section>
         <div class="heading">
-            <h1><span>دروسي</span></h1>
+            <h1><span>فيديوهات</span></h1>
             <p class="text-center noPadd">
-                <a href="{{route('content.create')}}" class="btn btn-primary btn-lg" role="button">أضف درس جديد</a>
+                <a href="{{route('content.create')}}" class="btn btn-primary btn-lg" role="button">اضف فيديو جديد</a>
             </p>
         </div>
 
@@ -25,7 +25,7 @@
     @if (count($pendingContent) > 0)
     <section class="section_gap">
         <div class="heading">
-            <h1><span>دروس تحت المراجعة</span></h1>
+            <h1><span>فيديوهات تحت المراجعة</span></h1>
         </div>
         <div class="table-responsive">
             <table class="table table-hover table-striped">

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="heading">
-        <h1><span>أحدث الدروس </span></h1>
-        <p>آخر مشاركات أعضاء نذاكر والمعلمين في قائمة الفيديوهات التالية ويمكن مشاهدة كل الفيديوهات على نذاكر بالضغط على عرض جميع الدروس</p>
+        <h1><span>أحدث الفيديوهات </span></h1>
+        <p>آخر مشاركات أعضاء نذاكر في قائمة الفيديوهات التالية ويمكن مشاهدة كل الفيديوهات على نذاكر بالضغط على عرض جميع الفيديوهات</p>
     </div>
     <ul class="hover_listing row">
         @forelse ($recentLessons as $lesson)
@@ -13,6 +13,6 @@
         @endforelse
     </ul>
     <p class="text-center noPadd">
-        <a href="{{route('lesson.all')}}" class="btn btn-primary btn-lg" role="button">عرض جميع الدروس</a>
+        <a href="{{route('lesson.all')}}" class="btn btn-primary btn-lg" role="button">عرض جميع الفيديوهات</a>
     </p>
 </div>

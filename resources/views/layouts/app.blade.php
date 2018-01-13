@@ -7,22 +7,17 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Metas Page details-->
-        <title>{{ config('app.name', 'Nezaker') }}</title>
-
-        <meta name="description" content="{{ config('app.description', 'Nezaker') }}" />
-        <meta name="author" content="" />
         <!-- Mobile Specific Metas-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        {!! SEO::generate() !!}
 
         <!--main style-->
         <link rel="shortcut icon" type="image/png" href="{{asset(elixir('images/favicon.png'))}}"/>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.2.0-rc2/css/bootstrap-rtl.min.css">
-
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/main.css'))}}" />
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/inner-style.css'))}}" />
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/skins/default.css'))}}" data-name="skins" />
@@ -30,9 +25,9 @@
         <link rel="stylesheet" type="text/css" media="screen" href="{{asset(elixir('css/vertical-tabs.css'))}}" />
 
         <!--google font style-->
-        <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
         <!--font-family: 'Great Vibes', cursive; -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600italic,600,700italic,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600italic,600,700italic,700' rel='stylesheet' type='text/css'>
         <!--font-family: 'Open Sans', sans-serif; -->
 
         <!-- font icon css style-->
@@ -43,7 +38,7 @@
         <script>
             window.Laravel = <?= json_encode(['csrfToken' => csrf_token()]); ?>
         </script>     
-        
+
         @include('includes.google_analytics')
 
     </head>

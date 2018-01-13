@@ -159,12 +159,18 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
+        Dingo\Api\Provider\LaravelServiceProvider::class,
         /*
          * Backpack Service Providers...
          */
         Backpack\Base\BaseServiceProvider::class,
         Backpack\CRUD\CrudServiceProvider::class,
         Backpack\PermissionManager\PermissionManagerServiceProvider::class,
+        Spatie\Backup\BackupServiceProvider::class,
+        Backpack\BackupManager\BackupManagerServiceProvider::class,
+        Cviebrock\EloquentSluggable\ServiceProvider::class,
+        Backpack\PageManager\PageManagerServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -224,5 +230,8 @@ return [
         'Form'          => Collective\Html\FormFacade::class,
         'Html'          => Collective\Html\HtmlFacade::class,
         'FormBuilder'   => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
+        'SEO'           => Artesaos\SEOTools\Facades\SEOTools::class,
+        'DignoApi'      => Dingo\Api\Facade\API::class,
+        'DignoRoute'    => Dingo\Api\Facade\Route::class,
     ],
 ];

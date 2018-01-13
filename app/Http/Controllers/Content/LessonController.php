@@ -35,10 +35,10 @@ class LessonController extends Controller
 
         $stages = $grades = $gradesIds = $subjects = $lessons = $contents = [];
 
-        $stages = StageRepository::getAll(true);
+        $stages = StageRepository::getAll(true, -1, -1);
         $stagesIds = array_pluck($stages, 'id');
 
-        $grades = GradeRepository::getAll($stagesIds, true);
+        $grades = GradeRepository::getAll($stagesIds, true, -1, -1);
         $gradesIds = array_pluck($grades, 'id');
 
         $subjects = (empty($gradesIds)) ? [] : SubjectRepository::getAll($gradesIds, [], true, -1, -1);
@@ -47,12 +47,12 @@ class LessonController extends Controller
         $lessons = (empty($subjectsIds)) ? [] : LessonRepository::getAll($subjectsIds, [], [], true, -1, -1);
         $lessonsIds = array_pluck($lessons, 'id');
 
-        $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true);
+        $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true, -1, -1);
 
         $data = [
             'stages' => $stages,
             'grades' => $grades,
-            'subjects' => $subjects,
+            'subjects' => [],
             'lessons' => $lessons,
             'contents' => $contents,
         ];
@@ -82,7 +82,7 @@ class LessonController extends Controller
         $lessons = (empty($subjectsIds)) ? [] : LessonRepository::getAll($subjectsIds, [], [], true, -1, -1);
         $lessonsIds = array_pluck($lessons, 'id');
 
-        $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true);
+        $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true, -1, -1);
 
         $data = [
             'stageId' => $stageId,
@@ -115,7 +115,7 @@ class LessonController extends Controller
         $lessons = LessonRepository::getAll($subjectIds, $gradesIds, $stagesIds, true, -1, -1);
         $lessonsIds = array_pluck($lessons, 'id');
 
-        $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true);
+        $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true, -1, -1);
 
         $data = [
             'stageId' => $stageId,

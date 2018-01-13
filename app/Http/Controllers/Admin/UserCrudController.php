@@ -1,10 +1,17 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
+
+
 use App\Http\Requests\UserRequest as StoreRequest;
 use App\Http\Requests\UserRequest as UpdateRequest;
+use App\Models\Grade;
+use App\Models\Repositories\CityRepository;
+use App\Models\Stage;
+use App\Models\Subject;
+use App\Models\User;
+use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 class UserCrudController extends CrudController
 {
@@ -17,7 +24,7 @@ class UserCrudController extends CrudController
           | BASIC CRUD INFORMATION
           |--------------------------------------------------------------------------
          */
-        $this->crud->setModel(\App\Models\User::class);
+        $this->crud->setModel(User::class);
         $this->crud->setRouteName('crud.user');
         $this->crud->setEntityNameStrings('user', 'users');
 
@@ -27,13 +34,11 @@ class UserCrudController extends CrudController
           |--------------------------------------------------------------------------
          */
 
-        $this->crud->setFromDb();
-        $this->crud->addColumn([
-            'name' => 'phone_numbers',
-            'label' => 'phone_numbers',
-                        'type' => 'array',
+        //$this->crud->setFromDb();
 
-        ]);
+        $this->setupColumns();
+        $this->setupFields();
+
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
@@ -106,5 +111,101 @@ class UserCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
+    }
+
+    private function setupColumns()
+    {
+        // ------ CRUD columns
+        $this->crud->addColumn([
+            'name'  => 'name',
+            'label' => 'Name',
+        ]);
+
+        $this->crud->addColumn([
+            'name'  => 'email',
+            'label' => 'Email',
+        ]);
+
+        $this->crud->addColumn([
+            'name'  => 'phone_numbers',
+            'label' => 'Phone Numbers',
+        ]);
+
+//        $this->crud->addColumn([
+//            'name'  => 'type',
+//            'label' => 'Type',
+//        ]);
+
+
+        $this->crud->addColumn([
+            // run a function on the CRUD model and show its return value
+            'label'         => 'status', // Table column heading
+            'type'          => 'model_function',
+            'function_name' => 'getStatusName', // the method in your Model
+        ]);
+
+
+        $this->crud->addColumn([
+            'label'         => 'City', // Table column heading
+            'type'          => 'model_function_attribute',
+            'function_name' => 'getCity', // the method in your Model
+            'attribute'     => 'name'
+        ]);
+
+        return;
+    }
+
+    /**
+     * Set the CRUD add/edit fields
+     * 
+     * @return void
+     */
+    private function setupFields()
+    {
+        // ------ CRUD columns
+        $this->crud->addField([
+            'name'  => 'first_name',
+            'label' => 'First Name',
+        ]);
+        $this->crud->addField([
+            'name'  => 'last_name',
+            'label' => 'Last Name',
+        ]);
+        $this->crud->addField([
+            'name'  => 'email',
+            'label' => 'Email',
+        ]);
+
+//        $this->crud->addField([
+//            // Table
+//            'name'            => 'phone_numbers',
+//            'label'           => 'Phone Numbers',
+//            'type'            => 'table',
+//            'entity_singular' => 'phone number', // used on the "Add X" button
+//            'columns'         => [
+//                                 ],
+//            'max'             => 5, // maximum rows allowed in the table
+//            'min'             => 0 // minimum rows allowed in the table
+//        ]);
+
+        $this->crud->addField([// select_from_array
+            'name'        => 'city_id',
+            'label'       => 'City',
+            'type'        => 'select_from_array',
+            'options'     => CityRepository::getAll()->pluck('name', 'id'),
+            'value'       => null,
+            'allows_null' => false,
+            // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+        ]);
+
+        $this->crud->addField([// select_from_array
+            'name'        => 'status',
+            'label'       => 'Status',
+            'type'        => 'select_from_array',
+            'options'     => User::getStatusesList(),
+            'value'       => null,
+            'allows_null' => false,
+            // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+        ]);
     }
 }

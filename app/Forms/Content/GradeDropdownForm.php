@@ -20,7 +20,7 @@ class GradeDropdownForm extends Form
                 'query_builder' => function () use ($stageId) {
                     $grades = [];
                     if (!empty($stageId)) {
-                        $grades = GradeRepository::getAll([$stageId], true);
+                        $grades = GradeRepository::getAll([$stageId], true, -1, -1);
                     }
                     return $grades;
                 },

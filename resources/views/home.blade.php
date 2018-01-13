@@ -2,7 +2,7 @@
 
 @section('main-content')
 
-<section class="" id="register">
+<section class="" id="register" style="margin-bottom: 40px;">
     <div class="">
         <!--banner start -->
         <div class="header_v1">
@@ -14,8 +14,8 @@
                         <div class="container hedaer-inner">
                             <div class="bannerText">
                                 <h3>نذاكر</h3>
-                                <p>أول موقع ألكترونى يهتم بشرح المناهج المدرسية للأباء فى فيديو قصيرة المدة يتراوح بين (5- 10 دقائق ) لكل درس يعمل على شرح الفكرة الاساسية للدرس مع طريقة شرحها ومثال عليها مما يعد استفاده كبرى لرفع مستوى الاباء فى توصيل المعلومة بشكل صحيح لابنائهم ولتوفير وقت كبير جدا .</p>
-                                <p><a href="#recent-lessons" class="smooth">عرض الدروس <i class="fa fa-angle-right"></i></a></p>
+                                <p>أول منصة متكاملة هدفها مساعدة أولياء الأمور في تطوير أداء أولادهم في المجالات المختلفة " الدراسية، الصحية، الاجتماعية، الاخلاقية، الرياضية، النفسية، الثقافية" عن طريق فيديوهات جذابة موجهة لولي الأمر، تتراوح هذه الفيديوهات مابين 3 إلى 10 دقائق </p>
+                                <p><a href="#recent-lessons" class="smooth">عرض الفيديوهات <i class="fa fa-angle-right"></i></a></p>
                             </div>
                         </div>
                         <!--Header text1 end--> 
@@ -24,9 +24,9 @@
                         <!--Header text2 start-->
                         <div class="container hedaer-inner">
                             <div class="bannerText">
-                                <h3>تطوير العملية التعليمية</h3>
-                                <p>نذاكر يعمل على توصيل معلومة صحيحة وبطريقة لا يحتاج فيها الاباء الى مجهود ووقت كبير , وكذلك يعمل على اكتشاف مواهب الاطفال للاتصال المباشر بينهم وبين ابائهم لفتره من الوقت وكذلك متابعة مستوى الابناء الدراسى والعقلي   </p>
-                                <p><a href="#recent-lessons" class="smooth">عرض الدروس <i class="fa fa-angle-right"></i></a></p>
+                                 <h3>تطوير أداء الابناء</h3>
+                                <p>نذاكر يعمل على تقديم استشارات قيمة للأباء والامهات و تساعدهم على ممارسة أنشطة مفيدة مع أبنائهم وإدراك احتياجاتهم خلال كل مرحلة المختلفة </p>
+                                <p><a href="#recent-lessons" class="smooth">عرض الفيديوهات <i class="fa fa-angle-right"></i></a></p>
                             </div>
                         </div>
                         <!--Header text2 end--> 
@@ -40,7 +40,7 @@
         <!--Header form -->
         <div class="container form-header">
             <div class="form-container">
-                <h2>أبدأ بتسجيل دروسك<span>قم بالتسجيل الان لأضافة الدروس الخاصة بك</span></h2>
+                <h2>أبدأ بتسجيل فيديوهات<span>قم بالتسجيل الان لأضافة الفيديوهات الخاصة بك</span></h2>
                 {!! form_start($registerForm) !!}
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">

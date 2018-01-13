@@ -20,7 +20,7 @@ class SubjectDropdownForm extends Form
                 'query_builder' => function() use ($gradeId) {
                     $subjects = [];
                     if (!empty($gradeId)) {
-                        $subjects = SubjectRepository::getAll([$gradeId], [], true);
+                        $subjects = SubjectRepository::getAll([$gradeId], [], true, -1, -1);
                     }
                     return $subjects;
                 },
