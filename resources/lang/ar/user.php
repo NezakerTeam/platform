@@ -1,18 +1,18 @@
 <?php
 $formAll = [
-    'first_name' => 'الإسم الأول',
-    'last_name' => 'الإسم الثاني',
-    'email' => 'البريد الإلكتروني',
-    'password' => 'كلمة السر',
-    'city_id' => 'المدينة',
-    'city' => ['empty_value' => 'إختر المدينة'],
+    'first_name'    => 'الإسم الأول',
+    'last_name'     => 'الإسم الثاني',
+    'email'         => 'البريد الإلكتروني',
+    'password'      => 'كلمة السر',
+    'city_id'       => 'المدينة',
+    'city'          => ['empty_value' => 'إختر المدينة'],
     'phone_numbers' => 'رقم التليفون',
 ];
 
 $formEdit = array_merge(
     $formAll, [
-    'title' => 'تعديل بيانات حسابك الخاص',
-    'desc' => 'من فضلك قم بإدخال بريدك الإلكتروني المسجل و كلمة المرور .',
+    'title'  => 'تعديل بيانات حسابك الخاص',
+    'desc'   => 'من فضلك قم بإدخال بريدك الإلكتروني المسجل و كلمة المرور .',
     'submit' => 'تعديل البيانات',
     ]
 );
@@ -29,8 +29,10 @@ return [
       |
      */
 
-    'form' => [
-        'all' => $formAll,
+    'type.student_parent' => 'ولي أمر',
+    'type.teacher'        => 'مدرس - متخصص',
+    'form'                => [
+        'all'  => $formAll,
         'edit' => $formEdit
     ]
 ];

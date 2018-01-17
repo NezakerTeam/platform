@@ -232,6 +232,16 @@ class User extends Authenticatable
         return $this->type;
     }
 
+    public static function getUserTypes()
+    {
+        $userTypes = [
+            self::TYPE_STUDENT_PARENT => trans('user.type.student_parent'),
+            self::TYPE_TEACHER        => trans('user.type.teacher'),
+        ];
+
+        return $userTypes;
+    }
+
     /**
      * Set gender.
      *

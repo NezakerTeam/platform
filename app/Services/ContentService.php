@@ -23,7 +23,7 @@ class ContentService
 
         $content->setMaterialUrl($data['material_url']);
 
-        if (isset($data['youtube_video_id']) && Auth::User()->hasType(User::TYPE_ADMIN_USER)) {
+        if (isset($data['youtube_video_id']) && Auth::User()->hasRole('Admin')) {
             $youtubeVideoId = $data['youtube_video_id'];
             $content->setYoutubeVideoId($youtubeVideoId);
 
@@ -36,7 +36,7 @@ class ContentService
         $content->setAuthorId(Auth::id());
 
         if (isset($data['stauts']) &&
-            ($data['status'] == Lesson::STATUS_PENDIND_APPROVAL || Auth::User()->hasType(User::TYPE_ADMIN_USER))
+            ($data['status'] == Lesson::STATUS_PENDIND_APPROVAL || Auth::User()->hasRole('Admin'))
         ) {
             $content->setStatus($data['status']);
         }
@@ -82,7 +82,7 @@ class ContentService
         if ($videos->count() <= 0) {
             
         } else {
-            $video = $videos->current();
+            $video      = $videos->current();
             $videoThumb = $video->getSnippet()->getThumbnails()->getHigh()->getUrl();
         }
 
