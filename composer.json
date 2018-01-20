@@ -11,7 +11,7 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5.0",
         "kris/laravel-form-builder": "^1.9",
-        "laravelcollective/annotations": "^5.4",
+        "laravelcollective/annotations": "dev-master",
         "google/apiclient": "^2.0",
         "backpack/base": "^0.7.11",
         "backpack/crud": "^3.1",
@@ -31,9 +31,6 @@
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
         "backpack/generators": "^1.1",
-        "way/generators": "dev-feature/laravel-five-stable",
-        "xethron/migrations-generator": "^2.0",
-        "krlove/eloquent-model-generator": "^1.2",
         "barryvdh/laravel-debugbar": "^2.3"
     },
     "autoload": {
@@ -76,7 +73,7 @@
     "repositories": {
         "repo-name": {
             "type": "vcs",
-            "url": "https://github.com/jamisonvalenta/Laravel-4-Generators.git"
+            "url": "https://github.com/bulldesk/annotations.git"
         }
     }
 }
