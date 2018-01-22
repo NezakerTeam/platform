@@ -681,7 +681,6 @@ class User extends Authenticatable
      */
     public function hasType(int $userType)
     {
-        return true;
         return (bool) ($this->getType() == $userType);
     }
 

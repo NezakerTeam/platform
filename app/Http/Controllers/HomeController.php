@@ -98,6 +98,6 @@ class HomeController extends Controller
             'pendingContent' => $pendingContent,
         ];
 
-        return view('user.teacher.dashboard', $data);
+        return view('user.parent.dashboard', $data);
     }
 }

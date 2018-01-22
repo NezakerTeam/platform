@@ -21,7 +21,7 @@ class Subject extends Model
 
     use CrudTrait;
 
-    const STATUS_ACTIVE = 1;
+    const STATUS_ACTIVE   = 1;
     const STATUS_INACTIVE = 2;
 
     /**
@@ -150,7 +150,7 @@ class Subject extends Model
     public static function getStatusesList()
     {
         return [
-            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_ACTIVE   => 'Active',
             self::STATUS_INACTIVE => 'InActive',
         ];
     }
@@ -264,19 +264,21 @@ class Subject extends Model
         return $this->belongsTo('App\Models\Grade', 'grade_id');
     }
 
-    
-    public function getStage(){
+    public function getStage()
+    {
         return $this->getGrade()->getStage();
     }
-    
-    public function getStageId(){
+
+    public function getStageId()
+    {
         return $this->getStage()->getId();
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function lessons()
     {
-        return $this->hasMany('App\Models\Lesson');
+        return $this->hasMany(Lesson::class);
     }
 }

@@ -12,6 +12,11 @@ class SubjectRepository extends EntityRepository
         return new \App\Models\Subject();
     }
 
+    public static function findById($id)
+    {
+        return self::getModel()->find($id);
+    }
+
     /**
      * Get a list of subjects 
      * 
@@ -19,7 +24,6 @@ class SubjectRepository extends EntityRepository
      */
     public static function getList()
     {
-
         $subjects = self::getModel()->
             orderBy('ordering', 'ASC')
             ->get();

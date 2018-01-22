@@ -33,27 +33,27 @@ class LessonController extends Controller
     public function index()
     {
 
-        $stages = $grades = $gradesIds = $subjects = $lessons = $contents = [];
+        $stages    = $grades    = $gradesIds = $subjects  = $lessons   = $contents  = [];
 
-        $stages = StageRepository::getAll(true, -1, -1);
+        $stages    = StageRepository::getAll(true, -1, -1);
         $stagesIds = array_pluck($stages, 'id');
 
-        $grades = GradeRepository::getAll($stagesIds, true, -1, -1);
+        $grades    = GradeRepository::getAll($stagesIds, true, -1, -1);
         $gradesIds = array_pluck($grades, 'id');
 
-        $subjects = (empty($gradesIds)) ? [] : SubjectRepository::getAll($gradesIds, [], true, -1, -1);
+        $subjects    = (empty($gradesIds)) ? [] : SubjectRepository::getAll($gradesIds, [], true, -1, -1);
         $subjectsIds = array_pluck($subjects, 'id');
 
-        $lessons = (empty($subjectsIds)) ? [] : LessonRepository::getAll($subjectsIds, [], [], true, -1, -1);
+        $lessons    = (empty($subjectsIds)) ? [] : LessonRepository::getAll($subjectsIds, [], [], true, -1, -1);
         $lessonsIds = array_pluck($lessons, 'id');
 
         $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true, -1, -1);
 
         $data = [
-            'stages' => $stages,
-            'grades' => $grades,
+            'stages'   => $stages,
+            'grades'   => $grades,
             'subjects' => [],
-            'lessons' => $lessons,
+            'lessons'  => $lessons,
             'contents' => $contents,
         ];
 
@@ -73,22 +73,22 @@ class LessonController extends Controller
         $gradeId = (int) $request->get('gradeId', 0);
         $stageId = (int) $request->get('stageId', 0);
 
-        $stagesId = (empty($stageId)) ? [] : [$stageId];
+        $stagesId  = (empty($stageId)) ? [] : [$stageId];
         $gradesIds = (empty($gradeId)) ? [] : [$gradeId];
 
-        $subjects = SubjectRepository::getAll($gradesIds, $stagesId, true);
+        $subjects    = SubjectRepository::getAll($gradesIds, $stagesId, true);
         $subjectsIds = array_pluck($subjects, 'id');
 
-        $lessons = (empty($subjectsIds)) ? [] : LessonRepository::getAll($subjectsIds, [], [], true, -1, -1);
+        $lessons    = (empty($subjectsIds)) ? [] : LessonRepository::getAll($subjectsIds, [], [], true, -1, -1);
         $lessonsIds = array_pluck($lessons, 'id');
 
         $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true, -1, -1);
 
         $data = [
-            'stageId' => $stageId,
-            'gradeId' => $gradeId,
+            'stageId'  => $stageId,
+            'gradeId'  => $gradeId,
             'subjects' => $subjects,
-            'lessons' => $lessons,
+            'lessons'  => $lessons,
             'contents' => $contents,
         ];
 
@@ -104,22 +104,22 @@ class LessonController extends Controller
      */
     public function listLessons(Request $request)
     {
-        $stageId = (int) $request->get('stageId', 0);
-        $gradeId = (int) $request->get('gradeId', 0);
+        $stageId   = (int) $request->get('stageId', 0);
+        $gradeId   = (int) $request->get('gradeId', 0);
         $subjectId = (int) $request->get('subjectId', 0);
 
-        $stagesIds = (empty($stageId)) ? [] : [$stageId];
-        $gradesIds = (empty($gradeId)) ? [] : [$gradeId];
+        $stagesIds  = (empty($stageId)) ? [] : [$stageId];
+        $gradesIds  = (empty($gradeId)) ? [] : [$gradeId];
         $subjectIds = (empty($subjectId)) ? [] : [$subjectId];
 
-        $lessons = LessonRepository::getAll($subjectIds, $gradesIds, $stagesIds, true, -1, -1);
+        $lessons    = LessonRepository::getAll($subjectIds, $gradesIds, $stagesIds, true, -1, -1);
         $lessonsIds = array_pluck($lessons, 'id');
 
         $contents = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true, -1, -1);
 
         $data = [
-            'stageId' => $stageId,
-            'lessons' => $lessons,
+            'stageId'  => $stageId,
+            'lessons'  => $lessons,
             'contents' => $contents,
         ];
 
@@ -137,8 +137,6 @@ class LessonController extends Controller
      */
     public function show($lessonId)
     {
-        $lesson = EntityManager::getRepository(Lesson::class)->findById($lessonId);
-
-        return view('content.lesson.show', compact('lesson'));
+        
     }
 }
