@@ -61,15 +61,19 @@ class ContentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @Get("/{id}", as="content.show", where={"id": "[0-9]+"})
+     * @Get("/{id}/{slug?}", as="content.show", where={"id": "[0-9]+", "name":"[a-z]+"})
      * 
      * @param  int  $id
      *
      * @return View
      */
-    public function show($id)
+    public function show($id, $slug = '')
     {
         $content = ContentRepository::findById($id);
+
+        if (strcmp($slug, $content->slug) !== 0) {
+            return redirect(route('content.show', ['id' => $content->getId(), 'slug' => $content->slug]), 301);
+        }
 
         $this->seo()->setTitle($content->getLesson()->getName());
         $this->seo()->setDescription($content->getDescription());
@@ -78,7 +82,7 @@ class ContentController extends Controller
         $this->seo()->addImages([$content->getThumbnail()]);
 
         $data = [
-        'content' => $content
+            'content' => $content
         ];
 
         return view('content.video.show', $data);
