@@ -32,6 +32,8 @@
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
         "backpack/generators": "^1.1",
+        "xethron/migrations-generator": "^2.0",
+        "krlove/eloquent-model-generator": "^1.2",
         "barryvdh/laravel-debugbar": "^2.3"
     },
     "autoload": {
