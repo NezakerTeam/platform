@@ -1,7 +1,7 @@
 <?php
 namespace App\Forms;
 
-use App\Forms\Content\GradeDropdownForm;
+use App\Forms\Content\GradeDropdownExtendedForm;
 use App\Models\Repositories\StageRepository;
 use App\Models\Stage;
 use Kris\LaravelFormBuilder\Form;
@@ -27,7 +27,7 @@ class ContentForm extends Form
                     'data-refresh-url' => route('content.renderDropdownelement', ['grade']),
                 ]
             ])
-            ->compose(GradeDropdownForm::class, [
+            ->compose(GradeDropdownExtendedForm::class, [
                 'data' => $this->getData()
             ])
             ->add('how_to_upload', 'static', [

@@ -93,9 +93,12 @@ class HomeController extends Controller
         $activeContent  = ContentRepository::getByAuthor(Auth::id());
         $pendingContent = ContentRepository::getByAuthor(Auth::id(), Content::STATUS_PENDIND_APPROVAL);
 
+        $studentRelations = Auth::user()->StudentRelations;
+
         $data = [
-            'activeContents' => $activeContent,
-            'pendingContent' => $pendingContent,
+            'activeContents'   => $activeContent,
+            'pendingContent'   => $pendingContent,
+            'studentRelations' => $studentRelations,
         ];
 
         return view('user.parent.dashboard', $data);

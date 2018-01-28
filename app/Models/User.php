@@ -29,6 +29,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property City $city
  * @property Comment[] $comments
  * @property Content[] $contents
+ * @property StudentRelation[] $studentRelations
  */
 class User extends Authenticatable
 {
@@ -264,6 +265,19 @@ class User extends Authenticatable
     public function getGender()
     {
         return $this->gender;
+    }
+
+    /**
+     * Get the genders list
+     * 
+     * @return array
+     */
+    public static function getGendersList()
+    {
+        return [
+            self::GENDER_MALE   => 'ذكر',
+            self::GENDER_FEMALE => 'أنثي',
+        ];
     }
 
     /**
@@ -775,5 +789,13 @@ class User extends Authenticatable
     public function routeNotificationForMail()
     {
         return $this->email;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function studentRelations()
+    {
+        return $this->hasMany('App\Models\StudentRelation');
     }
 }

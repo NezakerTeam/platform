@@ -5,20 +5,13 @@
     <section>
         <div class="heading">
             <p class="text-center noPadd">
-                <a href="{{route('child.create')}}" class="btn btn-primary btn-lg" role="button">أضف بيانات أبنائك</a>
-                <a href="{{route('parent.survey')}}" class="btn btn-primary btn-lg" role="button">تقييم ولي الأمر</a>
+                <a href="{{route('student.create')}}" class="btn btn-primary btn-lg" role="button">أضف بيانات أبنائك</a>
             </p>
         </div>
 
-        <ul class="hover_listing row">
-            @forelse ($activeContents as $content)
-            <li class="content-card col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                @include ('content.video._video_card', ['video' => $content])
-            </li>
-
-            @empty
-            <p>No Courses</p>
-            @endforelse
+        @foreach ($studentRelations as $studentRelation)
+        @include ('user.parent._child', ['student' => $studentRelation->student])
+        @endforeach
         </ul>       
     </section>
 

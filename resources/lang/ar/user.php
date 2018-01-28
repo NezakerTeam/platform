@@ -16,6 +16,13 @@ $formEdit = array_merge(
     'submit' => 'تعديل البيانات',
     ]
 );
+$parent   = [
+    'dashboard' => [
+        'child' => [
+            'title' => 'الفديوهات الخاصة ب:name'
+        ]
+    ]
+];
 
 return [
     /*
@@ -34,5 +41,6 @@ return [
     'form'                => [
         'all'  => $formAll,
         'edit' => $formEdit
-    ]
+    ],
+    'parent'              => $parent
 ];
