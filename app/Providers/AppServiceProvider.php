@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         if ($this->app->environment() !== 'production') {
+            $this->app->register(\Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class);
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
             $this->app->alias(Barryvdh\Debugbar\Facade::class, 'Debugbar');
         }

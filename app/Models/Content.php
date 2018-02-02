@@ -499,7 +499,7 @@ class Content extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
+                'source' => ['lesson.name', 'lesson.subject.name', 'lesson.subject.grade.name', 'lesson.subject.grade.stage.name']
             ]
         ];
     }
