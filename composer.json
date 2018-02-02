@@ -11,7 +11,6 @@
         "kris/laravel-form-builder": "^1.9",
         "laravelcollective/annotations": "dev-master",
         "google/apiclient": "^2.0",
-
         "backpack/base": "^0.7.11",
         "backpack/crud": "^3.1",
         "aws/aws-sdk-php": "~3.0",
@@ -22,7 +21,7 @@
         "backpack/pagemanager": "^1.1",
         "fideloper/proxy": "~3.3",
         "laravel/tinker": "~1.0",
-        "league/flysystem-aws-s3-v3": "^1.0",
+        "league/flysystem-aws-s3-v3": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
