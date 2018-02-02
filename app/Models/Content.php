@@ -3,6 +3,7 @@ namespace App\Models;
 
 use App\Services\ContentService;
 use Backpack\CRUD\CrudTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,11 +26,12 @@ class Content extends Model
 {
 
     use CrudTrait;
+    use Sluggable;
 
     const STATUS_PENDIND_APPROVAL = 1;
-    const STATUS_APPROVED = 2;
-    const STATUS_DISAPPROVED = 3;
-    const TYPE_VIDEO = 1;
+    const STATUS_APPROVED         = 2;
+    const STATUS_DISAPPROVED      = 3;
+    const TYPE_VIDEO              = 1;
 
     /**
      * The table associated with the model.
@@ -49,8 +51,8 @@ class Content extends Model
      */
     protected $attributes = [
         'description' => '',
-        'status' => self::STATUS_PENDIND_APPROVAL,
-        'type' => self::TYPE_VIDEO,
+        'status'      => self::STATUS_PENDIND_APPROVAL,
+        'type'        => self::TYPE_VIDEO,
     ];
 
     /**
@@ -373,7 +375,7 @@ class Content extends Model
     public static function getSemestersList()
     {
         return [
-            self::SEMESTER_FIRST => 'First',
+            self::SEMESTER_FIRST  => 'First',
             self::SEMESTER_SECOND => 'Second'
         ];
     }
@@ -387,8 +389,8 @@ class Content extends Model
     {
         return [
             self::STATUS_PENDIND_APPROVAL => 'Pending Approval',
-            self::STATUS_APPROVED => 'Approved',
-            self::STATUS_DISAPPROVED => 'Disapproved',
+            self::STATUS_APPROVED         => 'Approved',
+            self::STATUS_DISAPPROVED      => 'Disapproved',
         ];
     }
 
@@ -399,7 +401,7 @@ class Content extends Model
 
     public function getYoutubeUrl()
     {
-        $url = '';
+        $url            = '';
         $youtubeVideoId = $this->getYoutubeVideoId();
 
         if (!empty($youtubeVideoId)) {
@@ -479,12 +481,26 @@ class Content extends Model
                 $content->setAuthorId(Auth::id());
             }
 
-            $oldYoutubeVideoId = $content->getOriginal('youtube_video_id');
+            $oldYoutubeVideoId     = $content->getOriginal('youtube_video_id');
             $currentYoutubeVideoId = $content->youtube_video_id;
             if (!empty($currentYoutubeVideoId) && $oldYoutubeVideoId != $currentYoutubeVideoId) {
                 $thumbnail = app(ContentService::class)->fetchYoutubeVideoThumb($currentYoutubeVideoId);
                 $content->setThumbnail($thumbnail);
             }
         });
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
