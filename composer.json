@@ -6,9 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5.0",
         "kris/laravel-form-builder": "^1.9",
         "laravelcollective/annotations": "dev-master",
@@ -21,6 +19,9 @@
         "backpack/backupmanager": "^1.1",
         "dingo/api": "1.0.x@dev",
         "backpack/pagemanager": "^1.1",
+        "fideloper/proxy": "~3.3",
+        "laravel/tinker": "~1.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "cviebrock/eloquent-sluggable": "^4.4"
     },
     "require-dev": {

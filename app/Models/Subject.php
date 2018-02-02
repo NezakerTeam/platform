@@ -21,7 +21,7 @@ class Subject extends Model
 
     use CrudTrait;
 
-    const STATUS_ACTIVE = 1;
+    const STATUS_ACTIVE   = 1;
     const STATUS_INACTIVE = 2;
 
     /**
@@ -34,7 +34,7 @@ class Subject extends Model
     /**
      * @var array
      */
-    protected $fillable = ['grade_id', 'name', 'description', 'status', 'created_at', 'updated_at', 'ordering'];
+    protected $fillable = ['grade_id', 'name', 'description', 'status', 'image', 'created_at', 'updated_at', 'ordering'];
 
     /**
      * Get id.
@@ -150,7 +150,7 @@ class Subject extends Model
     public static function getStatusesList()
     {
         return [
-            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_ACTIVE   => 'Active',
             self::STATUS_INACTIVE => 'InActive',
         ];
     }
@@ -264,19 +264,59 @@ class Subject extends Model
         return $this->belongsTo('App\Models\Grade', 'grade_id');
     }
 
-    
-    public function getStage(){
+    public function getStage()
+    {
         return $this->getGrade()->getStage();
     }
-    
-    public function getStageId(){
+
+    public function getStageId()
+    {
         return $this->getStage()->getId();
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function lessons()
     {
         return $this->hasMany('App\Models\Lesson');
+    }
+
+    public function setImageAttribute($value)
+    {
+        $attributeName    = "image";
+        $disk             = "s3";
+        $destination_path = "uploads/subject/image";
+
+        // if the image was erased
+        if ($value == null) {
+            // delete the image from disk
+            \Storage::disk($disk)->delete($this->{$attributeName});
+
+            // set null in the database column
+            $this->attributes[$attributeName] = null;
+        }
+
+        // if a base64 was sent, store it in the db
+        if (starts_with($value, 'data:image')) {
+            // 0. Make the image
+            $image                            = \Image::make($value);
+            // 1. Generate a filename.
+            $filename                         = md5($value . time()) . '.jpg';
+            // 2. Store the image on disk.
+            \Storage::disk($disk)->put($destination_path . '/' . $filename, (string) $image->stream(), 'public');
+            // 3. Save the path to the database
+            $this->attributes[$attributeName] = $filename;
+        }
+    }
+
+    public static function getImagePath()
+    {
+        return \Illuminate\Support\Facades\Storage::cloud()->url("uploads/subject/image/");
+    }
+
+    public function getImageUrl()
+    {
+        $this->getImagePath() . '/' . $this->image;
     }
 }
