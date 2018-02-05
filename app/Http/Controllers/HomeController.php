@@ -29,18 +29,18 @@ class HomeController extends Controller
     {
         $registerForm = $formBuilder->create(RegisterTeacherForm::class, [
             'method' => 'POST',
-            'url' => 'register'
+            'url'    => 'register'
         ]);
 
         $contactUsForm = $formBuilder->create(ContactUsForm::class, [
             'method' => 'POST',
-            'url' => route('general.postContactUs')
+            'url'    => route('general.postContactUs')
         ]);
 
         $recentLesson = \App\Services\ContentService::getRecentContents(8);
 
         $data = [
-            'registerForm' => $registerForm,
+            'registerForm'  => $registerForm,
             'contactUsForm' => $contactUsForm,
             'recentLessons' => $recentLesson
         ];
@@ -60,6 +60,8 @@ class HomeController extends Controller
     {
         if (Auth::user()->hasType(User::TYPE_TEACHER)) {
             return $this->teacherDashboard();
+        } else {
+            return $this->parentDashboard();
         }
     }
 
@@ -70,7 +72,7 @@ class HomeController extends Controller
      */
     private function teacherDashboard()
     {
-        $activeContent = ContentRepository::getByAuthor(Auth::id());
+        $activeContent  = ContentRepository::getByAuthor(Auth::id());
         $pendingContent = ContentRepository::getByAuthor(Auth::id(), Content::STATUS_PENDIND_APPROVAL);
 
         $data = [
@@ -79,5 +81,24 @@ class HomeController extends Controller
         ];
 
         return view('user.teacher.dashboard', $data);
+    }
+
+    /**
+     * Show the teacher dashboard.
+     *
+     * @return Response
+     */
+    private function parentDashboard()
+    {
+        $activeContent = ContentRepository::getByAuthor(Auth::id());
+
+        $studentRelations = Auth::user()->StudentRelations;
+
+        $data = [
+            'activeContents'   => $activeContent,
+            'studentRelations' => $studentRelations,
+        ];
+
+        return view('user.parent.dashboard', $data);
     }
 }

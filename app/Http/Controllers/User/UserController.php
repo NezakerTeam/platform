@@ -11,7 +11,7 @@ use Kris\LaravelFormBuilder\Facades\FormBuilder;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 
 /**
- * @Controller(prefix="teacher")
+ * @Controller(prefix="user")
  * @Middleware("web")
  * @Middleware("auth")
  */

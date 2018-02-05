@@ -22,9 +22,9 @@ class Lesson extends Model
 
     use CrudTrait;
 
-    const STATUS_ACTIVE = 1;
+    const STATUS_ACTIVE   = 1;
     const STATUS_INACTIVE = 2;
-    const SEMESTER_FIRST = 1;
+    const SEMESTER_FIRST  = 1;
     const SEMESTER_SECOND = 2;
 
     /**
@@ -399,7 +399,7 @@ class Lesson extends Model
     public static function getSemestersList()
     {
         return [
-            self::SEMESTER_FIRST => 'First',
+            self::SEMESTER_FIRST  => 'First',
             self::SEMESTER_SECOND => 'Second'
         ];
     }
@@ -412,7 +412,7 @@ class Lesson extends Model
     public static function getStatusesList()
     {
         return [
-            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_ACTIVE   => 'Active',
             self::STATUS_INACTIVE => 'InActive',
         ];
     }
@@ -441,5 +441,15 @@ class Lesson extends Model
     public function contents()
     {
         return $this->hasMany('App\Models\Content');
+    }
+
+    /**
+     * Get the related approved contents
+     * 
+     * @return Content[]
+     */
+    public function getApprovedContents()
+    {
+        return $this->contents()->where('status', '=', Content::STATUS_APPROVED)->get();
     }
 }

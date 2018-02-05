@@ -11,6 +11,14 @@ class RegisterTeacherForm extends Form
     public function buildForm()
     {
         $this
+            ->add('type', 'select', [
+                'label' => trans('auth.form.type'),
+                'choices'     => \App\Models\User::getUserTypes(),
+                'rules'       => 'required',
+                //'attr' => ['placeholder' => trans('auth.form.city')],
+                'property'    => 'type',
+                'empty_value' => trans('auth.form.type.select'),
+            ])
             ->add('first_name', 'text', [
                 'label' => trans('auth.form.first_name'),
                 'rules' => 'required|min:2',

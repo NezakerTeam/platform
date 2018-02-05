@@ -11,5 +11,5 @@ return [
       |
      */
 
-    'name' => 'مادة',
+    'entityName' => 'درس'
 ];

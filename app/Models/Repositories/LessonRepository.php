@@ -20,9 +20,9 @@ class LessonRepository extends EntityRepository
         return $lesson;
     }
 
-    public function findById($id)
+    public static function findById($id)
     {
-        return $this->find($id);
+        return self::getModel()->find($id);
     }
 
     public static function getAll($subjectsIds = [], $gradesIds = [], $stagesIds = [], $activeOnly = null, $offset = 0, $limit = 8)

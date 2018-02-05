@@ -14,9 +14,9 @@ class GradeDropdownForm extends Form
 
         $this
             ->add('grade_id', 'entity', [
-                'label' => trans('content.form.grade'),
-                'class' => Grade::class,
-                'property' => 'name',
+                'label'         => trans('content.form.grade'),
+                'class'         => Grade::class,
+                'property'      => 'name',
                 'query_builder' => function () use ($stageId) {
                     $grades = [];
                     if (!empty($stageId)) {
@@ -25,17 +25,15 @@ class GradeDropdownForm extends Form
                     return $grades;
                 },
                 'empty_value' => trans('general.select'),
-                'rules' => 'required',
-                'attr' => [
-                    'id' => 'grade_dropdown_form',
-                    'class_append' => 'element-refresher',
+                'rules'       => 'required',
+                'attr'        => [
+                    'id'                   => 'grade_dropdown_form',
+                    'class_append'         => 'element-refresher',
                     'data-refresh-element' => 'subject_dropdown_form',
-                    'data-refresh-url' => route('content.renderDropdownelement', ['subject']),
+                    'data-refresh-url'     => route('content.renderDropdownelement', ['subject']),
                 ]
             ])
-            ->compose(SubjectDropdownForm::class, [
-                'data' => $this->getData()
-            ])
+
         ;
     }
 }

@@ -20,7 +20,7 @@ class Grade extends Model
 
     use \Backpack\CRUD\CrudTrait;
 
-    const STATUS_ACTIVE = 1;
+    const STATUS_ACTIVE   = 1;
     const STATUS_INACTIVE = 2;
 
     /**
@@ -149,7 +149,7 @@ class Grade extends Model
     public static function getStatusesList()
     {
         return [
-            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_ACTIVE   => 'Active',
             self::STATUS_INACTIVE => 'InActive',
         ];
     }
@@ -269,5 +269,15 @@ class Grade extends Model
     public function subjects()
     {
         return $this->hasMany(Subject::class);
+    }
+
+    /**
+     * Get the related active subjects
+     * 
+     * @return Subject[]
+     */
+    public function getActiveSubjects()
+    {
+        return $this->subjects()->where('status', '=', Subject::STATUS_ACTIVE)->get();
     }
 }

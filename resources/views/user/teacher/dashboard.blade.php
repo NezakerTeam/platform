@@ -56,8 +56,9 @@
             </table>
         </div>
     </section>
+    @endif
+
 </div>
 
-@endif
 
 @endsection

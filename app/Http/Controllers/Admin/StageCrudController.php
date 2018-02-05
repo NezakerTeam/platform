@@ -114,29 +114,36 @@ class StageCrudController extends CrudController
     {
         // ------ CRUD columns
         $this->crud->addColumn([
-            'name' => 'name',
+            'name'  => 'name',
             'label' => 'Name',
         ]);
 
         $this->crud->addColumn([
-            'name' => 'description',
+            'name'  => 'description',
             'label' => 'Description',
         ]);
 
         $this->crud->addColumn([
             // run a function on the CRUD model and show its return value
-            'label' => 'status', // Table column heading
-            'type' => 'model_function',
+            'label'         => 'status', // Table column heading
+            'type'          => 'model_function',
             'function_name' => 'getStatusName', // the method in your Model
         ]);
 
         $this->crud->addColumn([
-            'name' => 'created_at',
+            // run a function on the CRUD model and show its return value
+            'name'  => 'is_general',
+            'label' => 'Is General', // Table column heading
+            'type'  => 'boolean',
+        ]);
+
+        $this->crud->addColumn([
+            'name'  => 'created_at',
             'label' => 'Created At',
         ]);
 
         $this->crud->addColumn([
-            'name' => 'updated_at',
+            'name'  => 'updated_at',
             'label' => 'Updated At',
         ]);
     }
@@ -150,23 +157,30 @@ class StageCrudController extends CrudController
     {
         // ------ CRUD columns
         $this->crud->addField([
-            'name' => 'name',
+            'name'  => 'name',
             'label' => 'Name',
         ]);
+
         $this->crud->addField([
-            'name' => 'description',
+            'name'  => 'description',
             'label' => 'Description',
-            'type' => 'textarea'
+            'type'  => 'textarea'
         ]);
 
         $this->crud->addField([// select_from_array
-            'name' => 'status',
-            'label' => 'Status',
-            'type' => 'select_from_array',
-            'options' => Stage::getStatusesList(),
-            'value' => null,
+            'name'        => 'status',
+            'label'       => 'Status',
+            'type'        => 'select_from_array',
+            'options'     => Stage::getStatusesList(),
+            'value'       => null,
             'allows_null' => false,
             // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+        ]);
+
+        $this->crud->addField([
+            'name'  => 'is_general',
+            'label' => 'Is General',
+            'type'  => 'checkbox'
         ]);
     }
 

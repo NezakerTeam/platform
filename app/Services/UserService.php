@@ -17,7 +17,6 @@ class UserService
     {
         $user = $this->bindUserData(new User(), $data);
 
-        $user->setType(User::TYPE_TEACHER);
         $user->setLastLogin();
 
         // Save the entity
@@ -38,6 +37,10 @@ class UserService
 
     private function bindUserData(User $user, $data)
     {
+        if (isset($data['type'])) {
+            $user->setType($data['type']);
+        }
+
         $user->setFirstName($data['first_name']);
         $user->setLastName($data['last_name']);
         $user->setEmail($data['email']);
