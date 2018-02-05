@@ -90,14 +90,12 @@ class HomeController extends Controller
      */
     private function parentDashboard()
     {
-        $activeContent  = ContentRepository::getByAuthor(Auth::id());
-        $pendingContent = ContentRepository::getByAuthor(Auth::id(), Content::STATUS_PENDIND_APPROVAL);
+        $activeContent = ContentRepository::getByAuthor(Auth::id());
 
         $studentRelations = Auth::user()->StudentRelations;
 
         $data = [
             'activeContents'   => $activeContent,
-            'pendingContent'   => $pendingContent,
             'studentRelations' => $studentRelations,
         ];
 

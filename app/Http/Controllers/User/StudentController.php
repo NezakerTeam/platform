@@ -107,7 +107,7 @@ class StudentController extends Controller
 
         $form = FormBuilder::create(StudentForm::class, [
                 'method' => 'PATCH',
-                'url'    => route('user.profile.update'),
+                'url'    => route('student.update', ['id' => $id]),
                 'model'  => $student
                 ], [
                 'isEdit' => true
@@ -134,12 +134,15 @@ class StudentController extends Controller
      */
     public function update($id, Request $request)
     {
-        $requestData = $request->all();
+        $form = $this->form(StudentForm::class, [], ['isEdit' => true]);
 
-        $lesson = Student::findOrFail($id);
-        $lesson->update($requestData);
+        // Or automatically redirect on error. This will throw an HttpResponseException with redirect
+        $form->redirectIfNotValid();
 
-        return redirect(route('student.show', ['id' => $lesson->getId()]));
+        $student = Student::findOrFail($id);
+        $student->update($form->getFieldValues());
+
+        return redirect(route('app.dashboard', ['id' => $student->getId()]));
     }
 
     /**

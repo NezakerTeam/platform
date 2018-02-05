@@ -282,6 +282,11 @@ class Subject extends Model
         return $this->hasMany(Lesson::class);
     }
 
+    public function getImage()
+    {
+        return ($this->image) ?: 'default.png';
+    }
+
     public function setImageAttribute($value)
     {
         $attributeName    = "image";
@@ -317,6 +322,6 @@ class Subject extends Model
 
     public function getImageUrl()
     {
-        $this->getImagePath() . '/' . $this->image;
+        return $this->getImagePath() . $this->getImage();
     }
 }

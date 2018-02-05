@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers\Content;
 
-use App\Models\Lesson;
 use App\Models\Repositories\ContentRepository;
 use App\Models\Repositories\GradeRepository;
 use App\Models\Repositories\LessonRepository;
@@ -11,12 +10,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
-use LaravelDoctrine\ORM\Facades\EntityManager;
 use function view;
 
 /**
  * @Controller(prefix="lesson")
  * @Middleware("web")
+ * @Middleware("auth")
  */
 class LessonController extends Controller
 {
@@ -32,9 +31,6 @@ class LessonController extends Controller
      */
     public function index()
     {
-
-        $stages    = $grades    = $gradesIds = $subjects  = $lessons   = $contents  = [];
-
         $stages    = StageRepository::getAll(true, -1, -1);
         $stagesIds = array_pluck($stages, 'id');
 

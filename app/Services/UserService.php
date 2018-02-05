@@ -37,7 +37,10 @@ class UserService
 
     private function bindUserData(User $user, $data)
     {
-        $user->setType($data['type']);
+        if (isset($data['type'])) {
+            $user->setType($data['type']);
+        }
+
         $user->setFirstName($data['first_name']);
         $user->setLastName($data['last_name']);
         $user->setEmail($data['email']);

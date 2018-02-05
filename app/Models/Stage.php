@@ -18,7 +18,7 @@ class Stage extends Model
 
     use \Backpack\CRUD\CrudTrait;
 
-    const STATUS_ACTIVE = 1;
+    const STATUS_ACTIVE   = 1;
     const STATUS_INACTIVE = 2;
 
     /**
@@ -31,7 +31,7 @@ class Stage extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'description', 'status', 'created_at', 'updated_at', 'ordering'];
+    protected $fillable = ['name', 'description', 'status', 'is_general', 'created_at', 'updated_at', 'ordering'];
 
     /**
      * Get id.
@@ -147,7 +147,7 @@ class Stage extends Model
     public static function getStatusesList()
     {
         return [
-            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_ACTIVE   => 'Active',
             self::STATUS_INACTIVE => 'InActive',
         ];
     }

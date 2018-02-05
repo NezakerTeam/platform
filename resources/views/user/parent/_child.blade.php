@@ -16,10 +16,12 @@
 
     </div>
     <div class="row">
-        @foreach ($student->grade->subjects as $subject)
+        @foreach ($student->grade->getActiveSubjects() as $subject)
         <div class="col-md-3">
+            <p class="text-center">{{$subject->name}}</p>
+
             <a href="{{route('subject.show', ['id' => $subject->getId()])}}" target="_blank">
-                <img src="" alt="{{$subject->name}}" class="img-thumbnail img-responsive"">
+                <img src="{{$subject->getImageUrl()}}" alt="{{$subject->name}}" class="center-block subject-thumb img-thumbnail img-responsive img-rounded">
             </a>
         </div>
         @endforeach

@@ -12,6 +12,7 @@
 
             <div class="panel-group row form-group" id="accordion" role="tablist" aria-multiselectable="true">
                 @foreach ($subject->lessons as $lesson)
+                @if (count($lesson->getApprovedContents()) > 0)
                 <div class="col-md-1"></div>
                 <div class="col-md-5  form-group">
                     <div class="panel panel-default">
@@ -25,7 +26,7 @@
                         <div id="collapse{{$lesson->id}}" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="row">
-                                    @foreach ($lesson->contents as $content)
+                                    @foreach ($lesson->getApprovedContents() as $content)
                                     <div class="col-md-4">
                                         <a href="{{route('content.show', ['id' => $content->getId()])}}" target="_blank">
                                             <img src="{{$content->thumbnail}}" alt="{{$content->description}}" class="img-thumbnail img-responsive"">
@@ -37,6 +38,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 @endforeach
             </div>
         </div>
