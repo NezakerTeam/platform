@@ -113,36 +113,46 @@ class GradeCrudController extends CrudController
     {
         // ------ CRUD columns
         $this->crud->addColumn([
-            'name' => 'name',
+            'name'  => 'name',
             'label' => 'Name',
         ]);
 
         $this->crud->addColumn([
-            'label' => 'Stage',
-            'type' => 'select',
-            'entity' => 'stage',
+            'label'     => 'Stage',
+            'type'      => 'select',
+            'entity'    => 'stage',
             'attribute' => 'name',
         ]);
 
         $this->crud->addColumn([
-            'name' => 'description',
+            'name'  => 'description',
             'label' => 'Description',
         ]);
 
         $this->crud->addColumn([
+            'name'   => 'image', // The db column name
+            'label'  => "Image", // Table column heading
+            'type'   => 'image',
+            'prefix' => Grade::getImagePath(),
+            // optional width/height if 25px is not ok with you
+            'height' => '80px',
+            'width'  => '80px',
+        ]);
+
+        $this->crud->addColumn([
             // run a function on the CRUD model and show its return value
-            'label' => 'status', // Table column heading
-            'type' => 'model_function',
+            'label'         => 'status', // Table column heading
+            'type'          => 'model_function',
             'function_name' => 'getStatusName', // the method in your Model
         ]);
 
         $this->crud->addColumn([
-            'name' => 'created_at',
+            'name'  => 'created_at',
             'label' => 'Created At',
         ]);
 
         $this->crud->addColumn([
-            'name' => 'updated_at',
+            'name'  => 'updated_at',
             'label' => 'Updated At',
         ]);
     }
@@ -156,30 +166,40 @@ class GradeCrudController extends CrudController
     {
         // ------ CRUD columns
         $this->crud->addField([
-            'name' => 'name',
+            'name'  => 'name',
             'label' => 'Name',
         ]);
         $this->crud->addField([
-            'name' => 'description',
+            'name'  => 'description',
             'label' => 'Description',
-            'type' => 'textarea'
+            'type'  => 'textarea'
         ]);
 
         $this->crud->addField([// Select
-            'label' => 'Stage',
-            'type' => 'select',
-            'name' => 'stage_id', // the db column for the foreign key
-            'entity' => 'stage', // the method that defines the relationship in your Model
+            'label'     => 'Stage',
+            'type'      => 'select',
+            'name'      => 'stage_id', // the db column for the foreign key
+            'entity'    => 'stage', // the method that defines the relationship in your Model
             'attribute' => 'name', // foreign key attribute that is shown to user
-            'model' => Stage::class // foreign key model
+            'model'     => Stage::class // foreign key model
+        ]);
+
+        $this->crud->addField([// image
+            'label'        => 'Image',
+            'name'         => "image",
+            'type'         => 'image',
+            'upload'       => true,
+            'crop'         => true, // set to true to allow cropping, false to disable
+            'aspect_ratio' => 1, // ommit or set to 0 to allow any aspect ratio
+            'prefix'       => Grade::getImagePath(), // in case you only store the filename in the database, this text will be prepended to the database value
         ]);
 
         $this->crud->addField([// select_from_array
-            'name' => 'status',
-            'label' => 'Status',
-            'type' => 'select_from_array',
-            'options' => Grade::getStatusesList(),
-            'value' => null,
+            'name'        => 'status',
+            'label'       => 'Status',
+            'type'        => 'select_from_array',
+            'options'     => Grade::getStatusesList(),
+            'value'       => null,
             'allows_null' => false,
             // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
         ]);

@@ -17,7 +17,7 @@ class ContentForm extends Form
                 'class' => Stage::class,
                 'property' => 'name',
                 'query_builder' => function () {
-                    return StageRepository::getAll(true, -1, -1);
+                    return StageRepository::getAll(true);
                 },
                 'empty_value' => trans('general.select'),
                 'rules' => 'required',

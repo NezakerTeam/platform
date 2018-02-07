@@ -91,12 +91,14 @@ class HomeController extends Controller
     private function parentDashboard()
     {
         $activeContent = ContentRepository::getByAuthor(Auth::id());
+        $generalStages = \App\Models\Repositories\StageRepository::getAll(true, true);
 
         $studentRelations = Auth::user()->StudentRelations;
 
         $data = [
             'activeContents'   => $activeContent,
             'studentRelations' => $studentRelations,
+            'generalStages'    => $generalStages,
         ];
 
         return view('user.parent.dashboard', $data);

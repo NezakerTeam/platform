@@ -12,15 +12,18 @@ class StageRepository extends EntityRepository
         return new \App\Models\Stage();
     }
 
-    public static function getAll($activeOnly = null, $offset = 0, $limit = 6)
+    public static function getAll($activeOnly = false, $generalOnly = false, $offset = -1, $limit = -1)
     {
-        $stagesQB = self::getModel()
-            ->with('grades')
-        ;
+        $stagesQB = self::getModel()->with('grades');
 
-        if ($activeOnly !== null) {
+        if ($activeOnly !== false) {
             $stagesQB = $stagesQB->where('status', \App\Models\Stage::STATUS_ACTIVE);
         }
+
+        if ($generalOnly !== false) {
+            $stagesQB = $stagesQB->where('is_general', true);
+        }
+
 
         if ($limit >= 0) {
             $stagesQB = $stagesQB->limit($limit)
