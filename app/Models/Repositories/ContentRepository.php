@@ -23,7 +23,6 @@ class ContentRepository extends EntityRepository
 
     public static function getByAuthor(int $authorId, $status = Content::STATUS_APPROVED, $offset = 0, $limit = 8)
     {
-
         $contentsQB = self::getModel()
             ->with('author')
             ->with('lesson')
@@ -51,7 +50,6 @@ class ContentRepository extends EntityRepository
 
     public static function getAll($lessonsIds = [], $activeOnly = null, $offset = 0, $limit = 8)
     {
-
         $contentsQB = self::getModel()
             ->with('author')
             ->with('lesson')
