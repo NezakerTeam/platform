@@ -12,6 +12,13 @@ class SubjectRepository extends EntityRepository
         return new \App\Models\Subject();
     }
 
+    /**
+     * Get a subject by id
+     * 
+     * @param integer $id   Subject id
+     * 
+     * @return \App\Models\Subject
+     */
     public static function findById($id)
     {
         return self::getModel()->find($id);
