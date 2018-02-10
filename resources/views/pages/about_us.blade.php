@@ -8,6 +8,9 @@
     </div>   
     {!! $page['content'] !!}
 
+    <section id="comments">
+        <div id="disqus_thread"></div>
+    </section>
 </div>
 
 @endsection
