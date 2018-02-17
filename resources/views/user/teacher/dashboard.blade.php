@@ -4,7 +4,7 @@
 <div class="container">
     <section>
         <div class="heading">
-            <h1><span>فيديوهات</span></h1>
+            <h3><span>فيديوهات</span></h3>
             <p class="text-center noPadd">
                 <a href="{{route('content.create')}}" class="btn btn-primary btn-lg" role="button">اضف فيديو جديد</a>
             </p>
@@ -22,10 +22,19 @@
         </ul>       
     </section>
 
+    <section>
+        @foreach ($generalStages as $stage)
+        @if (count($stage->getActiveGrades()) > 0)
+        @include ('user._general_stage', ['stage' => $stage])
+        @endif
+        @endforeach
+        </ul>       
+    </section>
+
     @if (count($pendingContent) > 0)
     <section class="section_gap">
         <div class="heading">
-            <h1><span>فيديوهات تحت المراجعة</span></h1>
+            <h3><span>فيديوهات تحت المراجعة</span></h3>
         </div>
         <div class="table-responsive">
             <table class="table table-hover table-striped">

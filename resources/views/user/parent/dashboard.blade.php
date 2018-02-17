@@ -17,8 +17,7 @@
         </ul>       
     </section>
 
-    <section>       
-
+    <section>
         @foreach ($generalStages as $stage)
         @if (count($stage->getActiveGrades()) > 0)
         @include ('user._general_stage', ['stage' => $stage])
