@@ -30,7 +30,7 @@ class TeacherController extends Controller
      */
     public function myCourses()
     {
-        $stages    = StageRepository::getAll(true, 0, 6);
+        $stages    = StageRepository::getAll(true);
         $grades    = $gradesIds = $subjects  = $lessons   = $contents  = [];
 
         foreach ($stages as $stage) {
