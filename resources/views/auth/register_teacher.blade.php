@@ -12,10 +12,12 @@
                 <div class="panel-body">
                     {!! form($form) !!}
 
-                    <span>
+                    <div style="margin-top:10px">
                         <strong>{{trans('auth.alreadyRegistered')}}</strong>
                         <a href="{{route('login')}}">{{trans('auth.alreadyRegistered.login')}}</a>
-                    </span>
+                        أو
+                        <a href="{{ url(route('socialAuth.facebook')) }}" class="btn btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i> ادخل بالفيسبوك</a>
+                    </div>
 
                 </div>
             </div>

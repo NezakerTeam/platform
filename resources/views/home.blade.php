@@ -24,7 +24,7 @@
                         <!--Header text2 start-->
                         <div class="container hedaer-inner">
                             <div class="bannerText">
-                                 <h3>تطوير أداء الابناء</h3>
+                                <h3>تطوير أداء الابناء</h3>
                                 <p>نذاكر يعمل على تقديم استشارات قيمة للأباء والامهات و تساعدهم على ممارسة أنشطة مفيدة مع أبنائهم وإدراك احتياجاتهم خلال كل مرحلة المختلفة </p>
                                 <p><a href="#recent-lessons" class="smooth">عرض الفيديوهات <i class="fa fa-angle-right"></i></a></p>
                             </div>
@@ -47,11 +47,11 @@
                         {!! form_errors($registerForm->type)!!}
                         {!! form_widget($registerForm->type)!!}
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-row">
                         {!! form_errors($registerForm->first_name)!!}
                         {!! form_widget($registerForm->first_name)!!}
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-row">
                         {!! form_errors($registerForm->last_name)!!}
                         {!! form_widget($registerForm->last_name)!!}
                     </div>
@@ -67,13 +67,17 @@
                         {!! form_errors($registerForm->city_id)!!}
                         {!! form_widget($registerForm->city_id)!!}
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         {!! form_errors($registerForm->phone_numbers)!!}
                         {!! form_widget($registerForm->phone_numbers)!!}
                     </div>          
 
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
                         {!! form_widget($registerForm->submit, ['attr'=> ['class' => 'input-button', 'width' => '40%']])!!}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                        <a href="{{ url(route('socialAuth.facebook')) }}" class="btn btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i> ادخل بالفيسبوك</a>
                     </div>
                 </div>
                 {!! form_end($registerForm) !!}

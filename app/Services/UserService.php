@@ -51,10 +51,41 @@ class UserService
             $user->setPassword($password);
         }
 
-        // Set the city
-        $user->setCityId($data['city_id']);
+        if (!empty($data['city_id'])) {
+            // Set the city
+            $user->setCityId($data['city_id']);
+        }
 
-        $user->setPhoneNumbers($data['phone_numbers']);
+        if (!empty($data['phone_numbers'])) {
+            $user->setPhoneNumbers($data['phone_numbers']);
+        }
+
+        return $user;
+    }
+
+    public function getBySocialUser(\Laravel\Socialite\Two\User $socialUser)
+    {
+        $user = null;
+
+        $socialEmail = $socialUser->getEmail();
+
+        if (!empty($socialEmail)) {
+            $user = UserRepository::getByEmail($socialEmail);
+
+            if (empty($user)) {
+                list($firstName, $lastName) = explode(' ', $socialUser->getName());
+
+                $data = [
+                    'type'       => User::TYPE_STUDENT_PARENT,
+                    'first_name' => $firstName,
+                    'last_name'  => $lastName,
+                    'email'      => $socialUser->getEmail(),
+                    'password'   => md5($socialUser->getId())
+                ];
+
+                $user = $this->register($data);
+            }
+        }
 
         return $user;
     }

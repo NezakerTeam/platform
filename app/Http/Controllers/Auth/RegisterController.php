@@ -75,7 +75,7 @@ use RegistersUsers,
     {
         $form = $formBuilder->create('App\Forms\RegisterTeacherForm', [
             'method' => 'POST',
-            'url' => 'register'
+            'url'    => 'register'
         ]);
 
         return view('auth.register_teacher', compact('form'));
