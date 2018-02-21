@@ -14,9 +14,7 @@ class GradeRepository extends EntityRepository
 
     public static function getAll($stagesIds = [], $activeOnly = null, $offset = 0, $limit = 6)
     {
-
-        $gradesQB = self::getModel()
-        ;
+        $gradesQB = self::getModel();
 
         if (!empty($stagesIds)) {
             $gradesQB = $gradesQB->whereIn('stage_id', $stagesIds);

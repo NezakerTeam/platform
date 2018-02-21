@@ -29,7 +29,27 @@ class SubjectController extends Controller
     {
         $subject = SubjectRepository::findById($subjectId);
 
-        //dd($subject->lessons()->first());
-        return view('curriculum.subject.show', ['subject' => $subject]);
+        if (!$subject) {
+            abort(404);
+        }
+
+        $lessons = $subject->getActiveLessons();
+
+        $lessonsChunks = [0 => [], 1 => []];
+
+        $index = 0;
+        foreach ($lessons as $lesson) {
+            if (count($lesson->getApprovedContents()) > 0) {
+                $lessonsChunks[$index % 2][] = $lesson;
+                $index++;
+            }
+        }
+
+        $data = [
+            'subject'       => $subject,
+            'lessonsChunks' => $lessonsChunks
+        ];
+
+        return view('curriculum.subject.show', $data);
     }
 }

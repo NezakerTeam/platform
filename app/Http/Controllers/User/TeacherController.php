@@ -30,28 +30,28 @@ class TeacherController extends Controller
      */
     public function myCourses()
     {
-        $stages = StageRepository::getAll(true);
-        $grades = $gradesIds = $subjects = $lessons = $contents = [];
+        $stages    = StageRepository::getAll(true);
+        $grades    = $gradesIds = $subjects  = $lessons   = $contents  = [];
 
         foreach ($stages as $stage) {
-            $stageId = $stage->getId();
+            $stageId          = $stage->getId();
             $grades[$stageId] = GradeRepository::getAll([$stageId], true);
-            $gradesIds = array_pluck($grades[$stageId], 'id');
+            $gradesIds        = array_pluck($grades[$stageId], 'id');
 
             $subjects[$stageId] = (empty($gradesIds)) ? [] : SubjectRepository::getAll($gradesIds, [], true);
-            $subjectsIds = array_pluck($subjects[$stageId], 'id');
+            $subjectsIds        = array_pluck($subjects[$stageId], 'id');
 
             $lessons[$stageId] = (empty($subjectsIds)) ? [] : LessonRepository::getAll($subjectsIds, [], [], true);
-            $lessonsIds = array_pluck($lessons[$stageId], 'id');
+            $lessonsIds        = array_pluck($lessons[$stageId], 'id');
 
             $contents[$stageId] = (empty($lessonsIds)) ? [] : ContentRepository::getAll($lessonsIds, true);
         }
 
         $data = [
-            'stages' => $stages,
-            'grades' => $grades,
+            'stages'   => $stages,
+            'grades'   => $grades,
             'subjects' => $subjects,
-            'lessons' => $lessons,
+            'lessons'  => $lessons,
             'contents' => $contents,
         ];
 

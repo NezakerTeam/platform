@@ -17,7 +17,7 @@ class ContentController extends \App\Http\Controllers\Api\BaseApiController
      */
     public function stages()
     {
-        $stages = \App\Models\Repositories\StageRepository::getAll(true, -1, -1);
+        $stages = \App\Models\Repositories\StageRepository::getAll(true);
 
         return $this->response->collection($stages, new \App\Transformers\Api\StageTransformer());
     }

@@ -74,10 +74,12 @@ class HomeController extends Controller
     {
         $activeContent  = ContentRepository::getByAuthor(Auth::id());
         $pendingContent = ContentRepository::getByAuthor(Auth::id(), Content::STATUS_PENDIND_APPROVAL);
+        $generalStages  = \App\Models\Repositories\StageRepository::getAll(true, true);
 
         $data = [
             'activeContents' => $activeContent,
             'pendingContent' => $pendingContent,
+            'generalStages'  => $generalStages,
         ];
 
         return view('user.teacher.dashboard', $data);
@@ -91,12 +93,14 @@ class HomeController extends Controller
     private function parentDashboard()
     {
         $activeContent = ContentRepository::getByAuthor(Auth::id());
+        $generalStages  = \App\Models\Repositories\StageRepository::getAll(true, true);
 
         $studentRelations = Auth::user()->StudentRelations;
 
         $data = [
             'activeContents'   => $activeContent,
             'studentRelations' => $studentRelations,
+            'generalStages'    => $generalStages,
         ];
 
         return view('user.parent.dashboard', $data);

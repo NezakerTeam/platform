@@ -282,6 +282,16 @@ class Subject extends Model
         return $this->hasMany(Lesson::class);
     }
 
+    /**
+     * Get the related active lessons
+     * 
+     * @return Lessons[]
+     */
+    public function getActiveLessons()
+    {
+        return $this->lessons()->where('status', '=', Lesson::STATUS_ACTIVE)->get();
+    }
+
     public function getImage()
     {
         return ($this->image) ?: 'default.png';

@@ -31,7 +31,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $stages    = StageRepository::getAll(true, -1, -1);
+        $stages    = StageRepository::getAll(true);
         $stagesIds = array_pluck($stages, 'id');
 
         $grades    = GradeRepository::getAll($stagesIds, true, -1, -1);

@@ -33,7 +33,7 @@ class Grade extends Model
     /**
      * @var array
      */
-    protected $fillable = ['stage_id', 'name', 'description', 'status', 'created_at', 'updated_at', 'ordering'];
+    protected $fillable = ['stage_id', 'name', 'description', 'image', 'status', 'created_at', 'updated_at', 'ordering'];
 
     /**
      * Get id.
@@ -279,5 +279,48 @@ class Grade extends Model
     public function getActiveSubjects()
     {
         return $this->subjects()->where('status', '=', Subject::STATUS_ACTIVE)->get();
+    }
+
+    public function getImage()
+    {
+        return ($this->image) ?: 'default.png';
+    }
+
+    public function setImageAttribute($value)
+    {
+        $attributeName    = "image";
+        $disk             = "s3";
+        $destination_path = "uploads/grade/image";
+
+        // if the image was erased
+        if ($value == null) {
+            // delete the image from disk
+            \Storage::disk($disk)->delete($this->{$attributeName});
+
+            // set null in the database column
+            $this->attributes[$attributeName] = null;
+        }
+
+        // if a base64 was sent, store it in the db
+        if (starts_with($value, 'data:image')) {
+            // 0. Make the image
+            $image                            = \Image::make($value);
+            // 1. Generate a filename.
+            $filename                         = md5($value . time()) . '.jpg';
+            // 2. Store the image on disk.
+            \Storage::disk($disk)->put($destination_path . '/' . $filename, (string) $image->stream(), 'public');
+            // 3. Save the path to the database
+            $this->attributes[$attributeName] = $filename;
+        }
+    }
+
+    public static function getImagePath()
+    {
+        return \Illuminate\Support\Facades\Storage::cloud()->url("uploads/grade/image/");
+    }
+
+    public function getImageUrl()
+    {
+        return $this->getImagePath() . $this->getImage();
     }
 }

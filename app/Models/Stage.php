@@ -256,4 +256,14 @@ class Stage extends Model
     {
         return $this->hasMany('App\Models\Grade');
     }
+
+    /**
+     * Get the related active grades
+     * 
+     * @return Grade[]
+     */
+    public function getActiveGrades()
+    {
+        return $this->grades()->where('status', '=', Grade::STATUS_ACTIVE)->get();
+    }
 }

@@ -64,9 +64,9 @@
                                             <a href="{{$contactUsUrl}}">أتصل بنا</a>
                                         </li>
                                         <li class="menuItem">
-                                           
+
                                             @php $blogUsUrl = route('app.home').'/page/مدونة-نذاكر';@endphp
-                                            
+
                                             <a href="{{$blogUsUrl}}">مدونة نذاكر</a>
                                         </li>
 
@@ -87,7 +87,10 @@
                                             <ul class="dropdown-menu" role="menu">
                                                 <!--<li><a href="{{ route('teacher.myCourses') }}">My courses</a></li>-->
                                                 <li><a href="{{ route('user.profile.edit') }}">{{trans('auth.editProfile')}}</a></li>
+                                                @if (Auth::user()->hasType(App\Models\User::TYPE_STUDENT_PARENT))
                                                 <li><a href="{{ route('student.create') }}">{{trans('student.form.create.title')}}</a></li>
+                                                @endif
+
                                                 <li>
                                                     <a href="{{ url('/logout') }}"
                                                        onclick="event.preventDefault();
