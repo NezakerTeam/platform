@@ -23,6 +23,10 @@
                         <a class="btn btn-link" href="{{route('register')}}">{{trans('auth.form.login.notRegisteredYet.register')}}</a>
                     </span>
 
+                    <span>
+                        <a href="{{ url(route('socialAuth.facebook')) }}" class="btn btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i> ادخل بالفيسبوك</a>
+                    </span>
+
                 </div>
             </div>
 

@@ -7,7 +7,7 @@ class UserRepository extends EntityRepository
 {
 
     /**
-     * @inheritdoc 
+     * @return Model 
      */
     protected static function getModel()
     {
@@ -22,6 +22,13 @@ class UserRepository extends EntityRepository
     public static function store(User $user)
     {
         $user->save();
+
+        return $user;
+    }
+
+    public static function getByEmail($email)
+    {
+        $user = self::getModel()->where('email', $email)->first();
 
         return $user;
     }
