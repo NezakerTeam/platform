@@ -17,7 +17,7 @@
                     @foreach ($lessonsChunks[0] as $lesson)
                     @if (count($lesson->getApprovedContents()) > 0)
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="panel-heading subject-panel-heading">
                             <h4 class="panel-title text-center">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$lesson->id}}">
                                     {{$lesson->name}}
@@ -46,7 +46,7 @@
                     @foreach ($lessonsChunks[1] as $lesson)
                     @if (count($lesson->getApprovedContents()) > 0)
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="panel-heading subject-panel-heading">
                             <h4 class="panel-title text-center">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$lesson->id}}">
                                     {{$lesson->name}}

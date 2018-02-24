@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     CRUD::resource('subject', 'Admin\SubjectCrudController');
     CRUD::resource('grade', 'Admin\GradeCrudController');
     CRUD::resource('stage', 'Admin\StageCrudController');
+    CRUD::resource('assessment', 'Admin\AssessmentCrudController');
 
     // [...] other routes
 });
