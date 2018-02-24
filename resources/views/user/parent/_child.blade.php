@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         @forelse ($student->grade->getActiveSubjects() as $subject)
-        <div class="col-md-3">
+        <div class="col-md-2">
             <a href="{{route('subject.show', ['id' => $subject->getId()])}}" target="_blank">
                 <img src="{{$subject->getImageUrl()}}" alt="{{$subject->name}}" class="center-block subject-thumb img-thumbnail img-responsive img-rounded">
             </a>

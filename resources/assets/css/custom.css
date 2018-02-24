@@ -68,3 +68,9 @@ and open the template in the editor.
 .subject-thumb{
     width: 160px;
 }
+
+.panel-heading.subject-panel-heading{
+    color: #fefefe;
+    background-color: #4da1db;
+    border-color: #4da1db;
+}
