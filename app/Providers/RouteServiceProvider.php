@@ -23,8 +23,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $router = app('router');
-        $router->middleware('admin', \App\Http\Middleware\Admin::class);
+        Route::aliasMiddleware('admin', \App\Http\Middleware\Admin::class);
 
         parent::boot();
     }
