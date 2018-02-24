@@ -87,10 +87,8 @@ class ContentCrudController extends CrudController
         $this->crud->addColumn([
             'label' => 'Author',
             'type' => 'select',
-            'name' => 'author_id',
             'entity' => 'author',
             'attribute' => 'name',
-            'model' => User::class,
         ]);
 
         $this->crud->addColumn([
