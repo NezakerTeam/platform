@@ -28,6 +28,7 @@
             <li><a href="{{ route('crud.subject.index') }}"><i class="fa fa-tag"></i> <span>Subjects</span></a></li>
             <li><a href="{{ route('crud.grade.index') }}"><i class="fa fa-tag"></i> <span>Grades</span></a></li>
             <li><a href="{{ route('crud.stage.index') }}"><i class="fa fa-tag"></i> <span>Stages</span></a></li>
+            <li><a href="{{ route('crud.assessment.index') }}"><i class="fa fa-tag"></i> <span>Assessment</span></a></li>
 
             <!-- ======================================= -->
             <li class="header">{{ trans('backpack::base.user') }}</li>

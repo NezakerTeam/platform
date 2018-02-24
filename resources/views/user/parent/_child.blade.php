@@ -11,6 +11,14 @@
                         تعديل البيانات
                     </a>
                 </li>
+                @if (null != $assessment = $student->getAssessment())
+                <li>
+                    <a href="{{$assessment->link}}" class="btn btn-default btn-xs" target="_blank">
+                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+                        ملء الاستبيان
+                    </a>
+                </li>
+                @endif
             </ul>
         </h3>
 

@@ -1,7 +1,12 @@
 <?php
 namespace App\Models;
 
+use App\Models\Repositories\AssessmentRepository;
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
@@ -36,12 +41,12 @@ class Student extends Model
         parent::boot();
 
         static::updating(function(Student $student) {
-            $now = new \DateTime();
+            $now = new DateTime();
             $student->setUpdatedAt($now);
         });
 
         static::creating(function(Student $student) {
-            $now = new \DateTime();
+            $now = new DateTime();
             $student->setCreatedAt($now);
             $student->setUpdatedAt($now);
         });
@@ -150,27 +155,32 @@ class Student extends Model
     }
 
     /**
-     * Set birthDate.
+     * Set birthdate.
      *
-     * @param \DateTime $birthDate
+     * @param DateTime $birthdate
      *
      * @return self
      */
-    public function setBirthDate($birthDate)
+    public function setBirthDate($birthdate)
     {
-        $this->birthDate = $birthDate;
+        $this->birthdate = $birthdate;
 
         return $this;
     }
 
     /**
-     * Get birthDate.
+     * Get birthdate.
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getBirthDate()
     {
-        return $this->birthDate;
+        return $this->birthdate;
+    }
+
+    public function getAge()
+    {
+        return Carbon::parse($this->getBirthDate())->age;
     }
 
     /**
@@ -198,7 +208,7 @@ class Student extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function grade()
     {
@@ -206,7 +216,7 @@ class Student extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function educationType()
     {
@@ -214,10 +224,19 @@ class Student extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function studentRelations()
     {
         return $this->hasMany('App\Models\StudentRelation');
+    }
+
+    public function getAssessment()
+    {
+        $age = $this->getAge();
+
+        $assessment = AssessmentRepository::getByAge($age);
+        
+        return $assessment;
     }
 }
