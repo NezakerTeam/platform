@@ -42,6 +42,7 @@
                                             @endif
                                             <a href="{{$howItWorksUrl}}">كيف يعمل</a>
                                         </li>
+                                        <!--
                                         <li class="menuItem">
                                             @if (Auth::guest())
                                             @php $allLessonsUrl = route('app.home').'#recent-lessons';@endphp
@@ -50,6 +51,7 @@
                                             @endif
                                             <a href="{{$allLessonsUrl}}">كل الفيديوهات</a>
                                         </li>
+                                        -->
                                         @if (Auth::check())
                                         <li class="menuItem">
                                             <a href="{{ route('content.create') }}">{{ trans('content.createNew') }}</a>
